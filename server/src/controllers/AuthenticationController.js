@@ -1,6 +1,8 @@
 const { User } = require('../models')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config')
+var bcrypt = require('bcryptjs')
+const SALT_ROUND = 10
 
 function jwtSignUser (user) {
   const ONE_WEEK = 60 * 60 * 24 * 7
@@ -10,9 +12,15 @@ function jwtSignUser (user) {
 }
 
 module.exports = {
+  // try to register a new user
   async register (req, res) {
     try {
-      const user = await User.create(req.body)
+      const { email, password } = req.body
+      const hash = bcrypt.hashSync(password, SALT_ROUND)
+      const user = await User.create({
+        email: email,
+        password: hash
+      })
       const userJson = user.toJSON()
       res.send({
         user: userJson,
@@ -20,10 +28,12 @@ module.exports = {
       })
     } catch (err) {
       res.status(400).send({
-        error: 'This email account is already in use.'
+        error: 'This email account is already in use'
       })
     }
   },
+
+  // try to login the user
   async login (req, res) {
     try {
       const { email, password } = req.body
@@ -32,17 +42,16 @@ module.exports = {
           email: email
         }
       })
-
       if (!user) {
         return res.status(403).send({
-          error: 'The login information was incorrect'
+          error: 'Incorrect login information'
         })
       }
 
-      const isPasswordValid = await user.comparePassword(password)
+      const isPasswordValid = bcrypt.compareSync(password, user.password)
       if (!isPasswordValid) {
         return res.status(403).send({
-          error: 'The login information was incorrect'
+          error: 'Incorrect login information'
         })
       }
 
@@ -53,7 +62,7 @@ module.exports = {
       })
     } catch (err) {
       res.status(500).send({
-        error: 'An error has occured trying to log in'
+        error: 'An error occurred trying to log in'
       })
     }
   }
