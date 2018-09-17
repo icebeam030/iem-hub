@@ -2,6 +2,7 @@
 
 const express = require('express')
 const bodyParser = require('body-parser')
+// this should only be used for development due to security issues
 const cors = require('cors')
 const morgan = require('morgan')
 const { sequelize } = require('./models')
@@ -14,7 +15,8 @@ app.use(cors())
 
 require('./routes')(app)
 
-sequelize.sync()
+// use sequelize.sync({ force: true }) to clear the database
+sequelize.sync({ force: true })
   .then(() => {
     app.listen(config.port)
     console.log(`Server started on port ${config.port}`)

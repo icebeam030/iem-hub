@@ -5,7 +5,7 @@
         <v-flex xs12 sm8 md4>
           <v-card class="elevation-12">
             <v-toolbar dark color="blue darken-1">
-              <v-toolbar-title>Register</v-toolbar-title>
+              <v-toolbar-title>Login</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
               <v-form v-model="valid" ref="form" autocomplete="off">
@@ -29,15 +29,6 @@
                   required
                 >
                 </v-text-field>
-                <v-text-field
-                  prepend-icon="lock"
-                  label="Confirm Password"
-                  v-model="confirmPassword"
-                  :error-messages="isPasswordMatched()"
-                  type="password"
-                  required
-                >
-                </v-text-field>
               </v-form>
             </v-card-text>
             <v-card-actions>
@@ -53,7 +44,7 @@
             </v-card-actions>
             <v-card-actions>
               <v-spacer></v-spacer>
-                <v-btn color="success" @click="register" :disabled="!valid">Register!</v-btn>
+                <v-btn color="success" @click="login" :disabled="!valid">Login</v-btn>
                 <v-btn @click="clear">Clear</v-btn>
             </v-card-actions>
           </v-card>
@@ -68,12 +59,11 @@
 import AuthenticationService from '@/services/AuthenticationService'
 
 export default {
-  name: 'Register',
+  name: 'Login',
   data () {
     return {
       email: '',
       password: '',
-      confirmPassword: '',
       showPassword: false,
       error: null,
       valid: false,
@@ -81,34 +71,28 @@ export default {
         (v) => !!v || 'E-mail is required',
         (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
       ],
-      // TODO: require stronger password
       passwordRules: [
         (v) => !!v || 'Password is required',
-        (v) => v && v.length >= 8 || 'Password must be more than 8 characters',
-        (v) => v && v.length <= 20 || 'Password must be less than 20 characters'
+        (v) => v && v.length >= 8 || 'Password should be more than 8 characters',
+        (v) => v && v.length <= 20 || 'Password should be less than 20 characters'
       ]
     }
   },
   methods: {
-    async register () {
-      if (this.$refs.form.validate()) {
-        try {
-          const response = await AuthenticationService.register({
-            email: this.email,
-            password: this.password
-          })
-          this.$store.dispatch('setToken', response.data.token)
-          this.$store.dispatch('setUser', response.data.user)
-        } catch (error) {
-          this.error = error.response.data.error
-        }
+    async login () {
+      try {
+        const response = await AuthenticationService.login({
+          email: this.email,
+          password: this.password
+        })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+      } catch (error) {
+        this.error = error.response.data.error
       }
     },
     clear () {
       this.$refs.form.reset()
-    },
-    isPasswordMatched () {
-      return (this.password === this.confirmPassword) ? '' : 'Your passwords do not match'
     }
   }
 }

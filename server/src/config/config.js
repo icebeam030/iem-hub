@@ -7,7 +7,11 @@ module.exports = {
     options: {
       dialect: process.env.DIALECT || 'sqlite',
       host: process.env.HOST || 'localhost',
-      storage: './iemhub.sqlite'
+      storage: './iemhub.sqlite',
+      operatorsAliases: false
     }
+  },
+  authentication: {
+    jwtSecret: process.env.JWT_SECRET || 'secret'
   }
 }

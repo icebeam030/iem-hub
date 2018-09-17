@@ -1,10 +1,8 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 
-const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
-
+// handle various endpoints
 module.exports = (app) => {
-  // handle the register endpoint
-  app.post('/register',
-    AuthenticationControllerPolicy.register,
-    AuthenticationController.register)
+  app.post('/register', AuthenticationController.register)
+
+  app.post('/login', AuthenticationController.login)
 }

@@ -1,8 +1,12 @@
+// post various endpoints to the server
+
 import Api from '@/services/Api'
 
 export default {
-  // post a register endpoint to the server
   register (credentials) {
     return Api().post('register', credentials)
+  },
+  login (credentials) {
+    return Api().post('login', credentials)
   }
 }
