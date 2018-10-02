@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap>
-    <v-flex v-for="item in items" :key="item.id" xs4 sm6 offset-sm3>
+    <v-flex v-for="iem in iems" :key="iem.id" xs4 sm6 offset-sm3>
       <v-card>
         <v-img
           src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
@@ -9,15 +9,16 @@
 
         <v-card-title primary-title>
           <div>
-            <h3 class="headline mb-0">{{ item.name }}</h3>
-            <div>$ {{ item.price }}</div>
+            <h3 class="headline mb-0">{{ iem.name }}</h3>
+            <div>$ {{ iem.price }}</div>
+            <div>Average Rating: {{ averageRating }}</div>
           </div>
         </v-card-title>
 
         <v-card-actions>
           <v-btn flat color="orange">Bookmark</v-btn>
           <v-btn flat color="orange">Comment</v-btn>
-          <v-rating v-model="rating"></v-rating>
+          <v-rating v-model="rating" half-increments></v-rating>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -25,22 +26,24 @@
 </template>
 
 <script>
+import IEMService from '@/services/IEMService'
+
 export default {
   data () {
     return {
-      items: [
-        {
-          id: 1,
-          name: 'flamenco',
-          price: 2000
-        },
-        {
-          id: 2,
-          name: 'u18t',
-          price: 3000
-        }
-      ]
+      iems: [{
+        brand: '64 audio',
+        name: 'A18t',
+        price: 2999,
+        imageUrl: null
+      }],
+      rating: 3.5,
+      averageRating: 0
     }
+  },
+  async mounted () {
+    // fetch all iems from backend
+    this.iems = (await IEMService.index()).data
   }
 }
 </script>

@@ -49,10 +49,9 @@
     </v-toolbar>
 
     <v-content>
-      <v-toolbar>
+      <v-toolbar v-if="!$store.state.isUserLoggedIn">
         <v-toolbar-title>Login to start using</v-toolbar-title>
       </v-toolbar>
-      <iem-browser />
       <router-view/>
     </v-content>
 
@@ -63,8 +62,6 @@
 </template>
 
 <script>
-import IemBrowser from '@/components/IemBrowser.vue'
-
 export default {
   name: 'App',
   data () {
@@ -88,9 +85,6 @@ export default {
       this.$store.dispatch('setUser', null)
       this.$router.push({ name: 'root' })
     }
-  },
-  components: {
-    IemBrowser
   }
 }
 </script>

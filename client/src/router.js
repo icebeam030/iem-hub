@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Register from './components/Register.vue'
 import Login from './components/Login.vue'
+import CreateIEM from './components/CreateIEM.vue'
+import IEMBrowser from './components/IEMBrowser.vue'
 
 Vue.use(Router)
 
@@ -24,6 +26,16 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/iem',
+      name: 'iem-browser',
+      component: IEMBrowser
+    },
+    {
+      path: '/iem/create',
+      name: 'iem-create',
+      component: CreateIEM
     },
     {
       path: '/about',
