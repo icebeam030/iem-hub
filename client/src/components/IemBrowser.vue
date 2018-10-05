@@ -3,7 +3,7 @@
     <v-flex v-for="iem in iems" :key="iem.id" xs4 sm6 offset-sm3>
       <v-card>
         <v-img
-          src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+          :src=iem.imageUrl
           aspect-ratio="2.75"
         ></v-img>
 

@@ -4,8 +4,8 @@
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md4>
           <v-card class="elevation-12">
-            <v-toolbar dark color="blue darken-1">
-              <v-toolbar-title>Add a new IEM</v-toolbar-title>
+            <v-toolbar dark color="blue accent-2">
+              <v-toolbar-title>Add IEM</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
               <v-form v-model="valid" ref="form" autocomplete="off">
@@ -13,6 +13,7 @@
                   prepend-icon="email"
                   label="Brand"
                   v-model="iem.brand"
+                  :rules="[v => !!v || 'Brand is required']"
                   required
                 >
                 </v-text-field>
@@ -20,6 +21,7 @@
                   prepend-icon="email"
                   label="Name"
                   v-model="iem.name"
+                  :rules="[v => !!v || 'Name is required']"
                   required
                 >
                 </v-text-field>
@@ -27,6 +29,7 @@
                   prepend-icon="email"
                   label="Price"
                   v-model="iem.price"
+                  :rules="[v => !!v || 'Price is required']"
                   required
                 >
                 </v-text-field>
@@ -34,6 +37,7 @@
                   prepend-icon="email"
                   label="Image URL"
                   v-model="iem.imageUrl"
+                  :rules="[v => !!v || 'Image URL is required']"
                   required
                 >
                 </v-text-field>

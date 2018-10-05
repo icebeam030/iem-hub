@@ -29,7 +29,7 @@
       app
       :clipped-left="clipped"
       dark
-      color="blue darken-1"
+      color="blue"
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-btn icon @click.stop="miniVariant = !miniVariant">
@@ -42,6 +42,7 @@
         <v-icon>remove</v-icon>
       </v-btn>
       <v-btn flat large to="root">IEM-HUB</v-btn>
+      <v-btn flat large to="/iem/create">Add</v-btn>
       <v-spacer></v-spacer>
       <v-btn flat v-if="!$store.state.isUserLoggedIn" to="login">Login</v-btn>
       <v-btn flat v-if="!$store.state.isUserLoggedIn" to="register">Sign Up</v-btn>

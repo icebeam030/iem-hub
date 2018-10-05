@@ -7,6 +7,6 @@ export default {
     return Api().get('iems')
   },
   post (iem) {
-    return Api().get('iems', iem)
+    return Api().post('iems', iem)
   }
 }
