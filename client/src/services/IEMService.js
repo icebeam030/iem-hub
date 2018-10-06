@@ -3,8 +3,8 @@
 import Api from '@/services/Api'
 
 export default {
-  index () {
-    return Api().get('iems')
+  index (search) {
+    return Api().get('iems', { params: { search: search } })
   },
   show (iemId) {
     return Api().get(`iems/${iemId}`)

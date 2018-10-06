@@ -1,12 +1,26 @@
 const { IEM } = require('../models')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 module.exports = {
-  // fetch the list of iems from the database
+  // fetch IEMs from database
   async index (req, res) {
     try {
-      const iems = await IEM.findAll({
-        where: {}
-      })
+      let iems = null
+      const search = req.query.search
+      // if user is searching, send back search result
+      // otherwise send back all IEMs
+      if (search) {
+        iems = await IEM.findAll({
+          where: {
+            [Op.or]: ['brand', 'name'].map(key => ({
+              [key]: { [Op.like]: `%${search}%` }
+            }))
+          }
+        })
+      } else {
+        iems = await IEM.findAll()
+      }
       res.send(iems)
     } catch (err) {
       res.status(500).send({
@@ -14,7 +28,7 @@ module.exports = {
       })
     }
   },
-  // fetch a certain iem from the database
+  // fetch information of a certain IEM from database
   async show (req, res) {
     try {
       const iem = await IEM.findById(req.params.iemId)
@@ -25,7 +39,7 @@ module.exports = {
       })
     }
   },
-  // post items into the database
+  // post an IEM into database
   async post (req, res) {
     try {
       const iem = await IEM.create(req.body)
@@ -36,7 +50,7 @@ module.exports = {
       })
     }
   },
-  // update information for a certain iem
+  // update information for a certain IEM
   async put (req, res) {
     try {
       const iem = await IEM.update(req.body, {

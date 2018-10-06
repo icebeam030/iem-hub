@@ -12,7 +12,7 @@ function jwtSignUser (user) {
 }
 
 module.exports = {
-  // try to register a new user
+  // register a new user
   async register (req, res) {
     try {
       const { email, password } = req.body
@@ -32,8 +32,7 @@ module.exports = {
       })
     }
   },
-
-  // try to login the user
+  // login the user
   async login (req, res) {
     try {
       const { email, password } = req.body

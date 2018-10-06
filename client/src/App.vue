@@ -1,8 +1,7 @@
 <template>
   <v-app>
     <v-navigation-drawer
-      persistent
-      :mini-variant="miniVariant"
+      temporary
       :clipped="clipped"
       v-model="drawer"
       enable-resize-watcher
@@ -29,55 +28,68 @@
       app
       :clipped-left="clipped"
       dark
-      color="blue"
+      color="blue accent-3"
     >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>remove</v-icon>
-      </v-btn>
+      <v-icon @click.stop="drawer = !drawer">apps</v-icon>
+
       <v-btn flat large to="root">
-        <v-icon medium>home</v-icon>
+        <v-icon>home</v-icon>
       </v-btn>
-      <v-btn flat :to="{ name: 'iem-create' }">Add</v-btn>
+
+      <v-text-field
+        class="mt-2"
+        flat
+        label="Search"
+        v-model="search"
+        clearable
+        prepend-inner-icon="search"
+        solo-inverted
+      ></v-text-field>
+
       <v-spacer></v-spacer>
-      <v-btn flat v-if="!$store.state.isUserLoggedIn" to="login">Login</v-btn>
-      <v-btn flat v-if="!$store.state.isUserLoggedIn" to="register">Sign Up</v-btn>
-      <v-btn flat v-if="$store.state.isUserLoggedIn" @click="logout">Log Out</v-btn>
+
+      <v-btn light v-if="!$store.state.isUserLoggedIn" to="login">Login</v-btn>
+      <v-btn light v-if="!$store.state.isUserLoggedIn" to="register">Sign Up</v-btn>
+      <v-btn flat v-if="$store.state.isUserLoggedIn">
+        <v-icon>settings</v-icon>
+      </v-btn>
+      <v-btn light v-if="$store.state.isUserLoggedIn" @click="logout">Log Out</v-btn>
     </v-toolbar>
 
     <v-content>
       <v-toolbar v-if="!$store.state.isUserLoggedIn">
-        <v-toolbar-title>Login to start using</v-toolbar-title>
+        <v-toolbar-title>Login to start your IEM journey</v-toolbar-title>
       </v-toolbar>
       <router-view/>
     </v-content>
-
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2018 Zheyang Zheng</span>
-    </v-footer>
   </v-app>
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   name: 'App',
   data () {
     return {
-      clipped: false,
+      clipped: true,
       drawer: false,
-      fixed: false,
       items: [{
         icon: 'bubble_chart',
         title: 'Inspire'
       }],
-      miniVariant: false
+      search: ''
     }
+  },
+  watch: {
+    // only requests to server 1 seconds after finish typing
+    search: _.debounce(async function (value) {
+      const route = { name: 'iem-browser' }
+      if (this.search !== '') {
+        route.query = { search: this.search }
+      }
+      this.$router.push(route)
+    }, 1000)
   },
   methods: {
     logout () {
