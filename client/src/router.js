@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Register from './components/Register.vue'
 import Login from './components/Login.vue'
-import CreateIEM from './components/CreateIEM.vue'
 import IEMBrowser from './components/IEMBrowser.vue'
+import CreateIEM from './components/CreateIEM.vue'
+import EditIEM from './components/EditIEM.vue'
 
 Vue.use(Router)
 
@@ -38,12 +39,9 @@ export default new Router({
       component: CreateIEM
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/iem/edit/:iemId',
+      name: 'iem-edit',
+      component: EditIEM
     }
   ]
 })

@@ -41,8 +41,10 @@
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>remove</v-icon>
       </v-btn>
-      <v-btn flat large to="root">IEM-HUB</v-btn>
-      <v-btn flat large to="/iem/create">Add</v-btn>
+      <v-btn flat large to="root">
+        <v-icon medium>home</v-icon>
+      </v-btn>
+      <v-btn flat :to="{ name: 'iem-create' }">Add</v-btn>
       <v-spacer></v-spacer>
       <v-btn flat v-if="!$store.state.isUserLoggedIn" to="login">Login</v-btn>
       <v-btn flat v-if="!$store.state.isUserLoggedIn" to="register">Sign Up</v-btn>
@@ -74,10 +76,7 @@ export default {
         icon: 'bubble_chart',
         title: 'Inspire'
       }],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'IEM Hub'
+      miniVariant: false
     }
   },
   methods: {

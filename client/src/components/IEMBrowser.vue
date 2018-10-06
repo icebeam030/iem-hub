@@ -1,28 +1,39 @@
 <template>
-  <v-layout row wrap>
-    <v-flex v-for="iem in iems" :key="iem.id" xs4 sm6 offset-sm3>
-      <v-card>
-        <v-img
-          :src=iem.imageUrl
-          aspect-ratio="2.75"
-        ></v-img>
+  <v-container grid-list-xl>
+    <v-layout row wrap>
+      <v-flex v-for="iem in iems" :key="iem.id" xs4 sm6>
+        <v-card class="elevation-8">
+          <v-img
+            :src=iem.imageUrl
+            aspect-ratio="2.75"
+          ></v-img>
 
-        <v-card-title primary-title>
-          <div>
-            <h3 class="headline mb-0">{{ iem.name }}</h3>
-            <div>$ {{ iem.price }}</div>
-            <div>Average Rating: {{ averageRating }}</div>
-          </div>
-        </v-card-title>
+          <v-card-title primary-title>
+            <div>
+              <div class="headline mb-0">{{ iem.name }}</div>
+              <div class="subheading mb-0">$ {{ iem.price }}</div>
+              <div>Average Rating: {{ averageRating }}</div>
+            </div>
+          </v-card-title>
 
-        <v-card-actions>
-          <v-btn flat color="orange">Bookmark</v-btn>
-          <v-btn flat color="orange">Comment</v-btn>
-          <v-rating v-model="rating" half-increments></v-rating>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+          <v-card-actions>
+            <v-btn flat color="orange">
+              <v-icon>favorite_border</v-icon>
+            </v-btn>
+            <v-btn flat color="orange">
+              <v-icon>comment</v-icon>
+            </v-btn>
+            <v-rating v-model="rating" half-increments></v-rating>
+            <v-spacer></v-spacer>
+            <v-btn dark color="blue accent-2"
+              :to="{ name: 'iem-edit', params: { iemId: iem.id }}">
+              Edit
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -31,12 +42,7 @@ import IEMService from '@/services/IEMService'
 export default {
   data () {
     return {
-      iems: [{
-        brand: '64 audio',
-        name: 'A18t',
-        price: 2999,
-        imageUrl: null
-      }],
+      iems: [],
       rating: 3.5,
       averageRating: 0
     }
