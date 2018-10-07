@@ -32,7 +32,7 @@
     >
       <v-icon @click.stop="drawer = !drawer">apps</v-icon>
 
-      <v-btn flat large to="root">
+      <v-btn flat large @click="homeButton">
         <v-icon>home</v-icon>
       </v-btn>
 
@@ -96,13 +96,15 @@ export default {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       this.$router.push({ name: 'root' })
+    },
+    homeButton () {
+      if (this.$store.state.isUserLoggedIn) {
+        this.$router.push({ name: 'iem-browser' })
+      } else {
+        this.$router.push({ name: 'root' })
+      }
     }
   },
-  mounted () {
-    if (this.$store.state.isUserLoggedIn) {
-      this.$router.push({ name: 'iem-browser' })
-    }
-  }
 }
 </script>
 

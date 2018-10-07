@@ -37,7 +37,7 @@ module.exports = {
           iemId: iemId
         }
       })
-      const averageRating = sum / count
+      const averageRating = Number.parseFloat(sum / count).toFixed(1)
       res.send({
         averageRating: averageRating
       })
