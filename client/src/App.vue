@@ -97,6 +97,11 @@ export default {
       this.$store.dispatch('setUser', null)
       this.$router.push({ name: 'root' })
     }
+  },
+  mounted () {
+    if (this.$store.state.isUserLoggedIn) {
+      this.$router.push({ name: 'iem-browser' })
+    }
   }
 }
 </script>

@@ -92,7 +92,7 @@ export default {
     }
   },
   async mounted () {
-    // fetch iem info from backend
+    // fetch IEM info from backend
     const iemId = this.$route.params.iemId
     this.iem = (await IEMService.show(iemId)).data
   }

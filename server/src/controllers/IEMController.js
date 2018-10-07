@@ -53,10 +53,10 @@ module.exports = {
   // update information for a certain IEM
   async put (req, res) {
     try {
-      const iem = await IEM.update(req.body, {
+      await IEM.update(req.body, {
         where: { id: req.params.iemId }
       })
-      res.send(iem)
+      res.send(req.body)
     } catch (err) {
       res.status(500).send({
         error: 'An error occurred trying to update IEM information'
