@@ -37,6 +37,7 @@
       </v-btn>
 
       <v-text-field
+        v-if="$store.state.isUserLoggedIn"
         class="mt-2"
         flat
         label="Search"
@@ -104,7 +105,7 @@ export default {
         this.$router.push({ name: 'root' })
       }
     }
-  },
+  }
 }
 </script>
 

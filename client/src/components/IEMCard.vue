@@ -30,9 +30,9 @@
       <v-btn flat color="pink">
         <v-icon>favorite_border</v-icon>
       </v-btn>
-      <!-- <v-btn flat color="blue accent-4">
+      <v-btn flat color="blue accent-4">
         <v-icon>comment</v-icon>
-      </v-btn> -->
+      </v-btn>
       <v-spacer></v-spacer>
       <v-btn dark color="blue accent-4"
         :to="{ name: 'iem-edit', params: { iemId: iem.id }}">
