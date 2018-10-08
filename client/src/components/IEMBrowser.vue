@@ -5,7 +5,12 @@
         <v-icon>menu</v-icon>
         <v-toolbar-title>IEM Hub</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn light :to="{ name: 'iem-create' }">Create</v-btn>
+        <v-btn
+          v-if="$store.state.isUserAdmin"
+          light
+          :to="{ name: 'iem-create' }">
+          Create
+        </v-btn>
       </v-toolbar>
 
       <v-layout row wrap>

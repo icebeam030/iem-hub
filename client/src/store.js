@@ -7,18 +7,16 @@ export default new Vuex.Store({
   state: {
     token: null,
     user: null,
-    isUserLoggedIn: false
+    isUserLoggedIn: false,
+    isUserAdmin: false
   },
   mutations: {
     setToken (state, token) {
       state.token = token
-      if (token) {
-        state.isUserLoggedIn = true
-      } else {
-        state.isUserLoggedIn = false
-      }
+      state.isUserLoggedIn = !!token
     },
     setUser (state, user) {
+      state.isUserAdmin = (user && user.email === 'admin@admin.com')
       state.user = user
     }
   },
