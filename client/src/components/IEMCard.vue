@@ -30,21 +30,18 @@
       <v-btn block large color="error">{{ error }}</v-btn>
     </v-card-actions>
 
-    <v-card-actions>
-      <v-btn flat color="pink">
-        <v-icon>favorite_border</v-icon>
-      </v-btn>
-      <v-btn flat color="blue accent-4">
-        <v-icon>comment</v-icon>
-      </v-btn>
+    <v-card-actions v-if="$store.state.isUserAdmin">
       <v-spacer></v-spacer>
+      <v-btn flat color="blue accent-4">
+        <v-icon>delete</v-icon>
+      </v-btn>
+
       <v-btn
-        v-if="$store.state.isUserAdmin"
-        dark
+        flat
         color="blue accent-4"
         :to="{ name: 'iem-edit', params: { iemId: iem.id }}"
       >
-        Edit
+        <v-icon>edit</v-icon>
       </v-btn>
     </v-card-actions>
   </v-card>

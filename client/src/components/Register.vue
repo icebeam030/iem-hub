@@ -4,7 +4,7 @@
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md4>
           <v-card class="elevation-12">
-            <v-toolbar dark color="blue accent-2">
+            <v-toolbar dark color="blue accent-4">
               <v-toolbar-title>Register</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
@@ -45,7 +45,7 @@
             </v-card-actions>
             <v-card-actions>
               <v-spacer></v-spacer>
-                <v-btn color="success" @click="register" :disabled="!valid">Register!</v-btn>
+                <v-btn dark color="blue accent-4" @click="register" :disabled="!valid">Register!</v-btn>
                 <v-btn @click="clear">Clear</v-btn>
             </v-card-actions>
           </v-card>
@@ -103,6 +103,11 @@ export default {
     },
     isPasswordMatched () {
       return (this.password === this.confirmPassword) ? '' : 'Your passwords do not match'
+    }
+  },
+  mounted () {
+    if (this.$store.state.isUserLoggedIn) {
+      this.$router.push({ name: 'iem-browser' })
     }
   }
 }

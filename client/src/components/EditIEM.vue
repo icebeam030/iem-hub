@@ -4,8 +4,12 @@
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md4>
           <v-card class="elevation-12">
-            <v-toolbar dark color="blue accent-2">
+            <v-toolbar dark color="blue accent-4">
               <v-toolbar-title>Edit IEM</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-btn flat @click="$router.go(-1)">
+                <v-icon>arrow_back</v-icon>
+              </v-btn>
             </v-toolbar>
             <v-card-text>
               <v-form v-model="valid" ref="form" autocomplete="off">
@@ -48,7 +52,7 @@
             </v-card-actions>
             <v-card-actions>
               <v-spacer></v-spacer>
-                <v-btn color="success" @click="editIEM" :disabled="!valid">Save</v-btn>
+                <v-btn dark color="blue accent-4" @click="editIEM" :disabled="!valid">Save</v-btn>
                 <v-btn @click="clear">Clear</v-btn>
             </v-card-actions>
           </v-card>

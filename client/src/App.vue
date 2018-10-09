@@ -30,7 +30,9 @@
       dark
       color="blue accent-3"
     >
-      <v-icon @click.stop="drawer = !drawer">apps</v-icon>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer">
+        <v-icon>apps</v-icon>
+      </v-toolbar-side-icon>
 
       <v-btn flat large @click="homeButton">
         <v-icon>home</v-icon>
@@ -49,18 +51,23 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn light v-if="!$store.state.isUserLoggedIn" to="login">Login</v-btn>
-      <v-btn light v-if="!$store.state.isUserLoggedIn" to="register">Sign Up</v-btn>
-      <v-btn flat v-if="$store.state.isUserLoggedIn">
+      <v-btn flat large v-if="$store.state.isUserLoggedIn">
         <v-icon>settings</v-icon>
       </v-btn>
+      <v-btn light v-if="!$store.state.isUserLoggedIn" to="login">Login</v-btn>
+      <v-btn light v-if="!$store.state.isUserLoggedIn" to="register">Sign Up</v-btn>
       <v-btn light v-if="$store.state.isUserLoggedIn" @click="logout">Log Out</v-btn>
     </v-toolbar>
 
     <v-content>
-      <v-toolbar v-if="!$store.state.isUserLoggedIn">
-        <v-toolbar-title>Login to start your IEM journey</v-toolbar-title>
-      </v-toolbar>
+      <div>
+        <br>
+        <v-toolbar v-if="!$store.state.isUserLoggedIn" block large>
+          <v-toolbar-title>
+            Sign up or Login to start your IEM journey
+          </v-toolbar-title>
+        </v-toolbar>
+      </div>
       <router-view/>
     </v-content>
   </v-app>
@@ -77,7 +84,7 @@ export default {
       drawer: false,
       items: [{
         icon: 'bubble_chart',
-        title: 'Inspire'
+        title: 'To be developed...'
       }],
       search: ''
     }

@@ -1,8 +1,32 @@
 <template>
   <v-container v-if="$store.state.isUserLoggedIn" grid-list-xl>
     <v-card class="elevation-3">
+      <v-navigation-drawer
+        temporary
+        :clipped="clipped"
+        v-model="drawer"
+        enable-resize-watcher
+        fixed
+        app
+      >
+        <v-list>
+          <v-list-tile
+            value="true"
+            v-for="(item, i) in items"
+            :key="i"
+          >
+            <v-list-tile-action>
+              <v-icon v-html="item.icon"></v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title v-text="item.title"></v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-navigation-drawer>
+
       <v-toolbar dark color="blue accent-4">
-        <v-icon>menu</v-icon>
+        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title>IEM Hub</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
@@ -36,7 +60,23 @@ export default {
   data () {
     return {
       iems: [],
-      error: null
+      error: null,
+      drawer: false,
+      clipped: true,
+      items: [
+        {
+          icon: 'favorite_border',
+          title: 'Favourites'
+        },
+        {
+          icon: 'album',
+          title: 'Brand 1'
+        },
+        {
+          icon: 'album',
+          title: 'Brand 2'
+        }
+      ]
     }
   },
   // TODO: refactor this to computed property
