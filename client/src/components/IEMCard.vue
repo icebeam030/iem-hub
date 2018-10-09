@@ -1,7 +1,7 @@
 <template>
   <v-card class="elevation-8">
     <v-img
-      :src=iem.imageUrl
+      :src="iem.imageUrl"
       aspect-ratio="2.75"
     ></v-img>
 
@@ -26,6 +26,10 @@
       </v-btn>
     </v-card-actions>
 
+    <v-card-actions v-if="error">
+      <v-btn block large color="error">{{ error }}</v-btn>
+    </v-card-actions>
+
     <v-card-actions>
       <v-btn flat color="pink">
         <v-icon>favorite_border</v-icon>
@@ -38,7 +42,8 @@
         v-if="$store.state.isUserAdmin"
         dark
         color="blue accent-4"
-        :to="{ name: 'iem-edit', params: { iemId: iem.id }}">
+        :to="{ name: 'iem-edit', params: { iemId: iem.id }}"
+      >
         Edit
       </v-btn>
     </v-card-actions>
@@ -55,7 +60,8 @@ export default {
   data () {
     return {
       rating: 0,
-      averageRating: 0
+      averageRating: 0,
+      error: null
     }
   },
   watch: {
@@ -66,6 +72,7 @@ export default {
           return
         }
 
+        this.error = null
         // retrieve rating from backend
         try {
           const rating = {
@@ -80,7 +87,7 @@ export default {
           const iemId = this.iem.id
           this.averageRating = (await RatingService.show(iemId)).data.averageRating
         } catch (err) {
-          console.log(err)
+          this.error = err.response.data.error
         }
       }
     }
@@ -88,6 +95,7 @@ export default {
   methods: {
     async rateIEM () {
       try {
+        this.error = null
         const rating = {
           userId: this.$store.state.user.id,
           iemId: this.iem.id,
@@ -96,7 +104,7 @@ export default {
         await RatingService.put(rating)
         this.averageRating = (await RatingService.show(this.iem.id)).data.averageRating
       } catch (err) {
-        console.log(err)
+        this.error = err.response.data.error
       }
     }
   }

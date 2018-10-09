@@ -44,15 +44,7 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-toolbar
-                v-if="error"
-                dense
-                dark
-                v-model="error"
-                color="error"
-              >
-                {{ error }}
-              </v-toolbar>
+              <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
             </v-card-actions>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -92,7 +84,7 @@ export default {
         await IEMService.post(this.iem)
         this.$router.push({ name: 'iem-browser' })
       } catch (err) {
-        console.log(err)
+        this.error = err.response.data.error
       }
     }
   }

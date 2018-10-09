@@ -8,10 +8,16 @@
         <v-btn
           v-if="$store.state.isUserAdmin"
           light
-          :to="{ name: 'iem-create' }">
+          :to="{ name: 'iem-create' }"
+        >
           Create
         </v-btn>
       </v-toolbar>
+
+      <div v-if="error">
+        <br>
+        <v-btn block large color="error">{{ error }}</v-btn>
+      </div>
 
       <v-layout row wrap>
         <v-flex v-for="iem in iems" :key="iem.id" xs4 sm6 md4>
@@ -29,7 +35,8 @@ import IEMCard from '@/components/IEMCard'
 export default {
   data () {
     return {
-      iems: []
+      iems: [],
+      error: null
     }
   },
   // TODO: refactor this to computed property
@@ -37,8 +44,13 @@ export default {
     '$route.query.search': {
       immediate: true,
       async handler (value) {
+        this.error = null
         // fetch IEMs from backend
-        this.iems = (await IEMService.index(value)).data
+        try {
+          this.iems = (await IEMService.index(value)).data
+        } catch (err) {
+          this.error = err.response.data.error
+        }
       }
     }
   },

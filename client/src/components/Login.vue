@@ -32,15 +32,7 @@
               </v-form>
             </v-card-text>
             <v-card-actions>
-              <v-toolbar
-                v-if="error"
-                dense
-                dark
-                v-model="error"
-                color="error"
-              >
-                {{ error }}
-              </v-toolbar>
+              <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
             </v-card-actions>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -80,6 +72,7 @@ export default {
   },
   methods: {
     async login () {
+      this.error = null
       try {
         const response = await AuthenticationService.login({
           email: this.email,
@@ -87,10 +80,9 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
-        this.error = null
         this.$router.push({ name: 'iem-browser' })
-      } catch (error) {
-        this.error = error.response.data.error
+      } catch (err) {
+        this.error = err.response.data.error
       }
     },
     clear () {
