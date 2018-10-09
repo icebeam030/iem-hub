@@ -69,12 +69,12 @@ export default {
           title: 'Favourites'
         },
         {
-          icon: 'album',
-          title: 'Brand 1'
+          icon: 'scatter_plot',
+          title: '64 Audio'
         },
         {
-          icon: 'album',
-          title: 'Brand 2'
+          icon: 'scatter_plot',
+          title: 'Jomo Audio'
         }
       ]
     }
@@ -85,11 +85,13 @@ export default {
       immediate: true,
       async handler (value) {
         this.error = null
-        // fetch IEMs from backend
-        try {
-          this.iems = (await IEMService.index(value)).data
-        } catch (err) {
-          this.error = err.response.data.error
+        if (this.$store.state.isUserLoggedIn) {
+          // fetch IEMs from backend
+          try {
+            this.iems = (await IEMService.index(value)).data
+          } catch (err) {
+            this.error = err.response.data.error
+          }
         }
       }
     }

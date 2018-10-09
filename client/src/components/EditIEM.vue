@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <v-container v-if="$store.state.isUserLoggedIn" fluid fill-height>
+    <v-container v-if="$store.state.isUserAdmin" fluid fill-height>
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md4>
           <v-card class="elevation-12">
@@ -17,7 +17,7 @@
                   prepend-icon="email"
                   label="Brand"
                   v-model="iem.brand"
-                  :rules="[v => !!v || 'Brand is required']"
+                  :rules="[(v) => !!v || 'Brand is required']"
                   required
                 >
                 </v-text-field>
@@ -25,7 +25,7 @@
                   prepend-icon="email"
                   label="Name"
                   v-model="iem.name"
-                  :rules="[v => !!v || 'Name is required']"
+                  :rules="[(v) => !!v || 'Name is required']"
                   required
                 >
                 </v-text-field>
@@ -33,7 +33,7 @@
                   prepend-icon="email"
                   label="Price"
                   v-model="iem.price"
-                  :rules="[v => !!v || 'Price is required']"
+                  :rules="[(v) => !!v || 'Price is required']"
                   required
                 >
                 </v-text-field>
@@ -41,7 +41,7 @@
                   prepend-icon="email"
                   label="Image URL"
                   v-model="iem.imageUrl"
-                  :rules="[v => !!v || 'Image URL is required']"
+                  :rules="[(v) => !!v || 'Image URL is required']"
                   required
                 >
                 </v-text-field>
@@ -52,7 +52,14 @@
             </v-card-actions>
             <v-card-actions>
               <v-spacer></v-spacer>
-                <v-btn dark color="blue accent-4" @click="editIEM" :disabled="!valid">Save</v-btn>
+                <v-btn
+                  :dark="valid"
+                  color="blue accent-4"
+                  @click="editIEM"
+                  :disabled="!valid"
+                >
+                  Save
+                </v-btn>
                 <v-btn @click="clear">Clear</v-btn>
             </v-card-actions>
           </v-card>
@@ -89,12 +96,14 @@ export default {
   },
   async mounted () {
     this.error = null
-    // fetch IEM info from backend
-    try {
-      const iemId = this.$route.params.iemId
-      this.iem = (await IEMService.show(iemId)).data
-    } catch (err) {
-      this.error = err.response.data.error
+    if (this.$store.state.isUserLoggedIn) {
+      // fetch IEM info from backend
+      try {
+        const iemId = this.$route.params.iemId
+        this.iem = (await IEMService.show(iemId)).data
+      } catch (err) {
+        this.error = err.response.data.error
+      }
     }
   }
 }

@@ -12,9 +12,6 @@ module.exports = {
           iemId: iemId
         }
       })
-      if (rating === []) {
-        res.send([])
-      }
 
       res.send(rating)
     } catch (err) {

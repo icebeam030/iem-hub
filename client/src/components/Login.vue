@@ -8,7 +8,7 @@
               <v-toolbar-title>Login</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
-              <v-form v-model="valid" ref="form" autocomplete="off">
+              <v-form v-model="valid" ref="form">
                 <v-text-field
                   prepend-icon="email"
                   label="Email"
@@ -36,7 +36,14 @@
             </v-card-actions>
             <v-card-actions>
               <v-spacer></v-spacer>
-                <v-btn dark color="blue accent-4" @click="login" :disabled="!valid">Login</v-btn>
+                <v-btn
+                  :dark="valid"
+                  color="blue accent-4"
+                  @click="login"
+                  :disabled="!valid"
+                >
+                  Login
+                </v-btn>
                 <v-btn @click="clear">Clear</v-btn>
             </v-card-actions>
           </v-card>

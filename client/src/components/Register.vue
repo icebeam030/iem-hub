@@ -45,7 +45,14 @@
             </v-card-actions>
             <v-card-actions>
               <v-spacer></v-spacer>
-                <v-btn dark color="blue accent-4" @click="register" :disabled="!valid">Register!</v-btn>
+                <v-btn
+                  :dark="valid"
+                  color="blue accent-4"
+                  @click="register"
+                  :disabled="!valid"
+                >
+                  Register
+                </v-btn>
                 <v-btn @click="clear">Clear</v-btn>
             </v-card-actions>
           </v-card>
