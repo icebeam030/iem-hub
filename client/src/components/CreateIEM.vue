@@ -33,7 +33,7 @@
                   prepend-icon="email"
                   label="Price"
                   v-model="iem.price"
-                  :rules="[(v) => !!v || 'Price is required']"
+                  :rules="priceRules"
                   required
                 >
                 </v-text-field>
@@ -83,7 +83,11 @@ export default {
         imageUrl: null
       },
       error: null,
-      valid: false
+      valid: false,
+      priceRules: [
+        (v) => !!v || 'Price is required',
+        (v) => v && parseInt(v) >= 0 || 'Price should be a positive integer'
+      ]
     }
   },
   methods: {

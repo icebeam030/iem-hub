@@ -1,7 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
   const IEM = sequelize.define('IEM', {
-    brand: DataTypes.STRING,
-    name: DataTypes.STRING,
+    brand: {
+      type: DataTypes.STRING,
+      unique: 'compositeIndex'
+    },
+    name: {
+      type: DataTypes.STRING,
+      unique: 'compositeIndex'
+    },
     price: DataTypes.INTEGER,
     imageUrl: DataTypes.STRING
   })

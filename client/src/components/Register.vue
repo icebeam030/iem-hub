@@ -83,8 +83,7 @@ export default {
       // TODO: require stronger password
       passwordRules: [
         (v) => !!v || 'Password is required',
-        (v) => v && v.length >= 8 || 'Password must be more than 8 characters',
-        (v) => v && v.length <= 20 || 'Password must be less than 20 characters'
+        (v) => v && v.length >= 8 && v.length <= 20 || 'Password should be 8 to 20 characters long'
       ]
     }
   },

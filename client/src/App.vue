@@ -35,6 +35,7 @@
           </v-toolbar-title>
         </v-toolbar>
       </div>
+
       <router-view/>
     </v-content>
   </v-app>
