@@ -7,20 +7,21 @@ module.exports = {
       const userId = req.query.userId
       const iemId = req.query.iemId
 
-      const rating = await Rating.findAll({
+      let rating = await Rating.findAll({
         where: {
           userId: userId,
           iemId: iemId
         }
       })
       if (rating.length > 0) {
-        res.send([
-          {
-            rating: rating[0].rating
-          }
-        ])
+        rating = {
+          rating: rating[0].rating
+        }
+      } else {
+        rating = {
+          rating: 0
+        }
       }
-      // otherwise send back an empty array
       res.send(rating)
     } catch (err) {
       res.status(500).send({
@@ -32,6 +33,17 @@ module.exports = {
   async show (req, res) {
     try {
       const iemId = req.params.iemId
+      let averageRating = await Rating.findOne({
+        where: {
+          iemId: iemId
+        }
+      })
+      if (!averageRating) {
+        res.send({
+          averageRating: 'No review yet'
+        })
+      }
+
       const sum = await Rating.sum('rating', {
         where: {
           iemId: iemId
@@ -42,7 +54,7 @@ module.exports = {
           iemId: iemId
         }
       })
-      const averageRating = Number.parseFloat(sum / count).toFixed(1)
+      averageRating = Number.parseFloat(sum / count).toFixed(1)
       res.send({
         averageRating: averageRating
       })

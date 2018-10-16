@@ -20,7 +20,7 @@
       </div>
 
       <v-layout row wrap>
-        <v-flex v-for="iem in iems" :key="iem.id" xs12 sm12 md6 lg4>
+        <v-flex v-for="iem in iems" :key="iem.id" sm12 md6 lg4>
           <i-e-m-card :iem="iem"></i-e-m-card>
         </v-flex>
       </v-layout>
@@ -43,12 +43,12 @@ export default {
   watch: {
     '$route.query.search': {
       immediate: true,
-      async handler (value) {
+      async handler (search) {
         this.error = null
         if (this.$store.state.isUserLoggedIn) {
           // fetch IEMs from backend
           try {
-            this.iems = (await IEMService.index(value)).data
+            this.iems = (await IEMService.index(search)).data
           } catch (err) {
             this.error = err.response.data.error
           }

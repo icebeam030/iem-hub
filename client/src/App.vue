@@ -5,7 +5,7 @@
         <v-icon>home</v-icon>
       </v-toolbar-side-icon>
 
-      <v-btn flat icon disabled></v-btn>
+      <v-btn flat small icon disabled></v-btn>
 
       <v-text-field
         v-if="$store.state.isUserLoggedIn"
@@ -52,10 +52,10 @@ export default {
   },
   watch: {
     // only requests to server 1 seconds after finish typing
-    search: _.debounce(async function (value) {
+    search: _.debounce(async function (search) {
       const route = { name: 'iem-browser' }
       if (this.search !== '') {
-        route.query = { search: this.search }
+        route.query = { search: search }
       }
       this.$router.push(route)
     }, 1000)

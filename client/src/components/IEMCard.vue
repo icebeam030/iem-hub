@@ -57,32 +57,27 @@ export default {
   data () {
     return {
       rating: 0,
-      averageRating: 0,
+      averageRating: 'loading...',
       error: null
     }
   },
   watch: {
     iem: {
       immediate: true,
-      async handler (value) {
-        if (!value.id || !this.$store.state.isUserLoggedIn) {
+      async handler (iem) {
+        if (!iem.id || !this.$store.state.isUserLoggedIn) {
           return
         }
 
         this.error = null
         // retrieve rating from backend
         try {
-          const response = (await RatingService.index({
+          const rating = {
             userId: this.$store.state.user.id,
-            iemId: this.iem.id,
-            rating: this.rating
-          })).data
-          if (response.length > 0) {
-            this.rating = response[0].rating
+            iemId: iem.id
           }
-
-          const iemId = this.iem.id
-          this.averageRating = (await RatingService.show(iemId)).data.averageRating
+          this.rating = (await RatingService.index(rating)).data.rating
+          this.averageRating = (await RatingService.show(iem.id)).data.averageRating
         } catch (err) {
           this.error = err.response.data.error
         }
