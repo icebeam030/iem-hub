@@ -6,17 +6,25 @@ module.exports = {
     try {
       const userId = req.query.userId
       const iemId = req.query.iemId
+
       const rating = await Rating.findAll({
         where: {
           userId: userId,
           iemId: iemId
         }
       })
-
+      if (rating.length > 0) {
+        res.send([
+          {
+            rating: rating[0].rating
+          }
+        ])
+      }
+      // otherwise send back an empty array
       res.send(rating)
     } catch (err) {
       res.status(500).send({
-        error: 'An error occurred trying to fetch user ratings'
+        error: 'Error fetching ratings'
       })
     }
   },
@@ -40,7 +48,7 @@ module.exports = {
       })
     } catch (err) {
       res.status(500).send({
-        error: 'An error occurred trying to fetch average rating'
+        error: 'Error fetching average rating'
       })
     }
   },
@@ -69,7 +77,7 @@ module.exports = {
       res.send(req.body)
     } catch (err) {
       res.status(500).send({
-        error: 'An error occurred trying to update rating information'
+        error: 'Error updating rating'
       })
     }
   }

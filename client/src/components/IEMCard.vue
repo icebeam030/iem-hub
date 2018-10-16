@@ -26,10 +26,6 @@
       </v-btn>
     </v-card-actions>
 
-    <v-card-actions v-if="error">
-      <v-btn block large color="error">{{ error }}</v-btn>
-    </v-card-actions>
-
     <v-card-actions v-if="$store.state.isUserAdmin">
       <v-spacer></v-spacer>
       <v-btn flat color="blue accent-4">
@@ -43,6 +39,10 @@
       >
         <v-icon>edit</v-icon>
       </v-btn>
+    </v-card-actions>
+
+    <v-card-actions v-if="error">
+      <v-btn block large color="error">{{ error }}</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -72,15 +72,15 @@ export default {
         this.error = null
         // retrieve rating from backend
         try {
-          const rating = {
+          const response = (await RatingService.index({
             userId: this.$store.state.user.id,
             iemId: this.iem.id,
             rating: this.rating
+          })).data
+          if (response.length > 0) {
+            this.rating = response[0].rating
           }
-          const res = (await RatingService.index(rating)).data
-          if (res.length > 0) {
-            this.rating = res[0].rating
-          }
+
           const iemId = this.iem.id
           this.averageRating = (await RatingService.show(iemId)).data.averageRating
         } catch (err) {

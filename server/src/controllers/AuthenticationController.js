@@ -18,7 +18,7 @@ module.exports = {
       const { email, password } = req.body
       const hash = bcrypt.hashSync(password, SALT_ROUND)
       const user = await User.create({
-        email: email,
+        email: email.toLowerCase(),
         password: hash
       })
       const userJson = user.toJSON()
@@ -38,7 +38,7 @@ module.exports = {
       const { email, password } = req.body
       const user = await User.findOne({
         where: {
-          email: email
+          email: email.toLowerCase()
         }
       })
       if (!user) {

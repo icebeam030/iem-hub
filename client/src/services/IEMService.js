@@ -4,7 +4,11 @@ import Api from '@/services/Api'
 
 export default {
   index (search) {
-    return Api().get('iems', { params: { search: search } })
+    return Api().get('iems', {
+      params: {
+        search: search
+      }
+    })
   },
   show (iemId) {
     return Api().get(`iems/${iemId}`)
