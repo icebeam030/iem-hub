@@ -5,6 +5,7 @@ import Login from './components/Login.vue'
 import IEMBrowser from './components/IEMBrowser.vue'
 import CreateIEM from './components/CreateIEM.vue'
 import EditIEM from './components/EditIEM.vue'
+import DeleteIEM from './components/DeleteIEM.vue'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
       path: '/iem/edit/:iemId',
       name: 'iem-edit',
       component: EditIEM
+    },
+    {
+      path: '/iem/delete/:iemId',
+      name: 'iem-delete',
+      component: DeleteIEM
     }
   ]
 })

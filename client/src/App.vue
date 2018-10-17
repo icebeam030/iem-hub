@@ -27,9 +27,9 @@
     </v-toolbar>
 
     <v-content>
-      <div>
+      <div v-if="!$store.state.isUserLoggedIn">
         <br>
-        <v-toolbar v-if="!$store.state.isUserLoggedIn" block large>
+        <v-toolbar block large>
           <v-toolbar-title>
             Sign up or Login to start your IEM journey
           </v-toolbar-title>

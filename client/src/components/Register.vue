@@ -7,6 +7,7 @@
             <v-toolbar dark color="blue accent-4">
               <v-toolbar-title>Register</v-toolbar-title>
             </v-toolbar>
+
             <v-card-text>
               <v-form v-model="valid" ref="form" autocomplete="off">
                 <v-text-field
@@ -40,9 +41,11 @@
                 </v-text-field>
               </v-form>
             </v-card-text>
+
             <v-card-actions>
               <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
             </v-card-actions>
+
             <v-card-actions>
               <v-spacer></v-spacer>
                 <v-btn

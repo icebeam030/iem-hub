@@ -19,8 +19,8 @@
         <v-btn block large color="error">{{ error }}</v-btn>
       </div>
 
-      <v-layout row wrap>
-        <v-flex v-for="iem in iems" :key="iem.id" sm12 md6 lg4>
+      <v-layout row wrap justify-center>
+        <v-flex v-for="iem in iems" :key="iem.id" xs12 sm8 md6 lg4>
           <i-e-m-card :iem="iem"></i-e-m-card>
         </v-flex>
       </v-layout>
@@ -46,7 +46,6 @@ export default {
       async handler (search) {
         this.error = null
         if (this.$store.state.isUserLoggedIn) {
-          // fetch IEMs from backend
           try {
             this.iems = (await IEMService.index(search)).data
           } catch (err) {

@@ -28,22 +28,13 @@
 
     <v-card-actions v-if="$store.state.isUserAdmin">
       <v-spacer></v-spacer>
-
-      <v-dialog v-model="dialog" persistent max-width="400">
-        <v-btn slot="activator" flat color="blue accent-4">
-          <v-icon>delete</v-icon>
-        </v-btn>
-        <v-card>
-          <v-card-title class="headline grey lighten-2">Confirm deletion</v-card-title>
-          <v-card-text>Delete {{ iem.brand }} {{ iem.name }}?</v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="blue accent-4" flat @click="deleteIEM(iem.id)">Yes</v-btn>
-            <v-btn color="blue accent-4" flat @click="dialog = false">Cancel</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-
+      <v-btn
+        flat
+        color="blue accent-4"
+        :to="{ name: 'iem-delete', params: { iemId: iem.id }}"
+      >
+        <v-icon>delete</v-icon>
+      </v-btn>
       <v-btn
         flat
         color="blue accent-4"
@@ -61,7 +52,6 @@
 
 <script>
 import RatingService from '@/services/RatingService'
-import IEMService from '@/services/IEMService'
 
 export default {
   props: {
@@ -71,8 +61,7 @@ export default {
     return {
       rating: 0,
       averageRating: 'loading...',
-      error: null,
-      dialog: false
+      error: null
     }
   },
   watch: {
@@ -84,7 +73,6 @@ export default {
         }
 
         this.error = null
-        // retrieve rating from backend
         try {
           const rating = {
             userId: this.$store.state.user.id,
@@ -109,15 +97,6 @@ export default {
         }
         await RatingService.put(rating)
         this.averageRating = (await RatingService.show(this.iem.id)).data.averageRating
-      } catch (err) {
-        this.error = err.response.data.error
-      }
-    },
-    async deleteIEM (iemId) {
-      try {
-        await IEMService.delete(iemId)
-        this.dialog = false
-        this.error = 'Deletion successful'
       } catch (err) {
         this.error = err.response.data.error
       }

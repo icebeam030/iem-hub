@@ -2,7 +2,7 @@
   <v-content>
     <v-container v-if="$store.state.isUserAdmin" fluid fill-height>
       <v-layout align-center justify-center>
-        <v-flex xs12 sm8 md4>
+        <v-flex xs12 sm8 md6>
           <v-card class="elevation-12">
             <v-toolbar dark color="blue accent-4">
               <v-toolbar-title>Create IEM</v-toolbar-title>
@@ -11,6 +11,7 @@
                 <v-icon>arrow_back</v-icon>
               </v-btn>
             </v-toolbar>
+
             <v-card-text>
               <v-form v-model="valid" ref="form" autocomplete="off">
                 <v-text-field
@@ -47,9 +48,11 @@
                 </v-text-field>
               </v-form>
             </v-card-text>
+
             <v-card-actions>
               <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
             </v-card-actions>
+
             <v-card-actions>
               <v-spacer></v-spacer>
                 <v-btn
