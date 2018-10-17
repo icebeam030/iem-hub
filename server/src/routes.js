@@ -11,6 +11,7 @@ module.exports = (app) => {
   app.get('/iems/:iemId', IEMController.show)
   app.post('/iems', IEMController.post)
   app.put('/iems/:iemId', IEMController.put)
+  app.delete('/iems/:iemId', IEMController.remove)
 
   app.get('/ratings', RatingController.index)
   app.get('/ratings/:iemId', RatingController.show)

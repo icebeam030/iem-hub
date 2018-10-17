@@ -18,5 +18,8 @@ export default {
   },
   put (iem) {
     return Api().put(`iems/${iem.id}`, iem)
+  },
+  delete (iemId) {
+    return Api().delete(`iems/${iemId}`)
   }
 }

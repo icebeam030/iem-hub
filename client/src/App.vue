@@ -38,6 +38,12 @@
 
       <router-view/>
     </v-content>
+
+    <v-footer height="auto">
+      <v-flex blue accent-2 white--text text-xs-center py-3 xs12>
+        &copy;2018 — <strong>icebeam030</strong>
+      </v-flex>
+    </v-footer>
   </v-app>
 </template>
 

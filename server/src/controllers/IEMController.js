@@ -62,5 +62,23 @@ module.exports = {
         error: 'An error occurred trying to update IEM information'
       })
     }
+  },
+  // delete a certain IEM
+  async remove (req, res) {
+    try {
+      const { iemId } = req.params
+      await IEM.destroy({
+        where: {
+          id: iemId
+        }
+      })
+      res.send({
+        iemId: iemId
+      })
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error occurred trying to delete IEM'
+      })
+    }
   }
 }
