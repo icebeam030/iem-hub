@@ -19,7 +19,7 @@ module.exports = {
         }
       } else {
         rating = {
-          rating: 0
+          rating: null
         }
       }
       res.send(rating)
@@ -39,7 +39,7 @@ module.exports = {
         }
       })
       if (!averageRating) {
-        res.send({
+        return res.send({
           averageRating: 'No review yet'
         })
       }
@@ -77,7 +77,7 @@ module.exports = {
       })
       if (!rating) {
         await Rating.create(req.body)
-        res.send(req.body)
+        return res.send(req.body)
       }
 
       await Rating.update(req.body, {
@@ -90,6 +90,24 @@ module.exports = {
     } catch (err) {
       res.status(500).send({
         error: 'Error updating rating'
+      })
+    }
+  },
+  // delete rating of a certain IEM
+  async remove (req, res) {
+    try {
+      const { iemId } = req.params
+      await Rating.destroy({
+        where: {
+          iemId: iemId
+        }
+      })
+      res.send({
+        iemId: iemId
+      })
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error occurred trying to delete IEM'
       })
     }
   }

@@ -16,4 +16,5 @@ module.exports = (app) => {
   app.get('/ratings', RatingController.index)
   app.get('/ratings/:iemId', RatingController.show)
   app.put('/ratings', RatingController.put)
+  app.delete('/ratings/:iemId', RatingController.remove)
 }

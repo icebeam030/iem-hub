@@ -1,3 +1,5 @@
+// the front-end calls services to post endpoints to the back-end
+
 import axios from 'axios'
 
 export default () => {

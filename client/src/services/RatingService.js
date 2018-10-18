@@ -1,5 +1,3 @@
-// post various endpoints to the server
-
 import Api from '@/services/Api'
 
 export default {
@@ -16,5 +14,8 @@ export default {
   },
   put (rating) {
     return Api().put('ratings', rating)
+  },
+  delete (iemId) {
+    return Api().delete(`ratings/${iemId}`)
   }
 }

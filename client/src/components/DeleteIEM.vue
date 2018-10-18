@@ -28,6 +28,7 @@
 
 <script>
 import IEMService from '@/services/IEMService'
+import RatingService from '@/services/RatingService'
 
 export default {
   data () {
@@ -42,6 +43,7 @@ export default {
       const iemId = this.$route.params.iemId
       try {
         await IEMService.delete(iemId)
+        await RatingService.delete(iemId)
         this.$router.push({ name: 'iem-browser' })
       } catch (err) {
         this.error = err.response.data.error

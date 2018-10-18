@@ -59,7 +59,7 @@ export default {
   },
   data () {
     return {
-      rating: 0,
+      rating: null,
       averageRating: 'loading...',
       error: null
     }
@@ -88,13 +88,13 @@ export default {
   },
   methods: {
     async rateIEM () {
+      this.error = null
+      const rating = {
+        userId: this.$store.state.user.id,
+        iemId: this.iem.id,
+        rating: this.rating
+      }
       try {
-        this.error = null
-        const rating = {
-          userId: this.$store.state.user.id,
-          iemId: this.iem.id,
-          rating: this.rating
-        }
         await RatingService.put(rating)
         this.averageRating = (await RatingService.show(this.iem.id)).data.averageRating
       } catch (err) {

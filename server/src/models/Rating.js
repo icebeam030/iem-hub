@@ -1,15 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
   const Rating = sequelize.define('Rating', {
-    userId: {
-      type: DataTypes.INTEGER,
-      unique: 'compositeIndex'
-    },
-    iemId: {
-      type: DataTypes.INTEGER,
-      unique: 'compositeIndex'
-    },
     rating: DataTypes.INTEGER
   })
+
+  Rating.associate = function (models) {
+    Rating.belongsTo(models.User, {
+      as: 'user',
+      onDelete: 'cascade'
+    })
+    Rating.belongsTo(models.IEM, {
+      as: 'iem',
+      onDelete: 'cascade'
+    })
+  }
 
   return Rating
 }

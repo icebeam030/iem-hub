@@ -1,5 +1,3 @@
-// post various endpoints to the server
-
 import Api from '@/services/Api'
 
 export default {

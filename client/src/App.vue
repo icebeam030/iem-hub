@@ -36,7 +36,7 @@
         </v-toolbar>
       </div>
 
-      <router-view/>
+      <router-view></router-view>
     </v-content>
 
     <v-footer height="auto">
