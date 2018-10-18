@@ -11,7 +11,7 @@ import store from './store'
 Vue.use(Router)
 
 // define navigation guards
-const ifNotAuthenticated = (to, from, next) => {
+const userNotAuthenticated = (to, from, next) => {
   if (store.state.isUserLoggedIn) {
     next({ name: 'iem-browser' })
     return
@@ -19,7 +19,7 @@ const ifNotAuthenticated = (to, from, next) => {
   next()
 }
 
-const ifAuthenticated = (to, from, next) => {
+const userAuthenticated = (to, from, next) => {
   if (!store.state.isUserLoggedIn) {
     next({ name: 'login' })
     return
@@ -27,7 +27,7 @@ const ifAuthenticated = (to, from, next) => {
   next()
 }
 
-const ifUserIsAdmin = (to, from, next) => {
+const userIsAdmin = (to, from, next) => {
   if (!store.state.isUserLoggedIn) {
     next({ name: 'login' })
     return
@@ -48,37 +48,37 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register,
-      beforeEnter: ifNotAuthenticated
+      beforeEnter: userNotAuthenticated
     },
     {
       path: '/login',
       name: 'login',
       component: Login,
-      beforeEnter: ifNotAuthenticated
+      beforeEnter: userNotAuthenticated
     },
     {
       path: '/iem',
       name: 'iem-browser',
       component: IEMBrowser,
-      beforeEnter: ifAuthenticated
+      beforeEnter: userAuthenticated
     },
     {
       path: '/iem/create',
       name: 'iem-create',
       component: CreateIEM,
-      beforeEnter: ifUserIsAdmin
+      beforeEnter: userIsAdmin
     },
     {
       path: '/iem/edit/:iemId',
       name: 'iem-edit',
       component: EditIEM,
-      beforeEnter: ifUserIsAdmin
+      beforeEnter: userIsAdmin
     },
     {
       path: '/iem/delete/:iemId',
       name: 'iem-delete',
       component: DeleteIEM,
-      beforeEnter: ifUserIsAdmin
+      beforeEnter: userIsAdmin
     }
   ]
 })

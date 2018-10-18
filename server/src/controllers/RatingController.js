@@ -4,7 +4,8 @@ module.exports = {
   // fetch user rating of a certain IEM
   async index (req, res) {
     try {
-      const { userId, iemId } = req.query
+      const userId = req.user.id
+      const { iemId } = req.query
 
       let rating = await Rating.findAll({
         where: {
@@ -66,7 +67,8 @@ module.exports = {
   // create or update rating for a certain IEM
   async put (req, res) {
     try {
-      const { userId, iemId } = req.body
+      const userId = req.user.id
+      const { iemId } = req.body
 
       const rating = await Rating.findOne({
         where: {

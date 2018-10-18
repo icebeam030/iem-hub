@@ -76,7 +76,6 @@ export default {
         this.error = null
         try {
           const rating = {
-            userId: this.$store.state.user.id,
             iemId: iem.id
           }
           this.rating = (await RatingService.index(rating)).data.rating
@@ -91,7 +90,6 @@ export default {
     async rateIEM () {
       this.error = null
       const rating = {
-        userId: this.$store.state.user.id,
         iemId: this.iem.id,
         rating: this.rating
       }

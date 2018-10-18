@@ -4,7 +4,6 @@ export default {
   index (rating) {
     return Api().get('ratings', {
       params: {
-        userId: rating.userId,
         iemId: rating.iemId
       }
     })

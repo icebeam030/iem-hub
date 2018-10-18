@@ -18,8 +18,8 @@ export default new Vuex.Store({
       state.isUserLoggedIn = !!token
     },
     setUser (state, user) {
-      state.isUserAdmin = (user && user.email === 'admin@admin.com')
       state.user = user
+      state.isUserAdmin = (user && user.email === 'admin@admin.com')
     }
   },
   actions: {

@@ -13,6 +13,8 @@ app.use(morgan('tiny'))
 app.use(bodyParser.json())
 app.use(cors())
 
+require('./passport/passport')
+
 require('./routes')(app)
 
 // use sequelize.sync({ force: true }) to clear the database
