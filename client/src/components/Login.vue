@@ -97,11 +97,6 @@ export default {
     clear () {
       this.$refs.form.reset()
     }
-  },
-  mounted () {
-    if (this.$store.state.isUserLoggedIn) {
-      this.$router.push({ name: 'iem-browser' })
-    }
   }
 }
 </script>

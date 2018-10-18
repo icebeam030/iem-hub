@@ -113,11 +113,6 @@ export default {
     isPasswordMatched () {
       return (this.password === this.confirmPassword) ? '' : 'Your passwords do not match'
     }
-  },
-  mounted () {
-    if (this.$store.state.isUserLoggedIn) {
-      this.$router.push({ name: 'iem-browser' })
-    }
   }
 }
 </script>

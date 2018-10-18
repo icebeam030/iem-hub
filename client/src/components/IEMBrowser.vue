@@ -1,8 +1,8 @@
 <template>
-  <v-container v-if="$store.state.isUserLoggedIn" grid-list-xl>
+  <v-container grid-list-xl>
     <v-card class="elevation-3">
       <v-toolbar dark color="blue accent-4">
-        <v-icon>menu</v-icon>
+        <v-icon>list</v-icon>
         <v-toolbar-title>IEM Hub</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
@@ -39,18 +39,15 @@ export default {
       error: null
     }
   },
-  // TODO: refactor this to computed property
   watch: {
     '$route.query.search': {
       immediate: true,
       async handler (search) {
         this.error = null
-        if (this.$store.state.isUserLoggedIn) {
-          try {
-            this.iems = (await IEMService.index(search)).data
-          } catch (err) {
-            this.error = err.response.data.error
-          }
+        try {
+          this.iems = (await IEMService.index(search)).data
+        } catch (err) {
+          this.error = err.response.data.error
         }
       }
     }

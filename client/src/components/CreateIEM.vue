@@ -1,7 +1,7 @@
 <template>
   <v-content>
-    <v-container v-if="$store.state.isUserAdmin" fluid fill-height>
-      <v-layout align-center justify-center>
+    <v-container fluid fill-height>
+      <v-layout align-start justify-center>
         <v-flex xs12 sm8 md6>
           <v-card class="elevation-12">
             <v-toolbar dark color="blue accent-4">
@@ -15,7 +15,7 @@
             <v-card-text>
               <v-form v-model="valid" ref="form" autocomplete="off">
                 <v-text-field
-                  prepend-icon="email"
+                  prepend-icon="list"
                   label="Brand"
                   v-model="iem.brand"
                   :rules="[(v) => !!v || 'Brand is required']"
@@ -23,7 +23,7 @@
                 >
                 </v-text-field>
                 <v-text-field
-                  prepend-icon="email"
+                  prepend-icon="info"
                   label="Name"
                   v-model="iem.name"
                   :rules="[(v) => !!v || 'Name is required']"
@@ -31,7 +31,7 @@
                 >
                 </v-text-field>
                 <v-text-field
-                  prepend-icon="email"
+                  prepend-icon="attach_money"
                   label="Price"
                   v-model="iem.price"
                   :rules="priceRules"
@@ -39,7 +39,7 @@
                 >
                 </v-text-field>
                 <v-text-field
-                  prepend-icon="email"
+                  prepend-icon="link"
                   label="Image URL"
                   v-model="iem.imageUrl"
                   :rules="[(v) => !!v || 'Image URL is required']"
@@ -79,12 +79,7 @@ import IEMService from '@/services/IEMService'
 export default {
   data () {
     return {
-      iem: {
-        brand: null,
-        name: null,
-        price: null,
-        imageUrl: null
-      },
+      iem: {},
       error: null,
       valid: false,
       priceRules: [

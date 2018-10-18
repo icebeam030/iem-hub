@@ -27,15 +27,6 @@
     </v-toolbar>
 
     <v-content>
-      <div v-if="!$store.state.isUserLoggedIn">
-        <br>
-        <v-toolbar block large>
-          <v-toolbar-title>
-            Sign up or Login to start your IEM journey
-          </v-toolbar-title>
-        </v-toolbar>
-      </div>
-
       <router-view></router-view>
     </v-content>
 
@@ -58,10 +49,10 @@ export default {
     }
   },
   watch: {
-    // only requests to server 1 seconds after finish typing
+    // only send request to server 1 seconds after finish typing
     search: _.debounce(async function (search) {
-      const route = { name: 'iem-browser' }
-      if (this.search !== '') {
+      let route = { name: 'iem-browser' }
+      if (search !== '') {
         route.query = { search: search }
       }
       this.$router.push(route)
@@ -71,13 +62,13 @@ export default {
     logout () {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
-      this.$router.push({ name: 'root' })
+      this.$router.push({ name: 'login' })
     },
     returnToHome () {
       if (this.$store.state.isUserLoggedIn) {
         this.$router.push({ name: 'iem-browser' })
       } else {
-        this.$router.push({ name: 'root' })
+        this.$router.push({ name: 'login' })
       }
     }
   }

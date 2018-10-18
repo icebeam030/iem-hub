@@ -18,7 +18,8 @@
         color="orange lighten-1"
         background-color="orange lighten-3"
         v-model="rating"
-        half-increments>
+        half-increments
+      >
       </v-rating>
       <v-spacer></v-spacer>
       <v-btn dark color="blue accent-4" @click="rateIEM">
@@ -68,7 +69,7 @@ export default {
     iem: {
       immediate: true,
       async handler (iem) {
-        if (!iem.id || !this.$store.state.isUserLoggedIn) {
+        if (!iem.id) {
           return
         }
 

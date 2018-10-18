@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <v-container v-if="$store.state.isUserAdmin" fluid fill-height>
+    <v-container fluid fill-height>
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md6>
           <v-card class="elevation-12">
@@ -15,7 +15,7 @@
             <v-card-text>
               <v-form v-model="valid" ref="form" autocomplete="off">
                 <v-text-field
-                  prepend-icon="email"
+                  prepend-icon="list"
                   label="Brand"
                   v-model="iem.brand"
                   :rules="[(v) => !!v || 'Brand is required']"
@@ -23,7 +23,7 @@
                 >
                 </v-text-field>
                 <v-text-field
-                  prepend-icon="email"
+                  prepend-icon="info"
                   label="Name"
                   v-model="iem.name"
                   :rules="[(v) => !!v || 'Name is required']"
@@ -31,7 +31,7 @@
                 >
                 </v-text-field>
                 <v-text-field
-                  prepend-icon="email"
+                  prepend-icon="attach_money"
                   label="Price"
                   v-model="iem.price"
                   :rules="priceRules"
@@ -39,7 +39,7 @@
                 >
                 </v-text-field>
                 <v-text-field
-                  prepend-icon="email"
+                  prepend-icon="link"
                   label="Image URL"
                   v-model="iem.imageUrl"
                   :rules="[(v) => !!v || 'Image URL is required']"
@@ -104,14 +104,12 @@ export default {
   },
   async mounted () {
     this.error = null
-    if (this.$store.state.isUserLoggedIn) {
-      // fetch IEM info from backend
-      try {
-        const iemId = this.$route.params.iemId
-        this.iem = (await IEMService.show(iemId)).data
-      } catch (err) {
-        this.error = err.response.data.error
-      }
+    // fetch IEM info from backend
+    try {
+      const iemId = this.$route.params.iemId
+      this.iem = (await IEMService.show(iemId)).data
+    } catch (err) {
+      this.error = err.response.data.error
     }
   }
 }
