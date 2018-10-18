@@ -3,7 +3,6 @@ const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
 module.exports = {
-  // fetch IEMs from database
   async index (req, res) {
     try {
       let iems = null
@@ -24,7 +23,7 @@ module.exports = {
       res.send(iems)
     } catch (err) {
       res.status(500).send({
-        error: 'An error occurred trying to fetch the IEMs'
+        error: 'Error fetching IEMs'
       })
     }
   },
@@ -35,7 +34,7 @@ module.exports = {
       res.send(iem)
     } catch (err) {
       res.status(500).send({
-        error: 'An error occurred trying to fetch the IEM'
+        error: 'Error fetching IEM info'
       })
     }
   },
@@ -46,7 +45,7 @@ module.exports = {
       res.send(iem)
     } catch (err) {
       res.status(500).send({
-        error: 'An error occurred trying to create the IEM'
+        error: 'Error creating IEM'
       })
     }
   },
@@ -59,7 +58,7 @@ module.exports = {
       res.send(req.body)
     } catch (err) {
       res.status(500).send({
-        error: 'An error occurred trying to update IEM information'
+        error: 'Error updating IEM info'
       })
     }
   },
@@ -77,7 +76,7 @@ module.exports = {
       })
     } catch (err) {
       res.status(500).send({
-        error: 'An error occurred trying to delete IEM'
+        error: 'Error deleting IEM'
       })
     }
   }

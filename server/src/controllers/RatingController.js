@@ -4,8 +4,7 @@ module.exports = {
   // fetch user rating of a certain IEM
   async index (req, res) {
     try {
-      const userId = req.query.userId
-      const iemId = req.query.iemId
+      const { userId, iemId } = req.query
 
       let rating = await Rating.findAll({
         where: {
@@ -25,7 +24,7 @@ module.exports = {
       res.send(rating)
     } catch (err) {
       res.status(500).send({
-        error: 'Error fetching ratings'
+        error: 'Error fetching rating'
       })
     }
   },
@@ -64,7 +63,7 @@ module.exports = {
       })
     }
   },
-  // update rating for a certain IEM
+  // create or update rating for a certain IEM
   async put (req, res) {
     try {
       const { userId, iemId } = req.body
@@ -107,7 +106,7 @@ module.exports = {
       })
     } catch (err) {
       res.status(500).send({
-        error: 'An error occurred trying to delete IEM'
+        error: 'Error deleting rating'
       })
     }
   }

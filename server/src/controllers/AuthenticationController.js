@@ -12,11 +12,11 @@ function jwtSignUser (user) {
 }
 
 module.exports = {
-  // register a new user
   async register (req, res) {
     try {
       const { email, password } = req.body
       const hash = bcrypt.hashSync(password, SALT_ROUND)
+
       const user = await User.create({
         email: email.toLowerCase(),
         password: hash
@@ -32,7 +32,6 @@ module.exports = {
       })
     }
   },
-  // login the user
   async login (req, res) {
     try {
       const { email, password } = req.body

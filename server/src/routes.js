@@ -2,7 +2,7 @@ const AuthenticationController = require('./controllers/AuthenticationController
 const IEMController = require('./controllers/IEMController')
 const RatingController = require('./controllers/RatingController')
 
-// handle various endpoints
+// define functions to handle various endpoints
 module.exports = (app) => {
   app.post('/register', AuthenticationController.register)
   app.post('/login', AuthenticationController.login)

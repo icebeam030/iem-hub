@@ -1,4 +1,4 @@
-// connect to the database
+// initialise database
 
 const fs = require('fs')
 const path = require('path')
