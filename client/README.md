@@ -1,8 +1,6 @@
-# IEM-Hub - A place to manage your favourite iems
+# The Vue.JS front-end
 
-This project is built with VueJS, check the guide on [Their Website](https://vuejs.org/v2/guide/) for better understanding of code
-
-## Project setup
+## Install dependencies
 ```
 npm install
 ```
@@ -28,25 +26,27 @@ npm run test:unit
 ```
 
 
-### Key principles of code style and design
-Follow coding styles and recommendations on [Vuejs.org](https://vuejs.org/v2/style-guide/) and [w3cschools.com](https://www.w3schools.com/):
-- Use camelCase naming for components
-- Use complete and understandable naming rather than abbreviations
-- Use separate lines for array and object elements
-- Use single quotes within Vue components
-- Use double quotes within html
-- Use hyphen for event names
-- Use tab indentation of 2 spaces as code layer goes down
-- Insert space after colons and before and after curly braces & equal signs
-- Group code of same category and create new lines between commands to get better readability
-- Follow other standard W3C conventions within html, css, etc.
-- Create separate folders to save and classify resources such as images and components
-- Comment appropriately and where alternative solutions can be applied
+### Key Functionalities
+- You can create an admin account of email address `admin@admin.com` to access create, edit and delete functionalities.
+- You can rate an IEM by clicking the button. Your rating will be saved in back-end.
+- The state will persist after page refreshing, so remember to log out (User token will expire in one week).
+- You can search by brand or model name.
 
-Design of the application
-- Use Vue components to separate functions
-- Break the application down to lowest functional levels, each corresponding to one component
-- Seperate persistence, logic and presentation layers
-- Use in-component style which is easier to maintain and track
-- Keep the application structure built with Vue CLI
-- Create separate folders to save and classify resources such as images and components
+
+### Key design elements
+- It's recommended you setup the project with the ever-evolving [Vue CLI](https://cli.vuejs.org/guide/installation.html) to get maximum flexibility.
+- Components are simple at this stage, but it's suggested you set up folders to group them as the project gets bigger.
+- The beautiful material design and layout is achieved by the awesome Vuetify plugin, check their even better [documentation](https://vuetifyjs.com/en/getting-started/quick-start)!
+- The UI calls services in the `Services` folder to hit back-end endpoints.
+- `App.vue` is basically the header and the footer.
+- Routing are done by the core [Vuerouter](https://router.vuejs.org/) library, navigation guards are set to prevent unauthenticated access to the app.
+- The [Vuex](https://vuex.vuejs.org/) store is used to store application-wide states such as user token.
+- To maintain user states after page refreshes, [vuex-persistedstate](https://github.com/robinvdvleuten/vuex-persistedstate#readme) is used.
+- `/* eslint-disable */` is used where incompatibility of Vuetify textfield checks and ESLint occurs.
+- The app adjusts to different screen sizes by using the Vuetify [breakpoints](https://vuetifyjs.com/en/layout/breakpoints#introduction) system.
+
+
+### Known issues
+- When pressing the `clear` button in the search box the `search` parameter in the URL doesn't disappear, but by manually clearing the search box it will.
+  - This might be due to Vuetify textfield logic.
+  - Functionality is not affected.
