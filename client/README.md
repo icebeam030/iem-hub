@@ -26,14 +26,14 @@ npm run test:unit
 ```
 
 
-### Key Functionalities
+## Key Functionalities
 - You can create an admin account of email address `admin@admin.com` to access create, edit and delete functionalities.
 - You can rate an IEM by clicking the button. Your rating will be saved in back-end.
 - The state will persist after page refreshing, so remember to log out (User token will expire in one week).
 - You can search by brand or model name.
 
 
-### Key design elements
+## Key design elements
 - It's recommended you setup the project with the ever-evolving [Vue CLI](https://cli.vuejs.org/guide/installation.html) to get maximum flexibility.
 - Components are simple at this stage, but it's suggested you set up folders to group them as the project gets bigger.
 - The beautiful material design and layout is achieved by the awesome Vuetify plugin, check their even better [documentation](https://vuetifyjs.com/en/getting-started/quick-start)!
@@ -46,7 +46,7 @@ npm run test:unit
 - The app adjusts to different screen sizes by using the Vuetify [breakpoints](https://vuetifyjs.com/en/layout/breakpoints#introduction) system.
 
 
-### Known issues
+## Known issues
 - When pressing the `clear` button in the search box the `search` parameter in the URL doesn't disappear, but by manually clearing the search box it will.
   - This might be due to Vuetify textfield logic.
   - Functionality is not affected.

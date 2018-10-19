@@ -8,7 +8,7 @@ A [Vue.JS](https://vuejs.org/v2/guide/index.html) / [Express.JS](https://express
 - [Server](./server/README.md)
 
 
-### Future plan and development guide
+## Future plan and development guide
 - Add settings so that colour themes can be changed etc.
 - User can search by price, brand, etc.
 - User can view their favourites, set avatar, etc.
@@ -18,8 +18,10 @@ A [Vue.JS](https://vuejs.org/v2/guide/index.html) / [Express.JS](https://express
 #### - Login
 ![](./screenshots/Screenshot_1.png)
 
+
 #### - Main view
 ![](./screenshots/Screenshot_2.png)
+
 
 #### - Edit IEM
 ![](./screenshots/Screenshot_3.png)
