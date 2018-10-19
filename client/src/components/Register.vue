@@ -83,10 +83,10 @@ export default {
         (v) => !!v || 'E-mail is required',
         (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
       ],
-      // TODO: require stronger password
       passwordRules: [
         (v) => !!v || 'Password is required',
-        (v) => v && v.length >= 8 && v.length <= 20 || 'Password should be 8 to 20 characters long'
+        (v) => v && v.length >= 8 && v.length <= 20 || 'Password should be 8 to 20 characters long',
+        (v) => v && /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(v) || 'Your password should contain:<br>1. At least 1 lowercase letter<br>2. At least 1 uppercase letter<br>3. At least 1 number'
       ]
     }
   },

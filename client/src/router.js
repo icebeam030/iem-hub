@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Register from './components/Register.vue'
-import Login from './components/Login.vue'
-import IEMBrowser from './components/IEMBrowser.vue'
-import CreateIEM from './components/CreateIEM.vue'
-import EditIEM from './components/EditIEM.vue'
-import DeleteIEM from './components/DeleteIEM.vue'
-import store from './store'
+import Register from '@/components/Register.vue'
+import Login from '@/components/Login.vue'
+import IEMBrowser from '@/components/IEMBrowser.vue'
+import CreateIEM from '@/components/CreateIEM.vue'
+import EditIEM from '@/components/EditIEM.vue'
+import DeleteIEM from '@/components/DeleteIEM.vue'
+import store from '@/store'
 
 Vue.use(Router)
 

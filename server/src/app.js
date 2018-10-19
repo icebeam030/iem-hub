@@ -17,7 +17,7 @@ require('./passport/passport')
 
 require('./routes')(app)
 
-// use sequelize.sync({ force: true }) to clear the database
+// set force to true to clear the database
 sequelize.sync({ force: false })
   .then(() => {
     app.listen(config.port)
