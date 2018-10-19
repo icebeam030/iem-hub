@@ -6,6 +6,6 @@ A [Vue.js](https://vuejs.org/v2/guide/index.html) / [Express.js](https://express
 [Server](./server/README.md)
 
 ### Screenshots
-[](./Screenshot_1.png)
-[](./Screenshot_2.png)
-[](./Screenshot_3.png)
+![](./Screenshot_1.png)
+![](./Screenshot_2.png)
+![](./Screenshot_3.png)
