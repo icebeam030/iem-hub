@@ -45,6 +45,10 @@
       </v-btn>
     </v-card-actions>
 
+    <v-card-actions v-if="success">
+      <v-btn block large color="success">Rating successful</v-btn>
+    </v-card-actions>
+
     <v-card-actions v-if="error">
       <v-btn block large color="error">{{ error }}</v-btn>
     </v-card-actions>
@@ -62,7 +66,8 @@ export default {
     return {
       rating: null,
       averageRating: 'loading...',
-      error: null
+      error: null,
+      success: false
     }
   },
   watch: {
@@ -89,12 +94,14 @@ export default {
   methods: {
     async rateIEM () {
       this.error = null
+      this.success = false
       const rating = {
         iemId: this.iem.id,
         rating: this.rating
       }
       try {
         await RatingService.put(rating)
+        this.success = true
         this.averageRating = (await RatingService.show(this.iem.id)).data.averageRating
       } catch (err) {
         this.error = err.response.data.error

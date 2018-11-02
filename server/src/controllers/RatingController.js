@@ -70,14 +70,17 @@ module.exports = {
       const userId = req.user.id
       const { iemId } = req.body
 
-      const rating = await Rating.findOne({
+      const ratingExists = await Rating.findOne({
         where: {
           userId: userId,
           iemId: iemId
         }
       })
-      if (!rating) {
-        await Rating.create(req.body)
+      if (!ratingExists) {
+        await Rating.create({
+          ...req.body,
+          userId: userId
+        })
         return res.send(req.body)
       }
 
