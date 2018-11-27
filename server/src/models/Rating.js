@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     rating: DataTypes.FLOAT
   })
 
+  // each rating will be based on unique combination of userId and iemId
   Rating.associate = function (models) {
     Rating.belongsTo(models.User, {
       as: 'user',

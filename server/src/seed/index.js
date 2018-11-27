@@ -7,6 +7,7 @@ const iems = require('./iems.json')
 sequelize.sync({ force: true })
   .then(async function () {
     // this block can be repeated to populate different tables
+    // but don't create users table because password will be unmatched
     await Promise.all(
       iems.map(iem => {
         IEM.create(iem)
