@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app dark color="blue accent-3">
+    <v-toolbar app dark dense color="blue accent-3">
       <v-toolbar-side-icon large @click="returnToHome">
         <v-icon>home</v-icon>
       </v-toolbar-side-icon>
@@ -21,9 +21,9 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn light v-if="!$store.state.isUserLoggedIn" to="login">Login</v-btn>
-      <v-btn light v-if="!$store.state.isUserLoggedIn" to="register">Sign Up</v-btn>
-      <v-btn light v-if="$store.state.isUserLoggedIn" @click="logout">Log Out</v-btn>
+      <v-btn light small v-if="!$store.state.isUserLoggedIn" to="login">Login</v-btn>
+      <v-btn light small v-if="!$store.state.isUserLoggedIn" to="register">Sign Up</v-btn>
+      <v-btn light small v-if="$store.state.isUserLoggedIn" @click="logout">Log Out</v-btn>
     </v-toolbar>
 
     <v-content>

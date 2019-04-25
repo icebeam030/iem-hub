@@ -10,7 +10,7 @@
           <v-card-actions></v-card-actions>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue accent-4" flat @click="deleteIEM">Yes</v-btn>
+            <v-btn color="blue accent-4" dark @click="deleteIEM">Yes</v-btn>
             <v-btn color="blue accent-4" flat @click="$router.go(-1)">Cancel</v-btn>
           </v-card-actions>
 

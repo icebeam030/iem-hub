@@ -1,16 +1,17 @@
 <template>
   <v-container grid-list-xl>
     <v-card class="elevation-3">
-      <v-toolbar dark color="blue accent-4">
+      <v-toolbar dark dense color="blue accent-4">
         <v-icon>list</v-icon>
         <v-toolbar-title>IEM Hub</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
           v-if="$store.state.isUserAdmin"
           light
+          small
           :to="{ name: 'iem-create' }"
         >
-          Create
+          New
         </v-btn>
       </v-toolbar>
 
