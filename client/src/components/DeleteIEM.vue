@@ -1,29 +1,26 @@
 <template>
-  <v-content>
-    <v-container fluid fill-height>
-      <v-layout align-center justify-center>
-        <v-flex xs12 sm8 md6 lg4>
-          <v-card class="elevation-12">
-            <v-toolbar dark color="blue accent-4">
-              <v-toolbar-title>Confirm deletion</v-toolbar-title>
-            </v-toolbar>
+  <v-container fluid fill-height>
+    <v-layout align-center justify-center>
+      <v-flex xs12 sm8 md6 lg4>
+        <v-card class="elevation-12">
+          <v-toolbar dark color="blue accent-4">
+            <v-toolbar-title>Delete this IEM?</v-toolbar-title>
+          </v-toolbar>
 
-            <v-card-title>Delete this IEM?</v-card-title>
+          <v-card-actions></v-card-actions>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue accent-4" flat @click="deleteIEM">Yes</v-btn>
+            <v-btn color="blue accent-4" flat @click="$router.go(-1)">Cancel</v-btn>
+          </v-card-actions>
 
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue accent-4" flat @click="deleteIEM">Yes</v-btn>
-              <v-btn color="blue accent-4" flat @click="$router.go(-1)">Cancel</v-btn>
-            </v-card-actions>
-
-            <v-card-actions>
-              <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </v-content>
+          <v-card-actions>
+            <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

@@ -30,7 +30,7 @@ module.exports = {
   // fetch information of a certain IEM from database
   async show (req, res) {
     try {
-      const iem = await IEM.findById(req.params.iemId)
+      const iem = await IEM.findByPk(req.params.iemId)
       res.send(iem)
     } catch (err) {
       res.status(500).send({

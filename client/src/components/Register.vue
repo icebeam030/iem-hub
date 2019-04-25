@@ -1,68 +1,66 @@
 <template>
-  <v-content>
-    <v-container fluid fill-height>
-      <v-layout align-center justify-center>
-        <v-flex xs12 sm8 md4>
-          <v-card class="elevation-12">
-            <v-toolbar dark color="blue accent-4">
-              <v-toolbar-title>Register</v-toolbar-title>
-            </v-toolbar>
+  <v-container fluid fill-height>
+    <v-layout align-center justify-center>
+      <v-flex xs12 sm8 md4>
+        <v-card class="elevation-12">
+          <v-toolbar dark color="blue accent-4">
+            <v-toolbar-title>Register</v-toolbar-title>
+          </v-toolbar>
 
-            <v-card-text>
-              <v-form v-model="valid" ref="form" autocomplete="off">
-                <v-text-field
-                  prepend-icon="email"
-                  label="Email"
-                  v-model="email"
-                  :rules="emailRules"
-                  required
-                >
-                </v-text-field>
-                <v-text-field
-                  prepend-icon="lock"
-                  label="Password"
-                  v-model="password"
-                  :append-icon="showPassword ? 'visibility_off' : 'visibility'"
-                  :rules="passwordRules"
-                  :type="showPassword ? 'text' : 'password'"
-                  hint="8 to 20 characters in length"
-                  @click:append="showPassword = !showPassword"
-                  required
-                >
-                </v-text-field>
-                <v-text-field
-                  prepend-icon="lock"
-                  label="Confirm Password"
-                  v-model="confirmPassword"
-                  :error-messages="isPasswordMatched()"
-                  type="password"
-                  required
-                >
-                </v-text-field>
-              </v-form>
-            </v-card-text>
+          <v-card-text>
+            <v-form v-model="valid" ref="form" autocomplete="off">
+              <v-text-field
+                prepend-icon="email"
+                label="Email"
+                v-model="email"
+                :rules="emailRules"
+                required
+              >
+              </v-text-field>
+              <v-text-field
+                prepend-icon="lock"
+                label="Password"
+                v-model="password"
+                :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                :rules="passwordRules"
+                :type="showPassword ? 'text' : 'password'"
+                hint="8 to 20 characters in length"
+                @click:append="showPassword = !showPassword"
+                required
+              >
+              </v-text-field>
+              <v-text-field
+                prepend-icon="lock"
+                label="Confirm Password"
+                v-model="confirmPassword"
+                :error-messages="isPasswordMatched()"
+                type="password"
+                required
+              >
+              </v-text-field>
+            </v-form>
+          </v-card-text>
 
-            <v-card-actions>
-              <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
-            </v-card-actions>
+          <v-card-actions>
+            <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
+          </v-card-actions>
 
-            <v-card-actions>
-              <v-spacer></v-spacer>
-                <v-btn
-                  :dark="valid"
-                  color="blue accent-4"
-                  @click="register"
-                  :disabled="!valid"
-                >
-                  Register
-                </v-btn>
-                <v-btn @click="clear">Clear</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </v-content>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+              <v-btn
+                :dark="valid"
+                color="blue accent-4"
+                @click="register"
+                :disabled="!valid"
+              >
+                Register
+              </v-btn>
+              <v-btn @click="clear">Clear</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

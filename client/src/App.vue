@@ -31,8 +31,12 @@
     </v-content>
 
     <v-footer height="auto">
-      <v-flex blue accent-2 white--text text-xs-center py-3 xs12>
-        &copy;2018 — <strong>icebeam030</strong>
+      <v-flex xs12>
+        <v-card>
+          <v-card-actions class="grey darken-3 white--text justify-center">
+            &copy;2018 —&nbsp;<strong>icebeam030</strong>
+          </v-card-actions>
+        </v-card>
       </v-flex>
     </v-footer>
   </v-app>
