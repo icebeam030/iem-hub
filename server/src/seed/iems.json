@@ -3,25 +3,19 @@
       "brand": "64 Audio",
       "name": "A18t",
       "price": 4249,
-      "imageUrl": "https://www.64audio.com/img/products/1964ears-1528325995-A18t_Product_Page_LORS.jpg"
-  },
-  {
-      "brand": "64 Audio",
-      "name": "A12t",
-      "price": 2832,
-      "imageUrl": "https://www.64audio.com/img/products/1964ears-1528325159-A12t_Product_Page_LROS.jpg"
+      "imageUrl": "https://cdn.shopify.com/s/files/1/1648/0673/products/64a18t_grande_7f5fd42a-0fc9-4ea1-b232-d875c264ec5d.png"
   },
   {
       "brand": "64 Audio",
       "name": "N8",
       "price": 2407,
-      "imageUrl": "https://www.64audio.com/img/products/1964ears-1529623709-N8_Product_Page_LORS_03.jpg"
+      "imageUrl": "https://cdn.shopify.com/s/files/1/1648/0673/products/64n8_grande_977f0575-8e14-4810-af37-fd5e9209d474.png"
   },
   {
       "brand": "64 Audio",
       "name": "A6t",
       "price": 1840,
-      "imageUrl": "https://www.64audio.com/img/products/1964ears-1528303866-A6t_Product_Page_LROS.jpg"
+      "imageUrl": "https://cdn.shopify.com/s/files/1/1648/0673/products/64a6t_grande_56f7adbe-f97f-44c7-ab19-6e05355bbf53.png"
   },
   {
       "brand": "Jomo Audio",
@@ -51,18 +45,18 @@
       "brand": "Westone",
       "name": "ES60",
       "price": 1836,
-      "imageUrl": "http://www.3kshop.vn/Data/Sites/1/Product/1349/3kshop-westone-es60-6.jpg"
+      "imageUrl": "http://store.treoo.com/media/catalog/product/cache/1/image/1200x/3fa7a729f8b04aac82dd2b0c4100b1f4/w/e/westone_es60_2.jpg"
   },
   {
       "brand": "Westone",
       "name": "ES50",
       "price": 1412,
-      "imageUrl": "https://cnet3.cbsistatic.com/img/tsp3ZQ9t_5XyHscwKAo-QosBkV8=/970x0/2014/05/30/f1499723-02c0-4fcc-b4ec-52cfedf7cbe7/22westoneescables-sm.jpg"
+      "imageUrl": "https://cnet4.cbsistatic.com/img/4OWUlX4uWEhXiBkUF3fF5u0U2TU=/1092x0/2014/05/30/f1499723-02c0-4fcc-b4ec-52cfedf7cbe7/22westoneescables-sm.jpg"
   },
   {
       "brand": "Vision Ears",
       "name": "VE6 XC",
       "price": 3154,
-      "imageUrl": "http://www.e-earphone.jp/shopimages/gcom1420/000000046701.jpg"
+      "imageUrl": "https://theheadphonelist.com/wp-content/uploads/2019/02/VE6-XF-1.jpg"
   }
 ]

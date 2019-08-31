@@ -10,31 +10,31 @@
           <v-card-text>
             <v-form v-model="valid" ref="form" autocomplete="off">
               <v-text-field
-                prepend-icon="email"
-                label="Email"
                 v-model="email"
+                label="Email"
+                prepend-icon="email"
                 :rules="emailRules"
                 required
               >
               </v-text-field>
               <v-text-field
-                prepend-icon="lock"
-                label="Password"
                 v-model="password"
-                :append-icon="showPassword ? 'visibility_off' : 'visibility'"
-                :rules="passwordRules"
-                :type="showPassword ? 'text' : 'password'"
+                label="Password"
+                prepend-icon="lock"
                 hint="8 to 20 characters in length"
+                :type="showPassword ? 'text' : 'password'"
+                :rules="passwordRules"
+                :append-icon="showPassword ? 'visibility_off' : 'visibility'"
                 @click:append="showPassword = !showPassword"
                 required
               >
               </v-text-field>
               <v-text-field
-                prepend-icon="lock"
-                label="Confirm Password"
                 v-model="confirmPassword"
-                :error-messages="isPasswordMatched()"
+                label="Confirm Password"
                 type="password"
+                prepend-icon="lock"
+                :error-messages="isPasswordMatched()"
                 required
               >
               </v-text-field>
@@ -49,9 +49,9 @@
             <v-spacer></v-spacer>
               <v-btn
                 :dark="valid"
+                :disabled="!valid"
                 color="blue accent-4"
                 @click="register"
-                :disabled="!valid"
               >
                 Register
               </v-btn>
@@ -66,6 +66,7 @@
 <script>
 /* eslint-disable */
 import AuthenticationService from '@/services/AuthenticationService'
+import _ from 'lodash'
 
 export default {
   name: 'Register',
@@ -87,6 +88,11 @@ export default {
         (v) => v && /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(v) || 'Your password should contain:<br>1. At least 1 lowercase letter<br>2. At least 1 uppercase letter<br>3. At least 1 number'
       ]
     }
+  },
+  watch: {
+    email: _.debounce(function () {
+      this.error = null
+    }, 500)
   },
   methods: {
     async register () {

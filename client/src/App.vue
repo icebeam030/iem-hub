@@ -9,13 +9,13 @@
 
       <v-text-field
         v-if="$store.state.isUserLoggedIn"
+        v-model="search"
+        label="Search"
         class="mt-2"
         flat
-        label="Search"
-        v-model="search"
         clearable
-        prepend-inner-icon="search"
         solo-inverted
+        prepend-inner-icon="search"
       >
       </v-text-field>
 

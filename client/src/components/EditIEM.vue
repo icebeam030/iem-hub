@@ -14,33 +14,33 @@
           <v-card-text>
             <v-form v-model="valid" ref="form" autocomplete="off">
               <v-text-field
-                prepend-icon="list"
-                label="Brand"
                 v-model="iem.brand"
+                label="Brand"
+                prepend-icon="list"
                 :rules="[(v) => !!v || 'Brand is required']"
                 required
               >
               </v-text-field>
               <v-text-field
-                prepend-icon="info"
-                label="Name"
                 v-model="iem.name"
+                label="Name"
+                prepend-icon="info"
                 :rules="[(v) => !!v || 'Name is required']"
                 required
               >
               </v-text-field>
               <v-text-field
-                prepend-icon="attach_money"
-                label="Price"
                 v-model="iem.price"
+                label="Price"
+                prepend-icon="attach_money"
                 :rules="priceRules"
                 required
               >
               </v-text-field>
               <v-text-field
-                prepend-icon="link"
-                label="Image URL"
                 v-model="iem.imageUrl"
+                label="Image URL"
+                prepend-icon="link"
                 :rules="[(v) => !!v || 'Image URL is required']"
                 required
               >
@@ -56,9 +56,9 @@
             <v-spacer></v-spacer>
               <v-btn
                 :dark="valid"
+                :disabled="!valid"
                 color="blue accent-4"
                 @click="editIEM"
-                :disabled="!valid"
               >
                 Save
               </v-btn>

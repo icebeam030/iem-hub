@@ -10,21 +10,21 @@
           <v-card-text>
             <v-form v-model="valid" ref="form">
               <v-text-field
-                prepend-icon="email"
-                label="Email"
                 v-model="email"
+                label="Email"
+                prepend-icon="email"
                 :rules="emailRules"
                 required
               >
               </v-text-field>
               <v-text-field
-                prepend-icon="lock"
-                label="Password"
                 v-model="password"
-                :append-icon="showPassword ? 'visibility_off' : 'visibility'"
-                :rules="passwordRules"
-                :type="showPassword ? 'text' : 'password'"
+                label="Password"
+                prepend-icon="lock"
                 hint="8 to 20 characters in length"
+                :type="showPassword ? 'text' : 'password'"
+                :rules="passwordRules"
+                :append-icon="showPassword ? 'visibility_off' : 'visibility'"
                 @click:append="showPassword = !showPassword"
                 required
               >
@@ -40,9 +40,9 @@
             <v-spacer></v-spacer>
               <v-btn
                 :dark="valid"
+                :disabled="!valid"
                 color="blue accent-4"
                 @click="login"
-                :disabled="!valid"
               >
                 Login
               </v-btn>
@@ -57,6 +57,7 @@
 <script>
 /* eslint-disable */
 import AuthenticationService from '@/services/AuthenticationService'
+import _ from 'lodash'
 
 export default {
   name: 'Login',
@@ -76,6 +77,14 @@ export default {
         (v) => v && v.length >= 8 && v.length <= 20 || 'Password should be 8 to 20 characters long'
       ]
     }
+  },
+  watch: {
+    email: _.debounce(function () {
+      this.error = null
+    }, 500),
+    password: _.debounce(function () {
+      this.error = null
+    }, 500)
   },
   methods: {
     async login () {
