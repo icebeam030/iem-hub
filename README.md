@@ -16,12 +16,12 @@ A [Vue.JS](https://vuejs.org/v2/guide/index.html) / [Express.JS](https://express
 
 ## Screenshots
 #### - Login
-![](./screenshots/Screenshot_1.jpg)
+![](./screenshots/1.png)
 
 
 #### - Main view
-![](./screenshots/Screenshot_2.jpg)
+![](./screenshots/2.png)
 
 
 #### - Edit IEM
-![](./screenshots/Screenshot_3.jpg)
+![](./screenshots/3.png)

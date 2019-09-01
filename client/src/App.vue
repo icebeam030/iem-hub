@@ -1,19 +1,20 @@
 <template>
   <v-app>
-    <v-toolbar app dark dense color="blue accent-3">
-      <v-toolbar-side-icon large @click="returnToHome">
+    <v-app-bar app dark dense color="pink darken-3">
+      <v-app-bar-nav-icon @click="returnToHome">
         <v-icon>home</v-icon>
-      </v-toolbar-side-icon>
+      </v-app-bar-nav-icon>
 
-      <v-btn flat small icon disabled></v-btn>
+      <v-toolbar-title>IEM-Hub</v-toolbar-title>
 
       <v-text-field
         v-if="$store.state.isUserLoggedIn"
         v-model="search"
         label="Search"
-        class="mt-2"
+        class="mx-6"
         flat
         clearable
+        hide-details
         solo-inverted
         prepend-inner-icon="search"
       >
@@ -21,23 +22,25 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn light small v-if="!$store.state.isUserLoggedIn" to="login">Login</v-btn>
-      <v-btn light small v-if="!$store.state.isUserLoggedIn" to="register">Sign Up</v-btn>
-      <v-btn light small v-if="$store.state.isUserLoggedIn" @click="logout">Log Out</v-btn>
-    </v-toolbar>
+      <v-toolbar-items>
+        <v-btn text v-if="!$store.state.isUserLoggedIn" to="login">Login</v-btn>
+        <v-btn text v-if="!$store.state.isUserLoggedIn" to="register">Sign Up</v-btn>
+        <v-btn text v-if="$store.state.isUserLoggedIn" @click="logout">Log Out</v-btn>
+      </v-toolbar-items>
+    </v-app-bar>
 
     <v-content>
       <router-view></router-view>
     </v-content>
 
     <v-footer height="auto">
-      <v-flex xs12>
+      <v-col cols="12">
         <v-card>
           <v-card-actions class="grey darken-3 white--text justify-center">
             &copy;2018 —&nbsp;<strong>icebeam030</strong>
           </v-card-actions>
         </v-card>
-      </v-flex>
+      </v-col>
     </v-footer>
   </v-app>
 </template>

@@ -1,12 +1,12 @@
 <template>
-  <v-container fluid fill-height>
-    <v-layout align-start justify-center>
-      <v-flex xs12 sm8 md6>
+  <v-container class="fill-height" fluid>
+    <v-row align="start" justify="center">
+      <v-col cols="12" sm="8" md="6">
         <v-card class="elevation-12">
-          <v-toolbar dark color="blue accent-4">
+          <v-toolbar dark color="pink accent-4">
             <v-toolbar-title>Create IEM</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn flat @click="$router.go(-1)">
+            <v-btn text @click="$router.go(-1)">
               <v-icon>arrow_back</v-icon>
             </v-btn>
           </v-toolbar>
@@ -57,7 +57,7 @@
               <v-btn
                 :dark="valid"
                 :disabled="!valid"
-                color="blue accent-4"
+                color="pink accent-4"
                 @click="createIEM"
               >
                 Create
@@ -65,8 +65,8 @@
               <v-btn @click="clear">Clear</v-btn>
           </v-card-actions>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

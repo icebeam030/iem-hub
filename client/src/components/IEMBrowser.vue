@@ -1,9 +1,9 @@
 <template>
-  <v-container grid-list-xl>
+  <v-container class="grid-list">
     <v-card class="elevation-3">
-      <v-toolbar dark dense color="blue accent-4">
-        <v-icon>list</v-icon>
-        <v-toolbar-title>IEM Hub</v-toolbar-title>
+      <v-toolbar dark dense color="pink accent-4">
+        <v-icon class="mr-2">list</v-icon>
+        <v-toolbar-title>Your collection</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
           v-if="$store.state.isUserAdmin"
@@ -11,7 +11,7 @@
           small
           :to="{ name: 'iem-create' }"
         >
-          New
+          Add
         </v-btn>
       </v-toolbar>
 
@@ -20,11 +20,11 @@
         <v-btn block large color="error">{{ error }}</v-btn>
       </div>
 
-      <v-layout row wrap justify-center>
-        <v-flex v-for="iem in iems" :key="iem.id" xs12 sm8 md6 lg4>
+      <v-row justify="center">
+        <v-col v-for="iem in iems" :key="iem.id" cols="12" sm="8" md="6" lg="4">
           <i-e-m-card :iem="iem"></i-e-m-card>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-card>
   </v-container>
 </template>

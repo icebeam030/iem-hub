@@ -5,13 +5,13 @@
       aspect-ratio="2.75"
     ></v-img>
 
-    <v-card-title primary-title>
-      <div>
+    <v-card-text>
+      <div class="text--primary">
         <div class="headline">{{ iem.brand }}  {{ iem.name }}</div>
-        <div class="subheading">$ {{ iem.price }}</div>
+        <div class="subtitle-1">$ {{ iem.price }}</div>
         <div>Average Rating: {{ averageRating }}</div>
       </div>
-    </v-card-title>
+    </v-card-text>
 
     <v-card-actions>
       <v-rating
@@ -22,7 +22,7 @@
       >
       </v-rating>
       <v-spacer></v-spacer>
-      <v-btn dark color="blue accent-4" @click="rateIEM">
+      <v-btn dark small color="pink accent-4" @click="rateIEM">
         Rate it!
       </v-btn>
     </v-card-actions>
@@ -30,15 +30,15 @@
     <v-card-actions v-if="$store.state.isUserAdmin">
       <v-spacer></v-spacer>
       <v-btn
-        flat
-        color="blue accent-4"
+        text
+        color="pink accent-4"
         :to="{ name: 'iem-delete', params: { iemId: iem.id }}"
       >
         <v-icon>delete</v-icon>
       </v-btn>
       <v-btn
-        flat
-        color="blue accent-4"
+        text
+        color="pink accent-4"
         :to="{ name: 'iem-edit', params: { iemId: iem.id }}"
       >
         <v-icon>edit</v-icon>

@@ -1,9 +1,9 @@
 <template>
-  <v-container fluid fill-height>
-    <v-layout align-center justify-center>
-      <v-flex xs12 sm8 md4>
+  <v-container class="fill-height" fluid>
+    <v-row align="center" justify="center">
+      <v-col cols="12" sm="8" md="4">
         <v-card class="elevation-12">
-          <v-toolbar dark color="blue accent-4">
+          <v-toolbar dark color="pink accent-4">
             <v-toolbar-title>Register</v-toolbar-title>
           </v-toolbar>
 
@@ -50,7 +50,7 @@
               <v-btn
                 :dark="valid"
                 :disabled="!valid"
-                color="blue accent-4"
+                color="pink accent-4"
                 @click="register"
               >
                 Register
@@ -58,8 +58,8 @@
               <v-btn @click="clear">Clear</v-btn>
           </v-card-actions>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
