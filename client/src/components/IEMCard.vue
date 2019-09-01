@@ -5,12 +5,10 @@
       aspect-ratio="2.75"
     ></v-img>
 
-    <v-card-text>
-      <div class="text--primary">
-        <div class="headline">{{ iem.brand }}  {{ iem.name }}</div>
-        <div class="subtitle-1">$ {{ iem.price }}</div>
-        <div>Average Rating: {{ averageRating }}</div>
-      </div>
+    <v-card-text class="text--primary">
+      <div class="headline">{{ iem.brand }}  {{ iem.name }}</div>
+      <div class="subtitle-1">AUD ${{ iem.price }}</div>
+      <div>Average rating: {{ averageRating }}</div>
     </v-card-text>
 
     <v-card-actions>
@@ -22,8 +20,8 @@
       >
       </v-rating>
       <v-spacer></v-spacer>
-      <v-btn dark small color="pink accent-4" @click="rateIEM">
-        Rate it!
+      <v-btn dark small color="pink lighten-1" @click="rateIEM">
+        Rate this IEM
       </v-btn>
     </v-card-actions>
 
@@ -31,14 +29,14 @@
       <v-spacer></v-spacer>
       <v-btn
         text
-        color="pink accent-4"
+        color="pink lighten-1"
         :to="{ name: 'iem-delete', params: { iemId: iem.id }}"
       >
         <v-icon>delete</v-icon>
       </v-btn>
       <v-btn
         text
-        color="pink accent-4"
+        color="pink lighten-1"
         :to="{ name: 'iem-edit', params: { iemId: iem.id }}"
       >
         <v-icon>edit</v-icon>
@@ -65,7 +63,7 @@ export default {
   data () {
     return {
       rating: null,
-      averageRating: 'loading...',
+      averageRating: 'Loading...',
       error: null,
       successMessage: null
     }

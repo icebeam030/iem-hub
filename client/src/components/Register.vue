@@ -12,6 +12,7 @@
               <v-text-field
                 v-model="email"
                 label="Email"
+                color="blue-grey darken-3"
                 prepend-icon="email"
                 :rules="emailRules"
                 required
@@ -20,8 +21,10 @@
               <v-text-field
                 v-model="password"
                 label="Password"
+                color="blue-grey darken-3"
                 prepend-icon="lock"
-                hint="8 to 20 characters in length"
+                counter
+                maxlength="20"
                 :type="showPassword ? 'text' : 'password'"
                 :rules="passwordRules"
                 :append-icon="showPassword ? 'visibility_off' : 'visibility'"
@@ -33,7 +36,10 @@
                 v-model="confirmPassword"
                 label="Confirm Password"
                 type="password"
+                color="blue-grey darken-3"
                 prepend-icon="lock"
+                counter
+                maxlength="20"
                 :error-messages="isPasswordMatched()"
                 required
               >
@@ -79,13 +85,14 @@ export default {
       error: null,
       valid: false,
       emailRules: [
-        (v) => !!v || 'E-mail is required',
-        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        (v) => !!v || 'Required',
+        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
       ],
       passwordRules: [
-        (v) => !!v || 'Password is required',
-        (v) => v && v.length >= 8 && v.length <= 20 || 'Password should be 8 to 20 characters long',
-        (v) => v && /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(v) || 'Your password should contain:<br>1. At least 1 lowercase letter<br>2. At least 1 uppercase letter<br>3. At least 1 number'
+        (v) => !!v || 'Required',
+        (v) => v && v.length >= 8 || 'At least 8 characters',
+        (v) => v && /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(v) ||
+          'At least:<br>1 lowercase letter<br>1 uppercase letter<br>1 number'
       ]
     }
   },

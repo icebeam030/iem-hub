@@ -16,22 +16,25 @@
               <v-text-field
                 v-model="iem.brand"
                 label="Brand"
+                color="blue-grey darken-3"
                 prepend-icon="list"
-                :rules="[(v) => !!v || 'Brand is required']"
+                :rules="[(v) => !!v || 'Required']"
                 required
               >
               </v-text-field>
               <v-text-field
                 v-model="iem.name"
                 label="Name"
+                color="blue-grey darken-3"
                 prepend-icon="info"
-                :rules="[(v) => !!v || 'Name is required']"
+                :rules="[(v) => !!v || 'Required']"
                 required
               >
               </v-text-field>
               <v-text-field
                 v-model="iem.price"
                 label="Price"
+                color="blue-grey darken-3"
                 prepend-icon="attach_money"
                 :rules="priceRules"
                 required
@@ -40,8 +43,9 @@
               <v-text-field
                 v-model="iem.imageUrl"
                 label="Image URL"
+                color="blue-grey darken-3"
                 prepend-icon="link"
-                :rules="[(v) => !!v || 'Image URL is required']"
+                :rules="[(v) => !!v || 'Required']"
                 required
               >
               </v-text-field>
@@ -81,7 +85,7 @@ export default {
       error: null,
       valid: false,
       priceRules: [
-        (v) => !!v || 'Price is required',
+        (v) => !!v || 'Required',
         (v) => v && parseInt(v) >= 0 || 'Price should be a positive integer'
       ]
     }

@@ -10,7 +10,7 @@
       <v-text-field
         v-if="$store.state.isUserLoggedIn"
         v-model="search"
-        label="Search"
+        placeholder="Search"
         class="mx-6"
         flat
         clearable
