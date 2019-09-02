@@ -12,13 +12,10 @@
         v-model="search"
         placeholder="Search"
         class="mx-6"
-        flat
         clearable
         hide-details
-        solo-inverted
         prepend-inner-icon="search"
-      >
-      </v-text-field>
+      ></v-text-field>
 
       <v-spacer></v-spacer>
 

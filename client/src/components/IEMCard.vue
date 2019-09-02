@@ -17,8 +17,7 @@
         color="orange lighten-1"
         background-color="orange lighten-3"
         half-increments
-      >
-      </v-rating>
+      ></v-rating>
       <v-spacer></v-spacer>
       <v-btn dark small color="pink lighten-1" @click="rateIEM">
         Rate this IEM

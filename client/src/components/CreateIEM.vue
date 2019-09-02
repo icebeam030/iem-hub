@@ -20,8 +20,7 @@
                 prepend-icon="list"
                 :rules="[(v) => !!v || 'Required']"
                 required
-              >
-              </v-text-field>
+              ></v-text-field>
               <v-text-field
                 v-model="iem.name"
                 label="Name"
@@ -29,8 +28,7 @@
                 prepend-icon="info"
                 :rules="[(v) => !!v || 'Required']"
                 required
-              >
-              </v-text-field>
+              ></v-text-field>
               <v-text-field
                 v-model="iem.price"
                 label="Price"
@@ -38,8 +36,7 @@
                 prepend-icon="attach_money"
                 :rules="priceRules"
                 required
-              >
-              </v-text-field>
+              ></v-text-field>
               <v-text-field
                 v-model="iem.imageUrl"
                 label="Image URL"
@@ -47,8 +44,7 @@
                 prepend-icon="link"
                 :rules="[(v) => !!v || 'Required']"
                 required
-              >
-              </v-text-field>
+              ></v-text-field>
             </v-form>
           </v-card-text>
 

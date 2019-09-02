@@ -16,8 +16,7 @@
                 prepend-icon="email"
                 :rules="emailRules"
                 required
-              >
-              </v-text-field>
+              ></v-text-field>
               <v-text-field
                 v-model="password"
                 label="Password"
@@ -30,8 +29,7 @@
                 :append-icon="showPassword ? 'visibility_off' : 'visibility'"
                 @click:append="showPassword = !showPassword"
                 required
-              >
-              </v-text-field>
+              ></v-text-field>
               <v-text-field
                 v-model="confirmPassword"
                 label="Confirm Password"
@@ -42,8 +40,7 @@
                 maxlength="20"
                 :error-messages="isPasswordMatched()"
                 required
-              >
-              </v-text-field>
+              ></v-text-field>
             </v-form>
           </v-card-text>
 
