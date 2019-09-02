@@ -15,7 +15,6 @@
                 color="blue-grey darken-3"
                 prepend-icon="email"
                 :rules="emailRules"
-                required
               ></v-text-field>
               <v-text-field
                 v-model="password"
@@ -28,7 +27,6 @@
                 :rules="passwordRules"
                 :append-icon="showPassword ? 'visibility_off' : 'visibility'"
                 @click:append="showPassword = !showPassword"
-                required
               ></v-text-field>
               <v-text-field
                 v-model="confirmPassword"
@@ -39,7 +37,6 @@
                 counter
                 maxlength="20"
                 :error-messages="isPasswordMatched()"
-                required
               ></v-text-field>
             </v-form>
           </v-card-text>
@@ -82,11 +79,11 @@ export default {
       error: null,
       valid: false,
       emailRules: [
-        (v) => !!v || 'Required',
+        (v) => !!v || 'This field is required',
         (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
       ],
       passwordRules: [
-        (v) => !!v || 'Required',
+        (v) => !!v || 'This field is required',
         (v) => v && v.length >= 8 || 'At least 8 characters',
         (v) => v && /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(v) ||
           'At least:<br>1 lowercase letter<br>1 uppercase letter<br>1 number'
