@@ -7,7 +7,7 @@ npm install
 
 ### Start server, hot-reloads and linting for development
 ```
-npm start
+npm run start
 ```
 - You can change this behaviour in `package.json`
 - You can also run `npm run lint` to only perform linting
