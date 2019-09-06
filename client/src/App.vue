@@ -55,7 +55,7 @@ export default {
   watch: {
     // only send request to server 1 seconds after finish typing
     search: _.debounce(async function (search) {
-      let route = { name: 'iem-browser' }
+      const route = { name: 'iem-browser' }
       if (search !== '') {
         route.query = { search: search }
       }
