@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon src/app.js --exec \"npm run lint && node\"",
+    "serve": "nodemon src/app.js --exec \"npm run lint && node\"",
     "lint": "eslint src/**/*.js",
     "seed": "node src/seed/index.js"
   },
