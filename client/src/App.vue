@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import { debounce } from 'lodash-es'
 
 export default {
   name: 'App',
@@ -53,11 +53,11 @@ export default {
     }
   },
   watch: {
-    // only send request to server 1 seconds after finish typing
-    search: _.debounce(async function (search) {
+    // only send request to server 1 second after user finishes typing
+    search: debounce(function (query) {
       const route = { name: 'iem-browser' }
-      if (search !== '') {
-        route.query = { search: search }
+      if (query !== '') {
+        route.query = { search: query }
       }
       this.$router.push(route)
     }, 1000)

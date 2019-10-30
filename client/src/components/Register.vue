@@ -66,7 +66,7 @@
 <script>
 /* eslint-disable */
 import AuthenticationService from '@/services/AuthenticationService'
-import _ from 'lodash'
+import { debounce } from 'lodash-es'
 
 export default {
   name: 'Register',
@@ -91,9 +91,9 @@ export default {
     }
   },
   watch: {
-    email: _.debounce(function () {
+    email: debounce(function () {
       this.error = null
-    }, 500)
+    }, 500, { 'leading': true })
   },
   methods: {
     async register () {
