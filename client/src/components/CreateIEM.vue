@@ -71,17 +71,15 @@
 import IEMService from '@/services/IEMService'
 
 export default {
-  data () {
-    return {
-      iem: {},
-      error: null,
-      valid: false,
-      priceRules: [
-        (v) => !!v || 'This field is required',
-        (v) => v && parseInt(v) >= 0 || 'Price should be a positive integer'
-      ]
-    }
-  },
+  data: () => ({
+    iem: {},
+    error: null,
+    valid: false,
+    priceRules: [
+      (v) => !!v || 'This field is required',
+      (v) => v && parseInt(v) >= 0 || 'Price should be a positive integer'
+    ]
+  }),
   methods: {
     clear () {
       this.$refs.form.reset()

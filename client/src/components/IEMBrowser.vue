@@ -34,12 +34,10 @@ import IEMService from '@/services/IEMService'
 import IEMCard from '@/components/IEMCard'
 
 export default {
-  data () {
-    return {
-      iems: [],
-      error: null
-    }
-  },
+  data: () => ({
+    iems: [],
+    error: null
+  }),
   watch: {
     '$route.query.search': {
       immediate: true,

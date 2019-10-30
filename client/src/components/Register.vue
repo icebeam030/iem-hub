@@ -70,30 +70,28 @@ import { debounce } from 'lodash-es'
 
 export default {
   name: 'Register',
-  data () {
-    return {
-      email: '',
-      password: '',
-      confirmPassword: '',
-      showPassword: false,
-      error: null,
-      valid: false,
-      emailRules: [
-        (v) => !!v || 'This field is required',
-        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
-      ],
-      passwordRules: [
-        (v) => !!v || 'This field is required',
-        (v) => v && v.length >= 8 || 'At least 8 characters',
-        (v) => v && /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(v) ||
-          'At least:<br>1 lowercase letter<br>1 uppercase letter<br>1 number'
-      ]
-    }
-  },
+  data: () => ({
+    email: '',
+    password: '',
+    confirmPassword: '',
+    showPassword: false,
+    error: null,
+    valid: false,
+    emailRules: [
+      (v) => !!v || 'This field is required',
+      (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
+    ],
+    passwordRules: [
+      (v) => !!v || 'This field is required',
+      (v) => v && v.length >= 8 || 'At least 8 characters',
+      (v) => v && /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(v) ||
+        'At least:<br>1 lowercase letter<br>1 uppercase letter<br>1 number'
+    ]
+  }),
   watch: {
     email: debounce(function () {
       this.error = null
-    }, 500, { 'leading': true })
+    }, 1000, { 'leading': true })
   },
   methods: {
     async register () {

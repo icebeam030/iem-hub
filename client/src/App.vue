@@ -47,11 +47,9 @@ import { debounce } from 'lodash-es'
 
 export default {
   name: 'App',
-  data () {
-    return {
-      search: ''
-    }
-  },
+  data: () => ({
+    search: ''
+  }),
   watch: {
     // only send request to server 1 second after user finishes typing
     search: debounce(function (query) {

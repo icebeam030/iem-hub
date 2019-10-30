@@ -59,14 +59,12 @@ export default {
   props: {
     iem: Object
   },
-  data () {
-    return {
-      rating: null,
-      averageRating: 'Loading...',
-      error: null,
-      successMessage: null
-    }
-  },
+  data: () => ({
+    rating: null,
+    averageRating: 'Loading...',
+    error: null,
+    successMessage: null
+  }),
   watch: {
     iem: {
       immediate: true,

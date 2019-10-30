@@ -28,11 +28,9 @@ import IEMService from '@/services/IEMService'
 import RatingService from '@/services/RatingService'
 
 export default {
-  data () {
-    return {
-      error: null
-    }
-  },
+  data: () => ({
+    error: null
+  }),
   methods: {
     async deleteIEM () {
       this.error = null

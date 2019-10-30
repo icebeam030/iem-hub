@@ -60,30 +60,28 @@ import { debounce } from 'lodash-es'
 
 export default {
   name: 'Login',
-  data () {
-    return {
-      email: '',
-      password: '',
-      showPassword: false,
-      error: null,
-      valid: false,
-      emailRules: [
-        (v) => !!v || 'This field is required',
-        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
-      ],
-      passwordRules: [
-        (v) => !!v || 'This field is required',
-        (v) => v && v.length >= 8 || 'At least 8 characters'
-      ]
-    }
-  },
+  data: () => ({
+    email: '',
+    password: '',
+    showPassword: false,
+    error: null,
+    valid: false,
+    emailRules: [
+      (v) => !!v || 'This field is required',
+      (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
+    ],
+    passwordRules: [
+      (v) => !!v || 'This field is required',
+      (v) => v && v.length >= 8 || 'At least 8 characters'
+    ]
+  }),
   watch: {
     email: debounce(function () {
       this.error = null
-    }, 500, { 'leading': true }),
+    }, 1000, { 'leading': true }),
     password: debounce(function () {
       this.error = null
-    }, 500, { 'leading': true })
+    }, 1000, { 'leading': true })
   },
   methods: {
     async login () {
