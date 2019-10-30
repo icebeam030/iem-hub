@@ -1,6 +1,6 @@
-const { sequelize, IEM } = require('../models')
-
 const Promise = require('bluebird')
+
+const { sequelize, IEM } = require('../models')
 const iems = require('./iems.json')
 
 // set force to true to clear the database

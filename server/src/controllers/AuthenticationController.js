@@ -1,7 +1,9 @@
-const { User } = require('../models')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+
 const config = require('../config/config')
-var bcrypt = require('bcryptjs')
+const { User } = require('../models')
+
 const SALT_ROUND = 10
 
 function jwtSignUser (user) {

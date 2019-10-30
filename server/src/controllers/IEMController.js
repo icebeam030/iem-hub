@@ -1,5 +1,6 @@
-const { IEM } = require('../models')
 const Sequelize = require('sequelize')
+const { IEM } = require('../models')
+
 const Op = Sequelize.Op
 
 module.exports = {

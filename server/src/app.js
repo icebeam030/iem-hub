@@ -5,8 +5,9 @@ const bodyParser = require('body-parser')
 // this should only be used for development due to security issues
 const cors = require('cors')
 const morgan = require('morgan')
-const { sequelize } = require('./models')
+
 const config = require('./config/config')
+const { sequelize } = require('./models')
 
 const app = express()
 app.use(morgan('tiny'))
@@ -14,7 +15,6 @@ app.use(bodyParser.json())
 app.use(cors())
 
 require('./passport/passport')
-
 require('./routes')(app)
 
 // set force to true to clear the database
