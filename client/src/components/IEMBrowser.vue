@@ -41,7 +41,7 @@ export default {
   watch: {
     '$route.query.search': {
       immediate: true,
-      async handler (search) {
+      async handler(search) {
         this.error = null
         try {
           this.iems = (await IEMService.index(search)).data

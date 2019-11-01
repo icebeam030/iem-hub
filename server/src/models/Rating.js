@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   })
 
   // each rating will be based on unique combination of userId and iemId
-  Rating.associate = function (models) {
+  Rating.associate = (models) => {
     Rating.belongsTo(models.User, {
       as: 'user',
       onDelete: 'cascade'

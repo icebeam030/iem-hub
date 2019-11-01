@@ -81,10 +81,10 @@ export default {
     ]
   }),
   methods: {
-    clear () {
+    clear() {
       this.$refs.form.reset()
     },
-    async editIEM () {
+    async editIEM() {
       this.error = null
       try {
         await IEMService.put(this.iem)
@@ -94,7 +94,7 @@ export default {
       }
     }
   },
-  async mounted () {
+  async mounted() {
     this.error = null
     // fetch IEM info from backend
     try {

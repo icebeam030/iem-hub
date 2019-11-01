@@ -94,7 +94,7 @@ export default {
     }, 1000, { 'leading': true })
   },
   methods: {
-    async register () {
+    async register() {
       if (this.$refs.form.validate()) {
         this.error = null
         try {
@@ -110,10 +110,10 @@ export default {
         }
       }
     },
-    clear () {
+    clear() {
       this.$refs.form.reset()
     },
-    isPasswordMatched () {
+    isPasswordMatched() {
       return (this.password === this.confirmPassword) ? '' : 'Your passwords do not match'
     }
   }

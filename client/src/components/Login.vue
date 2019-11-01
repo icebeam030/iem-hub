@@ -84,7 +84,7 @@ export default {
     }, 1000, { 'leading': true })
   },
   methods: {
-    async login () {
+    async login() {
       this.error = null
       try {
         const response = await AuthenticationService.login({
@@ -98,7 +98,7 @@ export default {
         this.error = err.response.data.error
       }
     },
-    clear () {
+    clear() {
       this.$refs.form.reset()
     }
   }

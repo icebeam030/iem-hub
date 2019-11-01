@@ -32,7 +32,7 @@ export default {
     error: null
   }),
   methods: {
-    async deleteIEM () {
+    async deleteIEM() {
       this.error = null
       const iemId = this.$route.params.iemId
       try {

@@ -68,7 +68,7 @@ export default {
   watch: {
     iem: {
       immediate: true,
-      async handler (iem) {
+      async handler(iem) {
         if (!iem.id) {
           return
         }
@@ -87,7 +87,7 @@ export default {
     }
   },
   methods: {
-    async rateIEM () {
+    async rateIEM() {
       this.error = null
       this.successMessage = null
       const rating = {

@@ -6,7 +6,7 @@ const { User } = require('../models')
 
 const SALT_ROUND = 10
 
-function jwtSignUser (user) {
+function jwtSignUser(user) {
   const ONE_WEEK = 60 * 60 * 24 * 7
   return jwt.sign(user, config.authentication.jwtSecret, {
     expiresIn: ONE_WEEK
@@ -14,7 +14,7 @@ function jwtSignUser (user) {
 }
 
 module.exports = {
-  async register (req, res) {
+  async register(req, res) {
     try {
       const { email, password } = req.body
       const hash = bcrypt.hashSync(password, SALT_ROUND)
@@ -34,7 +34,7 @@ module.exports = {
       })
     }
   },
-  async login (req, res) {
+  async login(req, res) {
     try {
       const { email, password } = req.body
       const user = await User.findOne({

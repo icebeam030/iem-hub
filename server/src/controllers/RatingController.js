@@ -2,7 +2,7 @@ const { Rating } = require('../models')
 
 module.exports = {
   // fetch user rating of a certain IEM
-  async index (req, res) {
+  async index(req, res) {
     try {
       const userId = req.user.id
       const { iemId } = req.query
@@ -30,7 +30,7 @@ module.exports = {
     }
   },
   // show average rating for a certain IEM
-  async show (req, res) {
+  async show(req, res) {
     try {
       const iemId = req.params.iemId
       let averageRating = await Rating.findOne({
@@ -65,7 +65,7 @@ module.exports = {
     }
   },
   // create or update rating for a certain IEM
-  async put (req, res) {
+  async put(req, res) {
     try {
       const userId = req.user.id
       const { iemId } = req.body
@@ -98,7 +98,7 @@ module.exports = {
     }
   },
   // delete rating of a certain IEM
-  async remove (req, res) {
+  async remove(req, res) {
     try {
       const { iemId } = req.params
       await Rating.destroy({

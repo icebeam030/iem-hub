@@ -4,7 +4,7 @@ const { IEM } = require('../models')
 const Op = Sequelize.Op
 
 module.exports = {
-  async index (req, res) {
+  async index(req, res) {
     try {
       let iems = null
       const search = req.query.search
@@ -29,7 +29,7 @@ module.exports = {
     }
   },
   // fetch information of a certain IEM from database
-  async show (req, res) {
+  async show(req, res) {
     try {
       const iem = await IEM.findByPk(req.params.iemId)
       res.send(iem)
@@ -40,7 +40,7 @@ module.exports = {
     }
   },
   // post an IEM into database
-  async post (req, res) {
+  async post(req, res) {
     try {
       const iem = await IEM.create(req.body)
       res.send(iem)
@@ -51,7 +51,7 @@ module.exports = {
     }
   },
   // update information for a certain IEM
-  async put (req, res) {
+  async put(req, res) {
     try {
       await IEM.update(req.body, {
         where: { id: req.params.iemId }
@@ -64,7 +64,7 @@ module.exports = {
     }
   },
   // delete a certain IEM
-  async remove (req, res) {
+  async remove(req, res) {
     try {
       const { iemId } = req.params
       await IEM.destroy({

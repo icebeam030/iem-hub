@@ -19,13 +19,13 @@ const sequelize = new Sequelize(
 fs
   .readdirSync(__dirname)
   .filter(file => file !== 'index.js')
-  .forEach(file => {
+  .forEach((file) => {
     const model = sequelize.import(path.join(__dirname, file))
     db[model.name] = model
   })
 
 // check each model and run its associate function if it has one
-Object.keys(db).forEach(modelName => {
+Object.keys(db).forEach((modelName) => {
   if ('associate' in db[modelName]) {
     db[modelName].associate(db)
   }

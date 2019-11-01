@@ -81,10 +81,10 @@ export default {
     ]
   }),
   methods: {
-    clear () {
+    clear() {
       this.$refs.form.reset()
     },
-    async createIEM () {
+    async createIEM() {
       this.error = null
       try {
         await IEMService.post(this.iem)

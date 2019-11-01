@@ -13,20 +13,20 @@ export default new Vuex.Store({
     isUserAdmin: false
   },
   mutations: {
-    setToken (state, token) {
+    setToken(state, token) {
       state.token = token
       state.isUserLoggedIn = !!token
     },
-    setUser (state, user) {
+    setUser(state, user) {
       state.user = user
       state.isUserAdmin = (user && user.email === 'admin@admin.com')
     }
   },
   actions: {
-    setToken ({ commit }, token) {
+    setToken({ commit }, token) {
       commit('setToken', token)
     },
-    setUser ({ commit }, user) {
+    setUser({ commit }, user) {
       commit('setUser', user)
     }
   }

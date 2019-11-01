@@ -61,12 +61,12 @@ export default {
     }, 1000)
   },
   methods: {
-    logout () {
+    logout() {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       this.$router.push({ name: 'login' })
     },
-    returnToHome () {
+    returnToHome() {
       if (this.$store.state.isUserLoggedIn) {
         this.$router.push({ name: 'iem-browser' })
       } else {

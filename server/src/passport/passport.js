@@ -10,7 +10,7 @@ passport.use(
   new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: config.authentication.jwtSecret
-  }, async function (jwtPayload, done) {
+  }, async (jwtPayload, done) => {
     try {
       // confirm the user is signed by jwt and in the database
       const user = await User.findOne({

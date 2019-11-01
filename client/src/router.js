@@ -13,29 +13,25 @@ Vue.use(Router)
 // define navigation guards
 const userNotAuthenticated = (to, from, next) => {
   if (store.state.isUserLoggedIn) {
-    next({ name: 'iem-browser' })
-    return
+    return next({ name: 'iem-browser' })
   }
-  next()
+  return next()
 }
 
 const userAuthenticated = (to, from, next) => {
   if (!store.state.isUserLoggedIn) {
-    next({ name: 'login' })
-    return
+    return next({ name: 'login' })
   }
-  next()
+  return next()
 }
 
 const userIsAdmin = (to, from, next) => {
   if (!store.state.isUserLoggedIn) {
-    next({ name: 'login' })
-    return
+    return next({ name: 'login' })
   } else if (store.state.isUserLoggedIn && !store.state.isUserAdmin) {
-    next({ name: 'iem-browser' })
-    return
+    return next({ name: 'iem-browser' })
   }
-  next()
+  return next()
 }
 
 export default new Router({
