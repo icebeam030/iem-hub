@@ -13,7 +13,7 @@ module.exports = {
       if (search) {
         iems = await IEM.findAll({
           where: {
-            [Op.or]: ['brand', 'name'].map(key => ({
+            [Op.or]: ['brand', 'name'].map((key) => ({
               [key]: { [Op.like]: `%${search}%` }
             }))
           }

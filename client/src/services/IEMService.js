@@ -9,18 +9,23 @@ export default {
       }
     })
   },
+
   // show info of a certain IEM to be edited
   show(iemId) {
     return Api().get(`iems/${iemId}`)
   },
+
   // add an IEM to the database
   post(iem) {
     return Api().post('iems', iem)
   },
+
   // update info of a certain IEM
   put(iem) {
     return Api().put(`iems/${iem.id}`, iem)
   },
+
+  // delete a certain IEM
   delete(iemId) {
     return Api().delete(`iems/${iemId}`)
   }

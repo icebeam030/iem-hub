@@ -9,6 +9,6 @@ sequelize.sync({ force: true })
     // this block can be repeated to populate different tables
     // but don't create users table because password will be unmatched
     await Promise.all(
-      iems.map(iem => IEM.create(iem))
+      iems.map((iem) => IEM.create(iem))
     )
   })
