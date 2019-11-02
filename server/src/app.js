@@ -9,14 +9,15 @@ const cors = require('cors')
 
 const config = require('./config/config')
 const { sequelize } = require('./models')
+const routes = require('./routes')
+require('./passport/passport')
 
 const app = express()
 app.use(morgan('tiny'))
 app.use(bodyParser.json())
 app.use(cors())
 
-require('./passport/passport')
-require('./routes')(app)
+routes(app)
 
 // set force to true to clear the database
 sequelize.sync({ force: false })
