@@ -37,15 +37,15 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-              <v-btn
-                :dark="valid"
-                :disabled="!valid"
-                color="pink accent-4"
-                @click="login"
-              >
-                Login
-              </v-btn>
-              <v-btn @click="clear">Clear</v-btn>
+            <v-btn
+              :dark="valid"
+              :disabled="!valid"
+              color="pink accent-4"
+              @click="login"
+            >
+              Login
+            </v-btn>
+            <v-btn @click="clear">Clear</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -54,7 +54,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import AuthenticationService from '@/services/AuthenticationService'
 import { debounce } from 'lodash-es'
 
@@ -68,20 +67,20 @@ export default {
     valid: false,
     emailRules: [
       (v) => !!v || 'This field is required',
-      (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
+      (v) => /^\w+([.-_]?\w+)*@\w+([.-_]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
     ],
     passwordRules: [
       (v) => !!v || 'This field is required',
-      (v) => v && v.length >= 8 || 'At least 8 characters'
+      (v) => (v && v.length >= 8) || 'At least 8 characters'
     ]
   }),
   watch: {
     email: debounce(function () {
       this.error = null
-    }, 1000, { 'leading': true }),
+    }, 1000, { leading: true }),
     password: debounce(function () {
       this.error = null
-    }, 1000, { 'leading': true })
+    }, 1000, { leading: true })
   },
   methods: {
     async login() {

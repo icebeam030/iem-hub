@@ -8,7 +8,7 @@
           </v-toolbar>
 
           <v-card-text>
-            <v-form v-model="valid" ref="form" autocomplete="off">
+            <v-form ref="form" v-model="valid" autocomplete="off">
               <v-text-field
                 v-model="email"
                 label="Email"
@@ -47,15 +47,15 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-              <v-btn
-                :dark="valid"
-                :disabled="!valid"
-                color="pink accent-4"
-                @click="register"
-              >
-                Register
-              </v-btn>
-              <v-btn @click="clear">Clear</v-btn>
+            <v-btn
+              :dark="valid"
+              :disabled="!valid"
+              color="pink accent-4"
+              @click="register"
+            >
+              Register
+            </v-btn>
+            <v-btn @click="clear">Clear</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -64,7 +64,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import AuthenticationService from '@/services/AuthenticationService'
 import { debounce } from 'lodash-es'
 
@@ -79,19 +78,19 @@ export default {
     valid: false,
     emailRules: [
       (v) => !!v || 'This field is required',
-      (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
+      (v) => /^\w+([.-_]?\w+)*@\w+([.-_]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
     ],
     passwordRules: [
       (v) => !!v || 'This field is required',
-      (v) => v && v.length >= 8 || 'At least 8 characters',
-      (v) => v && /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(v) ||
+      (v) => (v && v.length >= 8) || 'At least 8 characters',
+      (v) => (v && /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(v)) ||
         'At least:<br>1 lowercase letter<br>1 uppercase letter<br>1 number'
     ]
   }),
   watch: {
     email: debounce(function () {
       this.error = null
-    }, 1000, { 'leading': true })
+    }, 1000, { leading: true })
   },
   methods: {
     async register() {

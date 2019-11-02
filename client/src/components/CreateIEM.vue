@@ -67,7 +67,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import IEMService from '@/services/IEMService'
 
 export default {

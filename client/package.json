@@ -35,7 +35,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^5.2.3",
     "fibers": "^4.0.2",
-    "sass": "^1.23.2",
+    "sass": "^1.23.3",
     "sass-loader": "^8.0.0",
     "vue-cli-plugin-vuetify": "^1.1.1",
     "vue-template-compiler": "^2.6.10",

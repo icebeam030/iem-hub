@@ -42,7 +42,6 @@ npm run test:unit
 - Routing are done by the core [Vuerouter](https://router.vuejs.org/) library, navigation guards are set to prevent unauthenticated access to the app.
 - The [Vuex](https://vuex.vuejs.org/) store is used to store application-wide states such as user token.
 - To maintain user states after page refreshes, [vuex-persistedstate](https://github.com/robinvdvleuten/vuex-persistedstate#readme) is used.
-- `/* eslint-disable */` is used where incompatibility of Vuetify textfield checks and ESLint occurs.
 - The app adjusts to different screen sizes by using the Vuetify [breakpoints](https://vuetifyjs.com/en/layout/breakpoints#introduction) system.
 
 

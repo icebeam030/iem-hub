@@ -4,6 +4,7 @@ module.exports = {
     node: true
   },
   extends: [
+    'eslint:recommended',
     'plugin:vue/essential',
     'standard'
   ],
@@ -12,6 +13,7 @@ module.exports = {
     SharedArrayBuffer: 'readonly'
   },
   parserOptions: {
+    parser: 'babel-eslint',
     ecmaVersion: 2018,
     sourceType: 'module'
   },
