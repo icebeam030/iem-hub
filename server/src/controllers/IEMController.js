@@ -4,12 +4,12 @@ const { IEM } = require('../models')
 const Op = Sequelize.Op
 
 module.exports = {
+  // if user is searching, send back search result
+  // otherwise send back all IEMs
   async index(req, res) {
     try {
       let iems = null
       const search = req.query.search
-      // if user is searching, send back search result
-      // otherwise send back all IEMs
       if (search) {
         iems = await IEM.findAll({
           where: {
@@ -28,6 +28,7 @@ module.exports = {
       })
     }
   },
+
   // fetch information of a certain IEM from database
   async show(req, res) {
     try {
@@ -39,6 +40,7 @@ module.exports = {
       })
     }
   },
+
   // post an IEM into database
   async post(req, res) {
     try {
@@ -50,6 +52,7 @@ module.exports = {
       })
     }
   },
+
   // update information for a certain IEM
   async put(req, res) {
     try {
@@ -63,6 +66,7 @@ module.exports = {
       })
     }
   },
+
   // delete a certain IEM
   async remove(req, res) {
     try {

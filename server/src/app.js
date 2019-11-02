@@ -2,9 +2,10 @@
 
 const express = require('express')
 const bodyParser = require('body-parser')
-// this should only be used for development due to security issues
-const cors = require('cors')
 const morgan = require('morgan')
+
+// cors should only be used for development due to security issues
+const cors = require('cors')
 
 const config = require('./config/config')
 const { sequelize } = require('./models')

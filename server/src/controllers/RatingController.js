@@ -29,6 +29,7 @@ module.exports = {
       })
     }
   },
+
   // show average rating for a certain IEM
   async show(req, res) {
     try {
@@ -64,6 +65,7 @@ module.exports = {
       })
     }
   },
+
   // create or update rating for a certain IEM
   async put(req, res) {
     try {
@@ -97,6 +99,7 @@ module.exports = {
       })
     }
   },
+
   // delete rating of a certain IEM
   async remove(req, res) {
     try {
