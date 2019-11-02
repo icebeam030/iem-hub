@@ -3,7 +3,7 @@
     <v-card class="elevation-3">
       <v-toolbar dark dense color="blue-grey darken-4">
         <v-icon class="mr-2">list</v-icon>
-        <v-toolbar-title>Your collection</v-toolbar-title>
+        <v-toolbar-title>IEM Hub</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
           v-if="$store.state.isUserAdmin"

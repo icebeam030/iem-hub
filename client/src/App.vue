@@ -1,11 +1,9 @@
 <template>
   <v-app>
     <v-app-bar app dark dense color="pink darken-3">
-      <v-app-bar-nav-icon @click="returnToHome">
-        <v-icon>home</v-icon>
-      </v-app-bar-nav-icon>
-
-      <v-toolbar-title>IEM-Hub</v-toolbar-title>
+      <v-toolbar-items>
+        <v-btn text @click="returnToHome">Home</v-btn>
+      </v-toolbar-items>
 
       <v-text-field
         v-if="$store.state.isUserLoggedIn"
