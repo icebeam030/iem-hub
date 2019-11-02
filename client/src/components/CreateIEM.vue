@@ -76,7 +76,7 @@ export default {
     valid: false,
     priceRules: [
       (v) => !!v || 'This field is required',
-      (v) => v && parseInt(v) >= 0 || 'Price should be a positive integer'
+      (v) => (v && parseInt(v) >= 0) || 'Price should be a positive integer'
     ]
   }),
   methods: {
