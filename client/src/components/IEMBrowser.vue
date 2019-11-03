@@ -1,11 +1,11 @@
 <template>
   <v-container class="grid-list">
     <v-card class="elevation-3">
-      <v-toolbar dark dense color="blue-grey darken-4">
+      <v-toolbar color="blue-grey darken-4" dark dense>
         <v-icon class="mr-2">
           list
         </v-icon>
-        <v-toolbar-title>IEM Hub</v-toolbar-title>
+        <v-toolbar-title>Your Collection</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
           v-if="$store.state.isUserAdmin"
@@ -19,7 +19,7 @@
 
       <div v-if="error">
         <br>
-        <v-btn block large color="error">
+        <v-btn block color="error" large>
           {{ error }}
         </v-btn>
       </div>

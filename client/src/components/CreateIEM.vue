@@ -3,7 +3,7 @@
     <v-row align="start" justify="center">
       <v-col cols="12" sm="8" md="6">
         <v-card class="elevation-12">
-          <v-toolbar dark color="pink accent-4">
+          <v-toolbar color="pink accent-4" dark>
             <v-toolbar-title>Create IEM</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn text @click="$router.push({ name: 'iem-browser' })">
@@ -15,29 +15,29 @@
             <v-form ref="form" v-model="valid" autocomplete="off">
               <v-text-field
                 v-model="iem.brand"
-                label="Brand"
                 color="blue-grey darken-3"
+                label="Brand"
                 prepend-icon="list"
                 :rules="[(v) => !!v || 'This field is required']"
               ></v-text-field>
               <v-text-field
                 v-model="iem.name"
-                label="Name"
                 color="blue-grey darken-3"
+                label="Name"
                 prepend-icon="info"
                 :rules="[(v) => !!v || 'This field is required']"
               ></v-text-field>
               <v-text-field
                 v-model="iem.price"
-                label="Price"
                 color="blue-grey darken-3"
+                label="Price"
                 prepend-icon="attach_money"
                 :rules="priceRules"
               ></v-text-field>
               <v-text-field
                 v-model="iem.imageUrl"
-                label="Image URL"
                 color="blue-grey darken-3"
+                label="Image URL"
                 prepend-icon="link"
                 :rules="[(v) => !!v || 'This field is required']"
               ></v-text-field>
@@ -45,7 +45,7 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn v-if="error" block large color="error">
+            <v-btn v-if="error" block color="error" large>
               {{ error }}
             </v-btn>
           </v-card-actions>
@@ -53,9 +53,9 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
+              color="pink accent-4"
               :dark="valid"
               :disabled="!valid"
-              color="pink accent-4"
               @click="createIEM"
             >
               Create

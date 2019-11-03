@@ -1,19 +1,19 @@
 <template>
   <v-app>
-    <v-app-bar app dark dense color="pink darken-3">
+    <v-app-bar app color="pink darken-3" dark dense>
       <v-toolbar-items>
-        <v-btn text @click="returnToHome">
-          Home
+        <v-btn text x-large @click="$router.push({ name: 'iem-browser' })">
+          IEM HUB
         </v-btn>
       </v-toolbar-items>
 
       <v-text-field
         v-if="$store.state.isUserLoggedIn"
         v-model="search"
-        placeholder="Search"
         class="mx-6"
         clearable
         hide-details
+        placeholder="Search"
         prepend-inner-icon="search"
       ></v-text-field>
 
@@ -38,7 +38,7 @@
 
     <v-footer>
       <v-card width="100%">
-        <v-card-actions class="grey darken-3 white--text justify-center">
+        <v-card-actions class="grey darken-3 justify-center white--text">
           <div>
             &copy; {{ new Date().getFullYear() }} - <strong>icebeam030</strong>
           </div>
@@ -73,13 +73,6 @@ export default {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       this.$router.push({ name: 'login' })
-    },
-    returnToHome() {
-      if (this.$store.state.isUserLoggedIn) {
-        this.$router.push({ name: 'iem-browser' })
-      } else {
-        this.$router.push({ name: 'login' })
-      }
     }
   }
 }

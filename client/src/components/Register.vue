@@ -3,7 +3,7 @@
     <v-row align="center" justify="center">
       <v-col cols="12" sm="8" md="4">
         <v-card class="elevation-12">
-          <v-toolbar dark color="pink accent-4">
+          <v-toolbar color="pink accent-4" dark>
             <v-toolbar-title>Register</v-toolbar-title>
           </v-toolbar>
 
@@ -11,38 +11,38 @@
             <v-form ref="form" v-model="valid" autocomplete="off">
               <v-text-field
                 v-model="email"
-                label="Email"
                 color="blue-grey darken-3"
+                label="Email"
                 prepend-icon="email"
                 :rules="emailRules"
               ></v-text-field>
               <v-text-field
                 v-model="password"
-                label="Password"
                 color="blue-grey darken-3"
-                prepend-icon="lock"
                 counter
+                label="Password"
                 maxlength="20"
-                :type="showPassword ? 'text' : 'password'"
-                :rules="passwordRules"
+                prepend-icon="lock"
                 :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                :rules="passwordRules"
+                :type="showPassword ? 'text' : 'password'"
                 @click:append="showPassword = !showPassword"
               ></v-text-field>
               <v-text-field
                 v-model="confirmPassword"
-                label="Confirm Password"
-                type="password"
                 color="blue-grey darken-3"
-                prepend-icon="lock"
                 counter
+                label="Confirm Password"
                 maxlength="20"
+                prepend-icon="lock"
+                type="password"
                 :error-messages="isPasswordMatched()"
               ></v-text-field>
             </v-form>
           </v-card-text>
 
           <v-card-actions>
-            <v-btn v-if="error" block large color="error">
+            <v-btn v-if="error" block color="error" large>
               {{ error }}
             </v-btn>
           </v-card-actions>
@@ -50,9 +50,9 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
+              color="pink accent-4"
               :dark="valid"
               :disabled="!valid"
-              color="pink accent-4"
               @click="register"
             >
               Register

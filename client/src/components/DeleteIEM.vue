@@ -3,7 +3,7 @@
     <v-row align="center" justify="center">
       <v-col cols="12" sm="8" md="6" lg="4">
         <v-card class="elevation-12">
-          <v-toolbar dark color="pink accent-4">
+          <v-toolbar color="pink accent-4" dark>
             <v-toolbar-title>Delete this IEM?</v-toolbar-title>
           </v-toolbar>
 
@@ -19,7 +19,7 @@
           </v-card-actions>
 
           <v-card-actions>
-            <v-btn v-if="error" block large color="error">
+            <v-btn v-if="error" block color="error" large>
               {{ error }}
             </v-btn>
           </v-card-actions>

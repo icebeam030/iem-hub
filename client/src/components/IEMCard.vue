@@ -1,8 +1,8 @@
 <template>
   <v-card class="elevation-8">
     <v-img
-      :src="iem.imageUrl"
       aspect-ratio="2.75"
+      :src="iem.imageUrl"
     ></v-img>
 
     <v-card-text class="text--primary">
@@ -18,12 +18,12 @@
     <v-card-actions>
       <v-rating
         v-model="rating"
-        color="orange lighten-1"
         background-color="orange lighten-3"
+        color="orange lighten-1"
         half-increments
       ></v-rating>
       <v-spacer></v-spacer>
-      <v-btn dark small color="pink lighten-1" @click="rateIEM">
+      <v-btn color="pink lighten-1" dark small @click="rateIEM">
         Rate this IEM
       </v-btn>
     </v-card-actions>
@@ -31,15 +31,15 @@
     <v-card-actions v-if="$store.state.isUserAdmin">
       <v-spacer></v-spacer>
       <v-btn
-        text
         color="pink lighten-1"
+        text
         :to="{ name: 'iem-delete', params: { iemId: iem.id }}"
       >
         <v-icon>delete</v-icon>
       </v-btn>
       <v-btn
-        text
         color="pink lighten-1"
+        text
         :to="{ name: 'iem-edit', params: { iemId: iem.id }}"
       >
         <v-icon>edit</v-icon>
@@ -47,13 +47,13 @@
     </v-card-actions>
 
     <v-card-actions v-if="successMessage">
-      <v-btn block large color="success">
+      <v-btn block color="success" large>
         {{ successMessage }}
       </v-btn>
     </v-card-actions>
 
     <v-card-actions v-if="error">
-      <v-btn block large color="error">
+      <v-btn block color="error" large>
         {{ error }}
       </v-btn>
     </v-card-actions>
