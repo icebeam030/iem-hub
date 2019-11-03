@@ -2,7 +2,9 @@
   <v-app>
     <v-app-bar app dark dense color="pink darken-3">
       <v-toolbar-items>
-        <v-btn text @click="returnToHome">Home</v-btn>
+        <v-btn text @click="returnToHome">
+          Home
+        </v-btn>
       </v-toolbar-items>
 
       <v-text-field
@@ -18,9 +20,15 @@
       <v-spacer></v-spacer>
 
       <v-toolbar-items>
-        <v-btn text v-if="!$store.state.isUserLoggedIn" to="login">Login</v-btn>
-        <v-btn text v-if="!$store.state.isUserLoggedIn" to="register">Sign Up</v-btn>
-        <v-btn text v-if="$store.state.isUserLoggedIn" @click="logout">Log Out</v-btn>
+        <v-btn v-if="!$store.state.isUserLoggedIn" text to="login">
+          Login
+        </v-btn>
+        <v-btn v-if="!$store.state.isUserLoggedIn" text to="register">
+          Sign Up
+        </v-btn>
+        <v-btn v-if="$store.state.isUserLoggedIn" text @click="logout">
+          Log Out
+        </v-btn>
       </v-toolbar-items>
     </v-app-bar>
 
@@ -28,14 +36,14 @@
       <router-view></router-view>
     </v-content>
 
-    <v-footer height="auto">
-      <v-col cols="12">
-        <v-card>
-          <v-card-actions class="grey darken-3 white--text justify-center">
-            &copy;2018 —&nbsp;<strong>icebeam030</strong>
-          </v-card-actions>
-        </v-card>
-      </v-col>
+    <v-footer>
+      <v-card width="100%">
+        <v-card-actions class="grey darken-3 white--text justify-center">
+          <div>
+            &copy; {{ new Date().getFullYear() }} - <strong>icebeam030</strong>
+          </div>
+        </v-card-actions>
+      </v-card>
     </v-footer>
   </v-app>
 </template>
@@ -52,8 +60,10 @@ export default {
     // only send request to server 1 second after user finishes typing
     search: debounce(function (query) {
       const route = { name: 'iem-browser' }
-      if (query !== '') {
+      if (query) {
         route.query = { search: query }
+      } else {
+        route.query = {}
       }
       this.$router.push(route)
     }, 1000)

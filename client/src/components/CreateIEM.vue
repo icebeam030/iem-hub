@@ -6,13 +6,13 @@
           <v-toolbar dark color="pink accent-4">
             <v-toolbar-title>Create IEM</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn text @click="$router.go(-1)">
+            <v-btn text @click="$router.push({ name: 'iem-browser' })">
               <v-icon>arrow_back</v-icon>
             </v-btn>
           </v-toolbar>
 
           <v-card-text>
-            <v-form v-model="valid" ref="form" autocomplete="off">
+            <v-form ref="form" v-model="valid" autocomplete="off">
               <v-text-field
                 v-model="iem.brand"
                 label="Brand"
@@ -45,20 +45,24 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
+            <v-btn v-if="error" block large color="error">
+              {{ error }}
+            </v-btn>
           </v-card-actions>
 
           <v-card-actions>
             <v-spacer></v-spacer>
-              <v-btn
-                :dark="valid"
-                :disabled="!valid"
-                color="pink accent-4"
-                @click="createIEM"
-              >
-                Create
-              </v-btn>
-              <v-btn @click="clear">Clear</v-btn>
+            <v-btn
+              :dark="valid"
+              :disabled="!valid"
+              color="pink accent-4"
+              @click="createIEM"
+            >
+              Create
+            </v-btn>
+            <v-btn @click="clear">
+              Clear
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

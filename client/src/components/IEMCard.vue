@@ -6,8 +6,12 @@
     ></v-img>
 
     <v-card-text class="text--primary">
-      <div class="headline">{{ iem.brand }}  {{ iem.name }}</div>
-      <div class="subtitle-1">AUD ${{ iem.price }}</div>
+      <div class="headline">
+        {{ iem.brand }}  {{ iem.name }}
+      </div>
+      <div class="subtitle-1">
+        AUD ${{ iem.price }}
+      </div>
       <div>Average rating: {{ averageRating }}</div>
     </v-card-text>
 
@@ -43,11 +47,15 @@
     </v-card-actions>
 
     <v-card-actions v-if="successMessage">
-      <v-btn block large color="success">{{ successMessage }}</v-btn>
+      <v-btn block large color="success">
+        {{ successMessage }}
+      </v-btn>
     </v-card-actions>
 
     <v-card-actions v-if="error">
-      <v-btn block large color="error">{{ error }}</v-btn>
+      <v-btn block large color="error">
+        {{ error }}
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -57,7 +65,10 @@ import RatingService from '@/services/RatingService'
 
 export default {
   props: {
-    iem: Object
+    iem: {
+      type: Object,
+      required: true
+    }
   },
   data: () => ({
     rating: null,
@@ -75,9 +86,7 @@ export default {
 
         this.error = null
         try {
-          const rating = {
-            iemId: iem.id
-          }
+          const rating = { iemId: iem.id }
           this.rating = (await RatingService.index(rating)).data.rating
           this.averageRating = (await RatingService.show(iem.id)).data.averageRating
         } catch (err) {

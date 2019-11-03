@@ -16,14 +16,14 @@ const userNotAuthenticated = (to, from, next) => {
   if (store.state.isUserLoggedIn) {
     return next({ name: 'iem-browser' })
   }
-  return next()
+  next()
 }
 
 const userAuthenticated = (to, from, next) => {
   if (!store.state.isUserLoggedIn) {
     return next({ name: 'login' })
   }
-  return next()
+  next()
 }
 
 const userIsAdmin = (to, from, next) => {
@@ -32,7 +32,7 @@ const userIsAdmin = (to, from, next) => {
   } else if (store.state.isUserLoggedIn && !store.state.isUserAdmin) {
     return next({ name: 'iem-browser' })
   }
-  return next()
+  next()
 }
 
 export default new Router({

@@ -4,9 +4,7 @@ export default {
   // fetch the IEM list to be displayed
   index(search) {
     return Api().get('iems', {
-      params: {
-        search: search
-      }
+      params: { search: search }
     })
   },
 

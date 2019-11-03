@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:vue/essential',
+    'plugin:vue/recommended',
     'standard'
   ],
   globals: {
@@ -22,9 +22,11 @@ module.exports = {
   ],
   rules: {
     'space-before-function-paren': ['error', {
-      'anonymous': 'always',
-      'named': 'never',
-      'asyncArrow': 'always'
-    }]
+      anonymous: 'always',
+      named: 'never',
+      asyncArrow: 'always'
+    }],
+    'vue/html-self-closing': 'off',
+    'vue/max-attributes-per-line': 'off'
   }
 }

@@ -42,7 +42,9 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
+            <v-btn v-if="error" block large color="error">
+              {{ error }}
+            </v-btn>
           </v-card-actions>
 
           <v-card-actions>
@@ -55,7 +57,9 @@
             >
               Register
             </v-btn>
-            <v-btn @click="clear">Clear</v-btn>
+            <v-btn @click="clear">
+              Clear
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

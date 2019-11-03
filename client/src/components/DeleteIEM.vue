@@ -10,12 +10,18 @@
           <v-card-actions></v-card-actions>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="pink accent-4" dark @click="deleteIEM">Yes</v-btn>
-            <v-btn color="pink accent-4" text @click="$router.go(-1)">Cancel</v-btn>
+            <v-btn color="pink accent-4" dark @click="deleteIEM">
+              Yes
+            </v-btn>
+            <v-btn color="pink accent-4" text @click="$router.push({ name: 'iem-browser' })">
+              Cancel
+            </v-btn>
           </v-card-actions>
 
           <v-card-actions>
-            <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
+            <v-btn v-if="error" block large color="error">
+              {{ error }}
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

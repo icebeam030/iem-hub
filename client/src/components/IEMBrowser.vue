@@ -2,7 +2,9 @@
   <v-container class="grid-list">
     <v-card class="elevation-3">
       <v-toolbar dark dense color="blue-grey darken-4">
-        <v-icon class="mr-2">list</v-icon>
+        <v-icon class="mr-2">
+          list
+        </v-icon>
         <v-toolbar-title>IEM Hub</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn
@@ -17,7 +19,9 @@
 
       <div v-if="error">
         <br>
-        <v-btn block large color="error">{{ error }}</v-btn>
+        <v-btn block large color="error">
+          {{ error }}
+        </v-btn>
       </div>
 
       <v-row justify="center">
@@ -34,6 +38,9 @@ import IEMService from '@/services/IEMService'
 import IEMCard from '@/components/IEMCard'
 
 export default {
+  components: {
+    IEMCard
+  },
   data: () => ({
     iems: [],
     error: null
@@ -50,9 +57,6 @@ export default {
         }
       }
     }
-  },
-  components: {
-    IEMCard
   }
 }
 </script>

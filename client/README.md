@@ -43,9 +43,3 @@ npm run test:unit
 - The [Vuex](https://vuex.vuejs.org/) store is used to store application-wide states such as user token.
 - To maintain user states after page refreshes, [vuex-persistedstate](https://github.com/robinvdvleuten/vuex-persistedstate#readme) is used.
 - The app adjusts to different screen sizes by using the Vuetify [breakpoints](https://vuetifyjs.com/en/layout/breakpoints#introduction) system.
-
-
-## Known issues
-- When pressing the `clear` button in the search box the `search` parameter in the URL doesn't disappear, but by manually clearing the search box it will.
-  - This might be due to Vuetify textfield logic.
-  - Functionality is not affected.

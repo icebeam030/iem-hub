@@ -4,9 +4,7 @@ export default {
   // show current user's rating of a certain IEM
   index(rating) {
     return Api().get('ratings', {
-      params: {
-        iemId: rating.iemId
-      }
+      params: { iemId: rating.iemId }
     })
   },
 

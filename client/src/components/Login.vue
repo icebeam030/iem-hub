@@ -8,7 +8,7 @@
           </v-toolbar>
 
           <v-card-text>
-            <v-form v-model="valid" ref="form">
+            <v-form ref="form" v-model="valid">
               <v-text-field
                 v-model="email"
                 label="Email"
@@ -32,7 +32,9 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
+            <v-btn v-if="error" block large color="error">
+              {{ error }}
+            </v-btn>
           </v-card-actions>
 
           <v-card-actions>
@@ -45,7 +47,9 @@
             >
               Login
             </v-btn>
-            <v-btn @click="clear">Clear</v-btn>
+            <v-btn @click="clear">
+              Clear
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

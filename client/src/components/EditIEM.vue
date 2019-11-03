@@ -6,13 +6,13 @@
           <v-toolbar dark color="pink accent-4">
             <v-toolbar-title>Edit IEM</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn text @click="$router.go(-1)">
+            <v-btn text @click="$router.push({ name: 'iem-browser' })">
               <v-icon>arrow_back</v-icon>
             </v-btn>
           </v-toolbar>
 
           <v-card-text>
-            <v-form v-model="valid" ref="form" autocomplete="off">
+            <v-form ref="form" v-model="valid" autocomplete="off">
               <v-text-field
                 v-model="iem.brand"
                 label="Brand"
@@ -45,20 +45,24 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn v-if="error" block large color="error">{{ error }}</v-btn>
+            <v-btn v-if="error" block large color="error">
+              {{ error }}
+            </v-btn>
           </v-card-actions>
 
           <v-card-actions>
             <v-spacer></v-spacer>
-              <v-btn
-                :dark="valid"
-                :disabled="!valid"
-                color="pink accent-4"
-                @click="editIEM"
-              >
-                Save
-              </v-btn>
-              <v-btn @click="clear">Clear</v-btn>
+            <v-btn
+              :dark="valid"
+              :disabled="!valid"
+              color="pink accent-4"
+              @click="editIEM"
+            >
+              Save
+            </v-btn>
+            <v-btn @click="clear">
+              Clear
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -79,6 +83,16 @@ export default {
       (v) => (v && parseInt(v) >= 0) || 'Price should be a positive integer'
     ]
   }),
+  async mounted() {
+    this.error = null
+    // fetch IEM info from backend
+    try {
+      const iemId = this.$route.params.iemId
+      this.iem = (await IEMService.show(iemId)).data
+    } catch (err) {
+      this.error = err.response.data.error
+    }
+  },
   methods: {
     clear() {
       this.$refs.form.reset()
@@ -91,16 +105,6 @@ export default {
       } catch (err) {
         this.error = err.response.data.error
       }
-    }
-  },
-  async mounted() {
-    this.error = null
-    // fetch IEM info from backend
-    try {
-      const iemId = this.$route.params.iemId
-      this.iem = (await IEMService.show(iemId)).data
-    } catch (err) {
-      this.error = err.response.data.error
     }
   }
 }
