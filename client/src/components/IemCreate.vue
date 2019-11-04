@@ -1,46 +1,53 @@
 <template>
   <v-container class="fill-height" fluid>
-    <v-row align="center" justify="center">
+    <v-row align="start" justify="center">
       <v-col cols="12" sm="8" md="6">
         <v-card class="elevation-12">
           <v-toolbar color="pink accent-4" dark>
-            <v-toolbar-title>Edit IEM</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn text @click="$router.push({ name: 'iem-browser' })">
+            <v-toolbar-title>Create IEM</v-toolbar-title>
+            <v-spacer />
+            <v-btn text @click="$router.push({ name: 'iem-hub' })">
               <v-icon>arrow_back</v-icon>
             </v-btn>
           </v-toolbar>
 
           <v-card-text>
-            <v-form ref="form" v-model="valid" autocomplete="off">
+            <v-form
+              ref="form"
+              v-model="valid"
+              :lazy-validation="true"
+              autocomplete="off"
+            >
+              <!-- <ValidationProvider v-slot="{ errors }" rules="required"> -->
               <v-text-field
                 v-model="iem.brand"
+                :rules="[(v) => !!v || 'This field is required']"
                 color="blue-grey darken-3"
                 label="Brand"
                 prepend-icon="list"
-                :rules="[(v) => !!v || 'This field is required']"
-              ></v-text-field>
+              />
+              <!-- </ValidationProvider> -->
               <v-text-field
                 v-model="iem.name"
+                :rules="[(v) => !!v || 'This field is required']"
                 color="blue-grey darken-3"
                 label="Name"
                 prepend-icon="info"
-                :rules="[(v) => !!v || 'This field is required']"
-              ></v-text-field>
+              />
               <v-text-field
                 v-model="iem.price"
+                :rules="priceRules"
                 color="blue-grey darken-3"
                 label="Price"
                 prepend-icon="attach_money"
-                :rules="priceRules"
-              ></v-text-field>
+              />
               <v-text-field
                 v-model="iem.imageUrl"
+                :rules="[(v) => !!v || 'This field is required']"
                 color="blue-grey darken-3"
                 label="Image URL"
                 prepend-icon="link"
-                :rules="[(v) => !!v || 'This field is required']"
-              ></v-text-field>
+              />
             </v-form>
           </v-card-text>
 
@@ -51,14 +58,14 @@
           </v-card-actions>
 
           <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-btn
-              color="pink accent-4"
               :dark="valid"
               :disabled="!valid"
-              @click="editIEM"
+              color="pink accent-4"
+              @click="createIem"
             >
-              Save
+              Create
             </v-btn>
             <v-btn @click="clear">
               Clear
@@ -71,9 +78,19 @@
 </template>
 
 <script>
-import IEMService from '@/services/IEMService'
+// import { ValidationProvider, extend } from 'vee-validate'
+// import { required } from 'vee-validate/dist/rules'
+import IemService from '@/services/IemService'
+
+// extend('required', {
+//   ...required,
+//   message: 'This field is required'
+// })
 
 export default {
+  // components: {
+  //   ValidationProvider
+  // },
   data: () => ({
     iem: {},
     error: null,
@@ -83,25 +100,15 @@ export default {
       (v) => (v && parseInt(v) >= 0) || 'Price should be a positive integer'
     ]
   }),
-  async mounted() {
-    this.error = null
-    // fetch IEM info from backend
-    try {
-      const iemId = this.$route.params.iemId
-      this.iem = (await IEMService.show(iemId)).data
-    } catch (err) {
-      this.error = err.response.data.error
-    }
-  },
   methods: {
     clear() {
       this.$refs.form.reset()
     },
-    async editIEM() {
+    async createIem() {
       this.error = null
       try {
-        await IEMService.put(this.iem)
-        this.$router.push({ name: 'iem-browser' })
+        await IemService.post(this.iem)
+        this.$router.push({ name: 'iem-hub' })
       } catch (err) {
         this.error = err.response.data.error
       }

@@ -11,23 +11,23 @@
             <v-form ref="form" v-model="valid">
               <v-text-field
                 v-model="email"
+                :rules="emailRules"
                 color="blue-grey darken-3"
                 label="Email"
                 prepend-icon="email"
-                :rules="emailRules"
-              ></v-text-field>
+              />
               <v-text-field
                 v-model="password"
+                :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                :rules="passwordRules"
+                :type="showPassword ? 'text' : 'password'"
                 color="blue-grey darken-3"
                 counter
                 label="Password"
                 maxlength="20"
                 prepend-icon="lock"
-                :append-icon="showPassword ? 'visibility_off' : 'visibility'"
-                :rules="passwordRules"
-                :type="showPassword ? 'text' : 'password'"
                 @click:append="showPassword = !showPassword"
-              ></v-text-field>
+              />
             </v-form>
           </v-card-text>
 
@@ -38,11 +38,11 @@
           </v-card-actions>
 
           <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-btn
-              color="pink accent-4"
               :dark="valid"
               :disabled="!valid"
+              color="pink accent-4"
               @click="login"
             >
               Login
@@ -96,7 +96,7 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
-        this.$router.push({ name: 'iem-browser' })
+        this.$router.push({ name: 'iem-hub' })
       } catch (err) {
         this.error = err.response.data.error
       }

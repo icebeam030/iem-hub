@@ -4,40 +4,40 @@
       <v-col cols="12" sm="8" md="4">
         <v-card class="elevation-12">
           <v-toolbar color="pink accent-4" dark>
-            <v-toolbar-title>Register</v-toolbar-title>
+            <v-toolbar-title>Register new user</v-toolbar-title>
           </v-toolbar>
 
           <v-card-text>
             <v-form ref="form" v-model="valid" autocomplete="off">
               <v-text-field
                 v-model="email"
+                :rules="emailRules"
                 color="blue-grey darken-3"
                 label="Email"
                 prepend-icon="email"
-                :rules="emailRules"
-              ></v-text-field>
+              />
               <v-text-field
                 v-model="password"
+                :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                :rules="passwordRules"
+                :type="showPassword ? 'text' : 'password'"
                 color="blue-grey darken-3"
                 counter
                 label="Password"
                 maxlength="20"
                 prepend-icon="lock"
-                :append-icon="showPassword ? 'visibility_off' : 'visibility'"
-                :rules="passwordRules"
-                :type="showPassword ? 'text' : 'password'"
                 @click:append="showPassword = !showPassword"
-              ></v-text-field>
+              />
               <v-text-field
                 v-model="confirmPassword"
+                :error-messages="isPasswordMatched()"
                 color="blue-grey darken-3"
                 counter
                 label="Confirm Password"
                 maxlength="20"
                 prepend-icon="lock"
                 type="password"
-                :error-messages="isPasswordMatched()"
-              ></v-text-field>
+              />
             </v-form>
           </v-card-text>
 
@@ -48,11 +48,11 @@
           </v-card-actions>
 
           <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-btn
-              color="pink accent-4"
               :dark="valid"
               :disabled="!valid"
+              color="pink accent-4"
               @click="register"
             >
               Register
@@ -107,7 +107,7 @@ export default {
           })
           this.$store.dispatch('setToken', response.data.token)
           this.$store.dispatch('setUser', response.data.user)
-          this.$router.push({ name: 'iem-browser' })
+          this.$router.push({ name: 'iem-hub' })
         } catch (err) {
           this.error = err.response.data.error
         }

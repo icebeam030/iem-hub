@@ -7,13 +7,14 @@
             <v-toolbar-title>Delete this IEM?</v-toolbar-title>
           </v-toolbar>
 
-          <v-card-actions></v-card-actions>
+          <v-card-actions />
+
           <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="pink accent-4" dark @click="deleteIEM">
+            <v-spacer />
+            <v-btn color="pink accent-4" dark @click="deleteIem">
               Yes
             </v-btn>
-            <v-btn color="pink accent-4" text @click="$router.push({ name: 'iem-browser' })">
+            <v-btn color="pink accent-4" text @click="$router.push({ name: 'iem-hub' })">
               Cancel
             </v-btn>
           </v-card-actions>
@@ -30,7 +31,7 @@
 </template>
 
 <script>
-import IEMService from '@/services/IEMService'
+import IemService from '@/services/IemService'
 import RatingService from '@/services/RatingService'
 
 export default {
@@ -38,13 +39,13 @@ export default {
     error: null
   }),
   methods: {
-    async deleteIEM() {
+    async deleteIem() {
       this.error = null
       const iemId = this.$route.params.iemId
       try {
-        await IEMService.delete(iemId)
+        await IemService.delete(iemId)
         await RatingService.delete(iemId)
-        this.$router.push({ name: 'iem-browser' })
+        this.$router.push({ name: 'iem-hub' })
       } catch (err) {
         this.error = err.response.data.error
       }

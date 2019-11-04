@@ -1,9 +1,9 @@
 <template>
   <v-card class="elevation-8">
     <v-img
-      aspect-ratio="2.75"
       :src="iem.imageUrl"
-    ></v-img>
+      aspect-ratio="2.75"
+    />
 
     <v-card-text class="text--primary">
       <div class="headline">
@@ -21,26 +21,26 @@
         background-color="orange lighten-3"
         color="orange lighten-1"
         half-increments
-      ></v-rating>
-      <v-spacer></v-spacer>
-      <v-btn color="pink lighten-1" dark small @click="rateIEM">
+      />
+      <v-spacer />
+      <v-btn color="pink lighten-1" dark small @click="rateIem">
         Rate this IEM
       </v-btn>
     </v-card-actions>
 
     <v-card-actions v-if="$store.state.isUserAdmin">
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-btn
+        :to="{ name: 'iem-delete', params: { iemId: iem.id }}"
         color="pink lighten-1"
         text
-        :to="{ name: 'iem-delete', params: { iemId: iem.id }}"
       >
         <v-icon>delete</v-icon>
       </v-btn>
       <v-btn
+        :to="{ name: 'iem-edit', params: { iemId: iem.id }}"
         color="pink lighten-1"
         text
-        :to="{ name: 'iem-edit', params: { iemId: iem.id }}"
       >
         <v-icon>edit</v-icon>
       </v-btn>
@@ -96,7 +96,7 @@ export default {
     }
   },
   methods: {
-    async rateIEM() {
+    async rateIem() {
       this.error = null
       this.successMessage = null
       const rating = {

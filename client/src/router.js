@@ -1,20 +1,20 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import store from '@/store'
 
 const Register = () => import('@/components/Register')
 const Login = () => import('@/components/Login')
-const IEMBrowser = () => import('@/components/IEMBrowser')
-const CreateIEM = () => import('@/components/CreateIEM')
-const EditIEM = () => import('@/components/EditIEM')
-const DeleteIEM = () => import('@/components/DeleteIEM')
+const IemHub = () => import('@/components/IemHub')
+const IemCreate = () => import('@/components/IemCreate')
+const IemEdit = () => import('@/components/IemEdit')
+const IemDelete = () => import('@/components/IemDelete')
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
 // define navigation guards
 const userNotAuthenticated = (to, from, next) => {
   if (store.state.isUserLoggedIn) {
-    return next({ name: 'iem-browser' })
+    return next({ name: 'iem-hub' })
   }
   next()
 }
@@ -30,12 +30,12 @@ const userIsAdmin = (to, from, next) => {
   if (!store.state.isUserLoggedIn) {
     return next({ name: 'login' })
   } else if (store.state.isUserLoggedIn && !store.state.isUserAdmin) {
-    return next({ name: 'iem-browser' })
+    return next({ name: 'iem-hub' })
   }
   next()
 }
 
-export default new Router({
+export default new VueRouter({
   routes: [
     {
       path: '*',
@@ -55,26 +55,26 @@ export default new Router({
     },
     {
       path: '/iem',
-      name: 'iem-browser',
-      component: IEMBrowser,
+      name: 'iem-hub',
+      component: IemHub,
       beforeEnter: userAuthenticated
     },
     {
       path: '/iem/create',
       name: 'iem-create',
-      component: CreateIEM,
+      component: IemCreate,
       beforeEnter: userIsAdmin
     },
     {
       path: '/iem/edit/:iemId',
       name: 'iem-edit',
-      component: EditIEM,
+      component: IemEdit,
       beforeEnter: userIsAdmin
     },
     {
       path: '/iem/delete/:iemId',
       name: 'iem-delete',
-      component: DeleteIEM,
+      component: IemDelete,
       beforeEnter: userIsAdmin
     }
   ]

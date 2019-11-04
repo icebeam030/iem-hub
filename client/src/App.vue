@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app color="pink darken-3" dark dense>
       <v-toolbar-items>
-        <v-btn text x-large @click="$router.push({ name: 'iem-browser' })">
+        <v-btn text x-large @click="$router.push({ name: 'iem-hub' })">
           IEM HUB
         </v-btn>
       </v-toolbar-items>
@@ -15,9 +15,9 @@
         hide-details
         placeholder="Search"
         prepend-inner-icon="search"
-      ></v-text-field>
+      />
 
-      <v-spacer></v-spacer>
+      <v-spacer />
 
       <v-toolbar-items>
         <v-btn v-if="!$store.state.isUserLoggedIn" text to="login">
@@ -33,7 +33,7 @@
     </v-app-bar>
 
     <v-content>
-      <router-view></router-view>
+      <router-view />
     </v-content>
 
     <v-footer>
@@ -59,7 +59,7 @@ export default {
   watch: {
     // only send request to server 1 second after user finishes typing
     search: debounce(function (query) {
-      const route = { name: 'iem-browser' }
+      const route = { name: 'iem-hub' }
       if (query) {
         route.query = { search: query }
       } else {
