@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('IEM', {
+  return sequelize.define('Iem', {
     brand: {
       type: DataTypes.STRING,
       unique: 'compositeIndex'

@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const { IEM } = require('../models')
+const { Iem } = require('../models')
 
 const Op = Sequelize.Op
 
@@ -11,7 +11,7 @@ module.exports = {
       let iems = null
       const search = req.query.search
       if (search) {
-        iems = await IEM.findAll({
+        iems = await Iem.findAll({
           where: {
             [Op.or]: ['brand', 'name'].map((key) => ({
               [key]: { [Op.like]: `%${search}%` }
@@ -19,7 +19,7 @@ module.exports = {
           }
         })
       } else {
-        iems = await IEM.findAll()
+        iems = await Iem.findAll()
       }
       res.send(iems)
     } catch (err) {
@@ -32,7 +32,7 @@ module.exports = {
   // fetch information of a certain IEM from database
   async show(req, res) {
     try {
-      const iem = await IEM.findByPk(req.params.iemId)
+      const iem = await Iem.findByPk(req.params.iemId)
       res.send(iem)
     } catch (err) {
       res.status(500).send({
@@ -44,7 +44,7 @@ module.exports = {
   // post an IEM into database
   async post(req, res) {
     try {
-      const iem = await IEM.create(req.body)
+      const iem = await Iem.create(req.body)
       res.send(iem)
     } catch (err) {
       res.status(500).send({
@@ -56,7 +56,7 @@ module.exports = {
   // update information for a certain IEM
   async put(req, res) {
     try {
-      await IEM.update(req.body, {
+      await Iem.update(req.body, {
         where: { id: req.params.iemId }
       })
       res.send(req.body)
@@ -71,7 +71,7 @@ module.exports = {
   async remove(req, res) {
     try {
       const { iemId } = req.params
-      await IEM.destroy({
+      await Iem.destroy({
         where: {
           id: iemId
         }

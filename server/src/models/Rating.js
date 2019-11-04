@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       as: 'user',
       onDelete: 'cascade'
     })
-    Rating.belongsTo(models.IEM, {
+    Rating.belongsTo(models.Iem, {
       as: 'iem',
       onDelete: 'cascade'
     })
