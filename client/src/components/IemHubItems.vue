@@ -78,13 +78,13 @@ export default {
   }),
   async mounted() {
     this.error = null
-    try {
-      const iemId = this.iem.id
-      if (!iemId) {
-        this.error = 'Something went wrong'
-        return
-      }
+    const iemId = this.iem.id
+    if (!iemId) {
+      this.error = 'Something went wrong'
+      return
+    }
 
+    try {
       this.rating = (await RatingService.index(iemId)).data.rating
       this.averageRating = (await RatingService.show(iemId)).data.averageRating
     } catch (err) {
