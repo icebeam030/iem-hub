@@ -4,63 +4,82 @@
       <v-col cols="12" sm="8" md="4">
         <v-card class="elevation-12">
           <v-toolbar color="pink accent-4" dark>
-            <v-toolbar-title>Register new user</v-toolbar-title>
+            <v-toolbar-title>Sign up</v-toolbar-title>
           </v-toolbar>
 
-          <v-card-text>
-            <v-form ref="form" v-model="valid" autocomplete="off">
-              <v-text-field
-                v-model="email"
-                :rules="emailRules"
-                color="blue-grey darken-3"
-                label="Email"
-                prepend-icon="email"
-              />
-              <v-text-field
-                v-model="password"
-                :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+          <ValidationObserver ref="form" v-slot="{ valid }">
+            <v-card-text>
+              <ValidationProvider v-slot="{ errors }" mode="eager" rules="required|email">
+                <v-text-field
+                  v-model="email"
+                  :error-messages="errors[0]"
+                  autofocus
+                  color="blue-grey darken-3"
+                  label="Email"
+                  prepend-icon="email"
+                />
+              </ValidationProvider>
+
+              <ValidationProvider
+                v-slot="{ errors }"
                 :rules="passwordRules"
-                :type="showPassword ? 'text' : 'password'"
-                color="blue-grey darken-3"
-                counter
-                label="Password"
-                maxlength="20"
-                prepend-icon="lock"
-                @click:append="showPassword = !showPassword"
-              />
-              <v-text-field
-                v-model="confirmPassword"
-                :error-messages="isPasswordMatched()"
-                color="blue-grey darken-3"
-                counter
-                label="Confirm Password"
-                maxlength="20"
-                prepend-icon="lock"
-                type="password"
-              />
-            </v-form>
-          </v-card-text>
+                mode="eager"
+                vid="password"
+              >
+                <v-text-field
+                  v-model="password"
+                  :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                  :error-messages="errors[0]"
+                  :type="showPassword ? 'text' : 'password'"
+                  autocomplete="new-password"
+                  color="blue-grey darken-3"
+                  counter
+                  hint="At least 1 lower letter, 1 upper letter and 1 digit"
+                  label="Password"
+                  maxlength="20"
+                  prepend-icon="lock"
+                  @click:append="showPassword = !showPassword"
+                />
+              </ValidationProvider>
 
-          <v-card-actions>
-            <v-btn v-if="error" block color="error" large>
-              {{ error }}
-            </v-btn>
-          </v-card-actions>
+              <ValidationProvider
+                v-slot="{ errors }"
+                rules="required|confirmed:password"
+              >
+                <v-text-field
+                  v-model="confirmPassword"
+                  :error-messages="errors[0]"
+                  color="blue-grey darken-3"
+                  counter
+                  label="Confirm Password"
+                  maxlength="20"
+                  prepend-icon="lock"
+                  type="password"
+                />
+              </ValidationProvider>
+            </v-card-text>
 
-          <v-card-actions>
-            <v-spacer />
-            <v-btn
-              :dark="valid"
-              :disabled="!valid"
-              color="pink accent-4"
-              @click="register"
-            >
-              Register
-            </v-btn>
-            <v-btn @click="clear">
-              Clear
-            </v-btn>
-          </v-card-actions>
+            <v-card-actions>
+              <v-btn v-if="error" block color="error" large>
+                {{ error }}
+              </v-btn>
+            </v-card-actions>
+
+            <v-card-actions>
+              <v-spacer />
+              <v-btn
+                :dark="valid"
+                :disabled="!valid"
+                color="pink accent-4"
+                @click="register"
+              >
+                Sign up
+              </v-btn>
+              <v-btn @click="clear">
+                Clear
+              </v-btn>
+            </v-card-actions>
+          </ValidationObserver>
         </v-card>
       </v-col>
     </v-row>
@@ -68,28 +87,58 @@
 </template>
 
 <script>
-import AuthenticationService from '@/services/AuthenticationService'
 import { debounce } from 'lodash-es'
+import { ValidationObserver, ValidationProvider, extend } from 'vee-validate'
+import { confirmed, email, min, max, regex, required } from 'vee-validate/dist/rules'
+import AuthenticationService from '@/services/AuthenticationService'
+
+extend('confirmed', {
+  ...confirmed,
+  message: 'Your passwords do not match'
+})
+
+extend('email', {
+  ...email,
+  message: 'Invalid email address'
+})
+
+extend('min', {
+  ...min,
+  message: 'Password should have a minimum of {length} characters'
+})
+
+extend('max', {
+  ...max,
+  message: 'Password cannot exceed {length} characters'
+})
+
+extend('required', {
+  ...required,
+  message: 'This field is required'
+})
+
+extend('regex', {
+  ...regex,
+  message: 'Your password does not meet the requirements'
+})
 
 export default {
-  name: 'Register',
+  components: {
+    ValidationObserver,
+    ValidationProvider
+  },
   data: () => ({
     email: '',
     password: '',
     confirmPassword: '',
     showPassword: false,
-    error: null,
-    valid: false,
-    emailRules: [
-      (v) => !!v || 'This field is required',
-      (v) => /^\w+([.-_]?\w+)*@\w+([.-_]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
-    ],
-    passwordRules: [
-      (v) => !!v || 'This field is required',
-      (v) => (v && v.length >= 8) || 'At least 8 characters',
-      (v) => (v && /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(v)) ||
-        'At least:<br>1 lowercase letter<br>1 uppercase letter<br>1 number'
-    ]
+    passwordRules: {
+      required: true,
+      min: 8,
+      regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/,
+      max: 20
+    },
+    error: null
   }),
   watch: {
     email: debounce(function () {
@@ -114,10 +163,10 @@ export default {
       }
     },
     clear() {
+      this.email = ''
+      this.password = ''
+      this.confirmPassword = ''
       this.$refs.form.reset()
-    },
-    isPasswordMatched() {
-      return (this.password === this.confirmPassword) ? '' : 'Your passwords do not match'
     }
   }
 }

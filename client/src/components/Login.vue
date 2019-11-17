@@ -7,50 +7,56 @@
             <v-toolbar-title>Login</v-toolbar-title>
           </v-toolbar>
 
-          <v-card-text>
-            <v-form ref="form" v-model="valid">
-              <v-text-field
-                v-model="email"
-                :rules="emailRules"
-                color="blue-grey darken-3"
-                label="Email"
-                prepend-icon="email"
-              />
-              <v-text-field
-                v-model="password"
-                :append-icon="showPassword ? 'visibility_off' : 'visibility'"
-                :rules="passwordRules"
-                :type="showPassword ? 'text' : 'password'"
-                color="blue-grey darken-3"
-                counter
-                label="Password"
-                maxlength="20"
-                prepend-icon="lock"
-                @click:append="showPassword = !showPassword"
-              />
-            </v-form>
-          </v-card-text>
+          <ValidationObserver ref="form" v-slot="{ valid }">
+            <v-card-text>
+              <ValidationProvider v-slot="{ errors }" mode="eager" rules="required|email">
+                <v-text-field
+                  v-model="email"
+                  :error-messages="errors[0]"
+                  autofocus
+                  color="blue-grey darken-3"
+                  label="Email"
+                  prepend-icon="email"
+                />
+              </ValidationProvider>
 
-          <v-card-actions>
-            <v-btn v-if="error" block color="error" large>
-              {{ error }}
-            </v-btn>
-          </v-card-actions>
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <v-text-field
+                  v-model="password"
+                  :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+                  :error-messages="errors[0]"
+                  :type="showPassword ? 'text' : 'password'"
+                  color="blue-grey darken-3"
+                  counter
+                  label="Password"
+                  maxlength="20"
+                  prepend-icon="lock"
+                  @click:append="showPassword = !showPassword"
+                />
+              </ValidationProvider>
+            </v-card-text>
 
-          <v-card-actions>
-            <v-spacer />
-            <v-btn
-              :dark="valid"
-              :disabled="!valid"
-              color="pink accent-4"
-              @click="login"
-            >
-              Login
-            </v-btn>
-            <v-btn @click="clear">
-              Clear
-            </v-btn>
-          </v-card-actions>
+            <v-card-actions>
+              <v-btn v-if="error" block color="error" large>
+                {{ error }}
+              </v-btn>
+            </v-card-actions>
+
+            <v-card-actions>
+              <v-spacer />
+              <v-btn
+                :dark="valid"
+                :disabled="!valid"
+                color="pink accent-4"
+                @click="login"
+              >
+                Login
+              </v-btn>
+              <v-btn @click="clear">
+                Clear
+              </v-btn>
+            </v-card-actions>
+          </ValidationObserver>
         </v-card>
       </v-col>
     </v-row>
@@ -58,25 +64,31 @@
 </template>
 
 <script>
-import AuthenticationService from '@/services/AuthenticationService'
 import { debounce } from 'lodash-es'
+import { ValidationObserver, ValidationProvider, extend } from 'vee-validate'
+import { email, required } from 'vee-validate/dist/rules'
+import AuthenticationService from '@/services/AuthenticationService'
+
+extend('email', {
+  ...email,
+  message: 'Invalid email address'
+})
+
+extend('required', {
+  ...required,
+  message: 'This field is required'
+})
 
 export default {
-  name: 'Login',
+  components: {
+    ValidationObserver,
+    ValidationProvider
+  },
   data: () => ({
     email: '',
     password: '',
     showPassword: false,
-    error: null,
-    valid: false,
-    emailRules: [
-      (v) => !!v || 'This field is required',
-      (v) => /^\w+([.-_]?\w+)*@\w+([.-_]?\w+)*(\.\w{2,3})+$/.test(v) || 'Invalid email'
-    ],
-    passwordRules: [
-      (v) => !!v || 'This field is required',
-      (v) => (v && v.length >= 8) || 'At least 8 characters'
-    ]
+    error: null
   }),
   watch: {
     email: debounce(function () {
@@ -102,6 +114,8 @@ export default {
       }
     },
     clear() {
+      this.email = ''
+      this.password = ''
       this.$refs.form.reset()
     }
   }

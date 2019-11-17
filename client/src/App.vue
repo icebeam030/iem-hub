@@ -7,29 +7,31 @@
         </v-btn>
       </v-toolbar-items>
 
-      <v-text-field
-        v-if="$store.state.isUserLoggedIn"
-        v-model="search"
-        class="mx-6"
-        clearable
-        hide-details
-        placeholder="Search"
-        prepend-inner-icon="search"
-      />
-
       <v-spacer />
 
       <v-toolbar-items>
-        <v-btn v-if="!$store.state.isUserLoggedIn" text to="login">
-          Login
-        </v-btn>
-        <v-btn v-if="!$store.state.isUserLoggedIn" text to="register">
-          Sign Up
-        </v-btn>
-        <v-btn v-if="$store.state.isUserLoggedIn" text @click="logout">
-          Log Out
-        </v-btn>
+        <v-text-field
+          v-if="$store.state.isUserLoggedIn"
+          v-model="search"
+          class="mx-6"
+          clearable
+          flat
+          hide-details
+          placeholder="Search"
+          prepend-inner-icon="search"
+          solo
+        />
       </v-toolbar-items>
+
+      <v-btn v-if="!$store.state.isUserLoggedIn" :to="{ name: 'login' }" text>
+        Login
+      </v-btn>
+      <v-btn v-if="!$store.state.isUserLoggedIn" :to="{ name: 'register' }" text>
+        Sign Up
+      </v-btn>
+      <v-btn v-if="$store.state.isUserLoggedIn" text @click="logout">
+        Log Out
+      </v-btn>
     </v-app-bar>
 
     <v-content>
@@ -52,7 +54,6 @@
 import { debounce } from 'lodash-es'
 
 export default {
-  name: 'App',
   data: () => ({
     search: ''
   }),

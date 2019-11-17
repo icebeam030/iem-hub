@@ -11,66 +11,71 @@
             </v-btn>
           </v-toolbar>
 
-          <v-card-text>
-            <v-form
-              ref="form"
-              v-model="valid"
-              :lazy-validation="true"
-              autocomplete="off"
-            >
-              <!-- <ValidationProvider v-slot="{ errors }" rules="required"> -->
-              <v-text-field
-                v-model="iem.brand"
-                :rules="[(v) => !!v || 'This field is required']"
-                color="blue-grey darken-3"
-                label="Brand"
-                prepend-icon="list"
-              />
-              <!-- </ValidationProvider> -->
-              <v-text-field
-                v-model="iem.name"
-                :rules="[(v) => !!v || 'This field is required']"
-                color="blue-grey darken-3"
-                label="Name"
-                prepend-icon="info"
-              />
-              <v-text-field
-                v-model="iem.price"
-                :rules="priceRules"
-                color="blue-grey darken-3"
-                label="Price"
-                prepend-icon="attach_money"
-              />
-              <v-text-field
-                v-model="iem.imageUrl"
-                :rules="[(v) => !!v || 'This field is required']"
-                color="blue-grey darken-3"
-                label="Image URL"
-                prepend-icon="link"
-              />
-            </v-form>
-          </v-card-text>
+          <ValidationObserver ref="form" v-slot="{ valid }">
+            <v-card-text>
+              <ValidationProvider v-slot="{ errors }" mode="eager" rules="required">
+                <v-text-field
+                  v-model="iem.brand"
+                  :error-messages="errors[0]"
+                  autofocus
+                  color="blue-grey darken-3"
+                  label="Brand"
+                  prepend-icon="list"
+                />
+              </ValidationProvider>
 
-          <v-card-actions>
-            <v-btn v-if="error" block color="error" large>
-              {{ error }}
-            </v-btn>
-          </v-card-actions>
+              <ValidationProvider v-slot="{ errors }" mode="eager" rules="required">
+                <v-text-field
+                  v-model="iem.name"
+                  :error-messages="errors[0]"
+                  color="blue-grey darken-3"
+                  label="Name"
+                  prepend-icon="info"
+                />
+              </ValidationProvider>
 
-          <v-card-actions>
-            <v-spacer />
-            <v-btn
-              :dark="valid"
-              :disabled="!valid"
-              color="pink accent-4"
-              @click="createIem"
-            >
-              Create
-            </v-btn>
-            <v-btn @click="clear">
-              Clear
-            </v-btn>
-          </v-card-actions>
+              <ValidationProvider v-slot="{ errors }" mode="eager" rules="required|numeric">
+                <v-text-field
+                  v-model="iem.price"
+                  :error-messages="errors[0]"
+                  color="blue-grey darken-3"
+                  label="Price"
+                  prepend-icon="attach_money"
+                />
+              </ValidationProvider>
+
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <v-text-field
+                  v-model="iem.imageUrl"
+                  :error-messages="errors[0]"
+                  color="blue-grey darken-3"
+                  label="Image URL"
+                  prepend-icon="link"
+                />
+              </ValidationProvider>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-btn v-if="error" block color="error" large>
+                {{ error }}
+              </v-btn>
+            </v-card-actions>
+
+            <v-card-actions>
+              <v-spacer />
+              <v-btn
+                :dark="valid"
+                :disabled="!valid"
+                color="pink accent-4"
+                @click="createIem"
+              >
+                Create
+              </v-btn>
+              <v-btn @click="clear">
+                Clear
+              </v-btn>
+            </v-card-actions>
+          </ValidationObserver>
         </v-card>
       </v-col>
     </v-row>
@@ -78,30 +83,35 @@
 </template>
 
 <script>
-// import { ValidationProvider, extend } from 'vee-validate'
-// import { required } from 'vee-validate/dist/rules'
+import { ValidationObserver, ValidationProvider, extend } from 'vee-validate'
+import { required, numeric } from 'vee-validate/dist/rules'
 import IemService from '@/services/IemService'
 
-// extend('required', {
-//   ...required,
-//   message: 'This field is required'
-// })
+extend('required', {
+  ...required,
+  message: 'This field is required'
+})
+
+extend('numeric', {
+  ...numeric,
+  message: 'Price should be a numeric value'
+})
 
 export default {
-  // components: {
-  //   ValidationProvider
-  // },
+  components: {
+    ValidationObserver,
+    ValidationProvider
+  },
   data: () => ({
     iem: {},
-    error: null,
-    valid: false,
-    priceRules: [
-      (v) => !!v || 'This field is required',
-      (v) => (v && parseInt(v) >= 0) || 'Price should be a positive integer'
-    ]
+    error: null
   }),
   methods: {
     clear() {
+      this.iem.brand = ''
+      this.iem.name = ''
+      this.iem.price = ''
+      this.iem.imageUrl = ''
       this.$refs.form.reset()
     },
     async createIem() {
