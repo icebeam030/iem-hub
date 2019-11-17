@@ -73,26 +73,22 @@ export default {
   data: () => ({
     rating: null,
     averageRating: 'Loading...',
-    error: null,
-    successMessage: null
+    successMessage: null,
+    error: null
   }),
-  watch: {
-    iem: {
-      immediate: true,
-      async handler(iem) {
-        if (!iem.id) {
-          return
-        }
-
-        this.error = null
-        try {
-          const rating = { iemId: iem.id }
-          this.rating = (await RatingService.index(rating)).data.rating
-          this.averageRating = (await RatingService.show(iem.id)).data.averageRating
-        } catch (err) {
-          this.error = err.response.data.error
-        }
+  async mounted() {
+    this.error = null
+    try {
+      const iemId = this.iem.id
+      if (!iemId) {
+        this.error = 'Something went wrong'
+        return
       }
+
+      this.rating = (await RatingService.index(iemId)).data.rating
+      this.averageRating = (await RatingService.show(iemId)).data.averageRating
+    } catch (err) {
+      this.error = err.response.data.error
     }
   },
   methods: {

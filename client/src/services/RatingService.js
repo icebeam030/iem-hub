@@ -2,9 +2,9 @@ import Api from '@/services/Api'
 
 export default {
   // show current user's rating of a certain IEM
-  index(rating) {
+  index(iemId) {
     return Api().get('ratings', {
-      params: { iemId: rating.iemId }
+      params: { iemId: iemId }
     })
   },
 
