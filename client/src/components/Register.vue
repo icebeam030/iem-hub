@@ -147,19 +147,17 @@ export default {
   },
   methods: {
     async register() {
-      if (this.$refs.form.validate()) {
-        this.error = null
-        try {
-          const response = await AuthenticationService.register({
-            email: this.email,
-            password: this.password
-          })
-          this.$store.dispatch('setToken', response.data.token)
-          this.$store.dispatch('setUser', response.data.user)
-          this.$router.push({ name: 'iem-hub' })
-        } catch (err) {
-          this.error = err.response.data.error
-        }
+      this.error = null
+      try {
+        const response = await AuthenticationService.register({
+          email: this.email,
+          password: this.password
+        })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({ name: 'iem-hub' })
+      } catch (err) {
+        this.error = err.response.data.error
       }
     },
     clear() {

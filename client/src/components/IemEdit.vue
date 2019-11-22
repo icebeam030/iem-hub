@@ -107,7 +107,6 @@ export default {
     error: null
   }),
   async mounted() {
-    this.error = null
     // fetch IEM info from backend
     const iemId = this.$route.params.iemId
     try {
