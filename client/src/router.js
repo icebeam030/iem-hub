@@ -7,7 +7,6 @@ const Login = () => import('@/components/Login')
 const IemHub = () => import('@/components/IemHub')
 const IemCreate = () => import('@/components/IemCreate')
 const IemEdit = () => import('@/components/IemEdit')
-const IemDelete = () => import('@/components/IemDelete')
 
 Vue.use(VueRouter)
 
@@ -72,12 +71,6 @@ export default new VueRouter({
       path: '/iem/edit/:iemId',
       name: 'iem-edit',
       component: IemEdit,
-      beforeEnter: userIsAdmin
-    },
-    {
-      path: '/iem/delete/:iemId',
-      name: 'iem-delete',
-      component: IemDelete,
       beforeEnter: userIsAdmin
     }
   ]

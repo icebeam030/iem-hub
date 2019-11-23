@@ -30,13 +30,31 @@
 
     <v-card-actions v-if="$store.state.isUserAdmin">
       <v-spacer />
-      <v-btn
-        :to="{ name: 'iem-delete', params: { iemId: iem.id }}"
-        color="pink lighten-1"
-        text
-      >
-        <v-icon>delete</v-icon>
-      </v-btn>
+
+      <v-dialog v-model="dialog" max-width="400">
+        <template v-slot:activator="{ on }">
+          <v-btn color="pink lighten-1" text v-on="on">
+            <v-icon>delete</v-icon>
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title class="justify-center">
+            <div>
+              Delete <strong>{{ iem.brand }} {{ iem.name }}</strong> ?
+            </div>
+          </v-card-title>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn color="pink lighten-1" text @click="dialog = false">
+              Cancel
+            </v-btn>
+            <v-btn color="pink lighten-1" dark @click="deleteIem">
+              Yes
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
       <v-btn
         :to="{ name: 'iem-edit', params: { iemId: iem.id }}"
         color="pink lighten-1"
@@ -61,6 +79,7 @@
 </template>
 
 <script>
+import IemService from '@/services/IemService'
 import RatingService from '@/services/RatingService'
 
 export default {
@@ -74,10 +93,10 @@ export default {
     rating: null,
     averageRating: 'Loading...',
     successMessage: null,
+    dialog: false,
     error: null
   }),
   async mounted() {
-    this.error = null
     const iemId = this.iem.id
     if (!iemId) {
       this.error = 'Something went wrong'
@@ -95,17 +114,29 @@ export default {
     async rateIem() {
       this.error = null
       this.successMessage = null
-      const rating = {
-        iemId: this.iem.id,
-        rating: this.rating
-      }
       try {
+        const rating = {
+          iemId: this.iem.id,
+          rating: this.rating
+        }
         await RatingService.put(rating)
         this.successMessage = 'Rating successful'
         setTimeout(() => {
           this.successMessage = null
         }, 1000)
         this.averageRating = (await RatingService.show(this.iem.id)).data.averageRating
+      } catch (err) {
+        this.error = err.response.data.error
+      }
+    },
+    async deleteIem() {
+      this.error = null
+      this.dialog = false
+      try {
+        const iemId = this.iem.id
+        await IemService.delete(iemId)
+        await RatingService.delete(iemId)
+        this.$emit('iem-deleted', iemId)
       } catch (err) {
         this.error = err.response.data.error
       }

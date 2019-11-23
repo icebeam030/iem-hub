@@ -2,6 +2,7 @@ import Api from '@/services/Api'
 
 export default {
   // fetch the IEM list to be displayed
+  // when search is falsy, fetch the full list
   index(search) {
     return Api().get('iems', {
       params: { search: search }
