@@ -8,7 +8,7 @@ module.exports = {
       dialect: process.env.DIALECT || 'sqlite',
       host: process.env.HOST || 'localhost',
       storage: './iemhub.sqlite',
-      operatorsAliases: false
+      operatorsAliases: 0
     }
   },
   authentication: {
