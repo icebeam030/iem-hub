@@ -38,7 +38,7 @@
           </v-btn>
         </template>
         <v-card>
-          <v-card-title class="justify-center">
+          <v-card-title>
             <div>
               Delete <strong>{{ iem.brand }} {{ iem.name }}</strong> ?
             </div>
@@ -48,7 +48,7 @@
             <v-btn color="pink lighten-1" text @click="dialog = false">
               Cancel
             </v-btn>
-            <v-btn color="pink lighten-1" dark @click="deleteIem">
+            <v-btn color="pink lighten-1" text @click="deleteIem">
               Yes
             </v-btn>
           </v-card-actions>
