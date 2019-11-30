@@ -13,9 +13,7 @@ passport.use(
     try {
       // confirm the user is signed by jwt and in the database
       const user = await User.findOne({
-        where: {
-          id: jwtPayload.id
-        }
+        where: { id: jwtPayload.id }
       })
       if (!user) {
         return done(new Error(), false)

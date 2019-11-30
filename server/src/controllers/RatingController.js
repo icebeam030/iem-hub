@@ -14,19 +14,14 @@ module.exports = {
         }
       })
       if (rating.length > 0) {
-        rating = {
-          rating: rating[0].rating
-        }
+        rating = { rating: rating[0].rating }
       } else {
-        rating = {
-          rating: null
-        }
+        rating = { rating: null }
       }
+
       res.send(rating)
     } catch (err) {
-      res.status(500).send({
-        error: 'Error fetching rating'
-      })
+      res.status(500).send({ error: 'Error fetching rating' })
     }
   },
 
@@ -35,9 +30,7 @@ module.exports = {
     try {
       const iemId = req.params.iemId
       let averageRating = await Rating.findOne({
-        where: {
-          iemId: iemId
-        }
+        where: { iemId: iemId }
       })
       if (!averageRating) {
         return res.send({
@@ -46,16 +39,13 @@ module.exports = {
       }
 
       const sum = await Rating.sum('rating', {
-        where: {
-          iemId: iemId
-        }
+        where: { iemId: iemId }
       })
       const count = await Rating.count({
-        where: {
-          iemId: iemId
-        }
+        where: { iemId: iemId }
       })
       averageRating = Number.parseFloat(sum / count).toFixed(1)
+
       res.send({
         averageRating: averageRating
       })
@@ -92,6 +82,7 @@ module.exports = {
           iemId: iemId
         }
       })
+
       res.send(req.body)
     } catch (err) {
       res.status(500).send({
@@ -105,10 +96,9 @@ module.exports = {
     try {
       const { iemId } = req.params
       await Rating.destroy({
-        where: {
-          iemId: iemId
-        }
+        where: { iemId: iemId }
       })
+
       res.send({
         iemId: iemId
       })

@@ -24,6 +24,7 @@ module.exports = {
         password: hash
       })
       const userJson = user.toJSON()
+
       res.send({
         user: userJson,
         token: jwtSignUser(userJson)
@@ -39,9 +40,7 @@ module.exports = {
     try {
       const { email, password } = req.body
       const user = await User.findOne({
-        where: {
-          email: email.toLowerCase()
-        }
+        where: { email: email.toLowerCase() }
       })
       if (!user) {
         return res.status(403).send({
@@ -57,6 +56,7 @@ module.exports = {
       }
 
       const userJson = user.toJSON()
+
       res.send({
         user: userJson,
         token: jwtSignUser(userJson)

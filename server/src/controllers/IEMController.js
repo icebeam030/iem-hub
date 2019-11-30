@@ -9,6 +9,7 @@ module.exports = {
   async index(req, res) {
     try {
       let iems = null
+
       const search = req.query.search
       if (search) {
         iems = await Iem.findAll({
@@ -21,6 +22,7 @@ module.exports = {
       } else {
         iems = await Iem.findAll()
       }
+
       res.send(iems)
     } catch (err) {
       res.status(500).send({
@@ -72,10 +74,9 @@ module.exports = {
     try {
       const { iemId } = req.params
       await Iem.destroy({
-        where: {
-          id: iemId
-        }
+        where: { id: iemId }
       })
+
       res.send({
         iemId: iemId
       })
