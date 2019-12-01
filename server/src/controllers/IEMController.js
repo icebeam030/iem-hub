@@ -23,6 +23,14 @@ module.exports = {
         iems = await Iem.findAll()
       }
 
+      iems = iems.map((iem) => ({
+        id: iem.id,
+        brand: iem.brand,
+        name: iem.name,
+        price: iem.price,
+        imageUrl: iem.imageUrl
+      }))
+
       res.send(iems)
     } catch (err) {
       res.status(500).send({
@@ -34,7 +42,15 @@ module.exports = {
   // fetch information of a certain IEM from database
   async show(req, res) {
     try {
-      const iem = await Iem.findByPk(req.params.iemId)
+      let iem = await Iem.findByPk(req.params.iemId)
+      iem = {
+        id: iem.id,
+        brand: iem.brand,
+        name: iem.name,
+        price: iem.price,
+        imageUrl: iem.imageUrl
+      }
+
       res.send(iem)
     } catch (err) {
       res.status(500).send({
@@ -46,7 +62,15 @@ module.exports = {
   // post an IEM into database
   async post(req, res) {
     try {
-      const iem = await Iem.create(req.body)
+      let iem = await Iem.create(req.body)
+      iem = {
+        id: iem.id,
+        brand: iem.brand,
+        name: iem.name,
+        price: iem.price,
+        imageUrl: iem.imageUrl
+      }
+
       res.send(iem)
     } catch (err) {
       res.status(500).send({

@@ -21,7 +21,9 @@ module.exports = {
 
       res.send(rating)
     } catch (err) {
-      res.status(500).send({ error: 'Error fetching rating' })
+      res.status(500).send({
+        error: 'Error fetching rating'
+      })
     }
   },
 
