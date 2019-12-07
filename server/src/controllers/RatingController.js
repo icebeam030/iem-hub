@@ -3,10 +3,10 @@ const { Rating } = require('../models')
 module.exports = {
   // fetch user rating of a certain IEM
   async index(req, res) {
-    try {
-      const userId = req.user.id
-      const { iemId } = req.query
+    const userId = req.user.id
+    const { iemId } = req.query
 
+    try {
       let rating = await Rating.findAll({
         where: {
           userId: userId,
@@ -29,8 +29,8 @@ module.exports = {
 
   // show average rating for a certain IEM
   async show(req, res) {
+    const iemId = req.params.iemId
     try {
-      const iemId = req.params.iemId
       let averageRating = await Rating.findOne({
         where: { iemId: iemId }
       })
@@ -60,10 +60,10 @@ module.exports = {
 
   // create or update rating for a certain IEM
   async put(req, res) {
-    try {
-      const userId = req.user.id
-      const { iemId } = req.body
+    const userId = req.user.id
+    const { iemId } = req.body
 
+    try {
       const ratingExists = await Rating.findOne({
         where: {
           userId: userId,
@@ -95,8 +95,8 @@ module.exports = {
 
   // delete rating of a certain IEM
   async remove(req, res) {
+    const { iemId } = req.params
     try {
-      const { iemId } = req.params
       await Rating.destroy({
         where: { iemId: iemId }
       })

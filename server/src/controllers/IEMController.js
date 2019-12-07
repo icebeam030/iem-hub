@@ -7,10 +7,10 @@ module.exports = {
   // if user is searching, send back search result
   // otherwise send back all IEMs
   async index(req, res) {
-    try {
-      let iems = null
+    let iems = null
+    const search = req.query.search
 
-      const search = req.query.search
+    try {
       if (search) {
         iems = await Iem.findAll({
           where: {
@@ -95,8 +95,8 @@ module.exports = {
 
   // delete a certain IEM
   async remove(req, res) {
+    const { iemId } = req.params
     try {
-      const { iemId } = req.params
       await Iem.destroy({
         where: { id: iemId }
       })

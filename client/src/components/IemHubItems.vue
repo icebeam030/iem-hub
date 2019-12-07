@@ -114,17 +114,19 @@ export default {
     async rateIem() {
       this.error = null
       this.successMessage = null
+
+      const rating = {
+        iemId: this.iem.id,
+        rating: this.rating
+      }
       try {
-        const rating = {
-          iemId: this.iem.id,
-          rating: this.rating
-        }
         await RatingService.put(rating)
         this.successMessage = 'Rating successful'
         setTimeout(() => {
           this.successMessage = null
         }, 1000)
         this.averageRating = (await RatingService.show(this.iem.id)).data.averageRating
+
       } catch (err) {
         this.error = err.response.data.error
       }
@@ -132,8 +134,9 @@ export default {
     async deleteIem() {
       this.error = null
       this.dialog = false
+
+      const iemId = this.iem.id
       try {
-        const iemId = this.iem.id
         await IemService.delete(iemId)
         await RatingService.delete(iemId)
         this.$emit('iem-deleted', iemId)

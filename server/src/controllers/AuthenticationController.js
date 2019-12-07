@@ -15,18 +15,18 @@ function jwtSignUser(user) {
 
 module.exports = {
   async register(req, res) {
-    try {
-      const { email, password } = req.body
-      // eslint-disable-next-line
-      const emailRe = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      const passwordRe = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/
-      if (!emailRe.test(email) || password.length < 8 || password.length > 20 || !passwordRe.test(password)) {
-        return res.status(403).send({
-          error: 'Registration failed'
-        })
-      }
+    const { email, password } = req.body
+    // eslint-disable-next-line
+    const emailRe = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const passwordRe = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/
+    if (!emailRe.test(email) || password.length < 8 || password.length > 20 || !passwordRe.test(password)) {
+      return res.status(403).send({
+        error: 'Registration failed'
+      })
+    }
 
-      const hash = bcrypt.hashSync(password, SALT_ROUND)
+    const hash = bcrypt.hashSync(password, SALT_ROUND)
+    try {
       const user = await User.create({
         email: email.toLowerCase(),
         password: hash
@@ -45,8 +45,8 @@ module.exports = {
   },
 
   async login(req, res) {
+    const { email, password } = req.body
     try {
-      const { email, password } = req.body
       const user = await User.findOne({
         where: { email: email.toLowerCase() }
       })
