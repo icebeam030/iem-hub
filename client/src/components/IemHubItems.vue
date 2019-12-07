@@ -126,7 +126,6 @@ export default {
           this.successMessage = null
         }, 1000)
         this.averageRating = (await RatingService.show(this.iem.id)).data.averageRating
-
       } catch (err) {
         this.error = err.response.data.error
       }
