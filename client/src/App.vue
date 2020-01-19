@@ -23,10 +23,10 @@
         />
       </v-toolbar-items>
 
-      <v-btn v-if="!$store.state.isUserLoggedIn" :to="{ name: 'login' }" text>
+      <v-btn v-if="!($store.state.isUserLoggedIn)" :to="{ name: 'login' }" text>
         Login
       </v-btn>
-      <v-btn v-if="!$store.state.isUserLoggedIn" :to="{ name: 'register' }" text>
+      <v-btn v-if="!($store.state.isUserLoggedIn)" :to="{ name: 'register' }" text>
         Sign Up
       </v-btn>
       <v-btn v-if="$store.state.isUserLoggedIn" text @click="logout">

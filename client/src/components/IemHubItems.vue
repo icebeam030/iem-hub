@@ -89,6 +89,7 @@ export default {
       required: true
     }
   },
+
   data: () => ({
     rating: null,
     averageRating: 'Loading...',
@@ -96,6 +97,7 @@ export default {
     dialog: false,
     error: null
   }),
+
   async mounted() {
     const iemId = this.iem.id
     if (!iemId) {
@@ -110,6 +112,7 @@ export default {
       this.error = err.response.data.error
     }
   },
+
   methods: {
     async rateIem() {
       this.error = null
@@ -130,6 +133,7 @@ export default {
         this.error = err.response.data.error
       }
     },
+
     async deleteIem() {
       this.error = null
       this.dialog = false

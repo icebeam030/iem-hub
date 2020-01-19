@@ -84,20 +84,24 @@ export default {
     ValidationObserver,
     ValidationProvider
   },
+
   data: () => ({
     email: '',
     password: '',
     showPassword: false,
     error: null
   }),
+
   watch: {
     email: debounce(function () {
       this.error = null
     }, 1000, { leading: true }),
+
     password: debounce(function () {
       this.error = null
     }, 1000, { leading: true })
   },
+
   methods: {
     async login() {
       this.error = null
@@ -113,6 +117,7 @@ export default {
         this.error = err.response.data.error
       }
     },
+
     clear() {
       this.email = ''
       this.password = ''

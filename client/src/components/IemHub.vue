@@ -26,7 +26,7 @@
 
       <v-row justify="center">
         <v-col v-for="iem in iems" :key="iem.id" cols="12" sm="8" md="6" lg="4">
-          <IemHubItems :iem="iem" @iem-deleted="removeIem" />
+          <IemHubItems :iem="iem" @iem-deleted="onIemDeleted" />
         </v-col>
       </v-row>
     </v-card>
@@ -41,10 +41,12 @@ export default {
   components: {
     IemHubItems
   },
+
   data: () => ({
     iems: [],
     error: null
   }),
+
   watch: {
     // when search is an empty object, the full list of IEMs is fetched.
     '$route.query.search': {
@@ -59,8 +61,9 @@ export default {
       }
     }
   },
+
   methods: {
-    removeIem(iemId) {
+    onIemDeleted(iemId) {
       const index = this.iems.findIndex((iem) => iem.id === iemId)
       if (index !== -1) {
         this.iems.splice(index, 1)

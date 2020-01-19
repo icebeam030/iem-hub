@@ -102,10 +102,12 @@ export default {
     ValidationObserver,
     ValidationProvider
   },
+
   data: () => ({
     iem: {},
     error: null
   }),
+
   methods: {
     clear() {
       this.iem.brand = ''
@@ -114,6 +116,7 @@ export default {
       this.iem.imageUrl = ''
       this.$refs.form.reset()
     },
+
     async createIem() {
       this.error = null
       try {

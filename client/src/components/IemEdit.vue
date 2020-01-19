@@ -102,10 +102,12 @@ export default {
     ValidationObserver,
     ValidationProvider
   },
+
   data: () => ({
     iem: {},
     error: null
   }),
+
   async mounted() {
     // fetch IEM info from backend
     const iemId = this.$route.params.iemId
@@ -115,6 +117,7 @@ export default {
       this.error = err.response.data.error
     }
   },
+
   methods: {
     clear() {
       this.iem.brand = ''
@@ -123,6 +126,7 @@ export default {
       this.iem.imageUrl = ''
       this.$refs.form.reset()
     },
+
     async editIem() {
       this.error = null
       try {
