@@ -2,10 +2,10 @@
 A [Vue.JS](https://vuejs.org/v2/guide/index.html) / [Express.JS](https://expressjs.com/) full-stack web app for managing your favourite IEMs (In Ear Monitor)
 
 
-## See the technical documentations
-- [Client](./client/README.md)
+## Front-end and Back-end
+- [Client](./client/)
 
-- [Server](./server/README.md)
+- [Server](./server/)
 
 
 ## Future plan and development guide
