@@ -9,6 +9,7 @@ A [Vue.JS](https://vuejs.org/v2/guide/index.html) / [Express.JS](https://express
 
 
 ## Future plan and development guide
+- Implement unit tests
 - Add settings so that colour themes can be changed etc.
 - User can search by price, brand, etc.
 - User can view their favourites, set avatar, etc.

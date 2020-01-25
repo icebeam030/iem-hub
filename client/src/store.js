@@ -5,7 +5,9 @@ import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  plugins: [createPersistedState()],
+  plugins: [
+    createPersistedState()
+  ],
 
   state: {
     token: null,
@@ -15,24 +17,19 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    setToken(state, token) {
+    setUser(state, payload) {
+      const { token, user } = payload
       state.token = token
       state.isUserLoggedIn = !!token
-    },
 
-    setUser(state, user) {
       state.user = user
       state.isUserAdmin = (user && user.email === 'admin@admin.com')
     }
   },
 
   actions: {
-    setToken({ commit }, token) {
-      commit('setToken', token)
-    },
-
-    setUser({ commit }, user) {
-      commit('setUser', user)
+    setUser({ commit }, payload) {
+      commit('setUser', payload)
     }
   }
 })
