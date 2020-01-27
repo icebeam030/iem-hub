@@ -106,13 +106,14 @@ export default {
     async login() {
       this.error = null
       try {
-        const response = await AuthenticationService.login({
+        const credentials = {
           email: this.email,
           password: this.password
-        })
+        }
+        const response = (await AuthenticationService.login(credentials)).data
         this.$store.dispatch('setUser', {
-          token: response.data.token,
-          user: response.data.user
+          token: response.token,
+          user: response.user
         })
         this.$router.push({ name: 'iem-hub' })
       } catch (err) {

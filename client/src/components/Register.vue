@@ -152,13 +152,14 @@ export default {
     async register() {
       this.error = null
       try {
-        const response = await AuthenticationService.register({
+        const credentials = {
           email: this.email,
           password: this.password
-        })
+        }
+        const response = (await AuthenticationService.register(credentials)).data
         this.$store.dispatch('setUser', {
-          token: response.data.token,
-          user: response.data.user
+          token: response.token,
+          user: response.user
         })
         this.$router.push({ name: 'iem-hub' })
       } catch (err) {

@@ -57,6 +57,7 @@ export default {
   data: () => ({
     search: ''
   }),
+
   watch: {
     // only send request to server 1 second after user finishes typing
     search: debounce(function (query) {
@@ -69,6 +70,7 @@ export default {
       this.$router.push(route)
     }, 1000)
   },
+
   methods: {
     logout() {
       this.$store.dispatch('setUser', {
