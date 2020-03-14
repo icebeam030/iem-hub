@@ -7,21 +7,19 @@
         </v-btn>
       </v-toolbar-items>
 
-      <v-spacer />
+      <v-text-field
+        v-if="$store.state.isUserLoggedIn"
+        v-model="search"
+        class="mx-6"
+        clearable
+        flat
+        hide-details
+        placeholder="Search"
+        prepend-inner-icon="search"
+        solo-inverted
+      />
 
-      <v-toolbar-items>
-        <v-text-field
-          v-if="$store.state.isUserLoggedIn"
-          v-model="search"
-          class="mx-6"
-          clearable
-          flat
-          hide-details
-          placeholder="Search"
-          prepend-inner-icon="search"
-          solo
-        />
-      </v-toolbar-items>
+      <v-spacer />
 
       <v-btn v-if="!($store.state.isUserLoggedIn)" :to="{ name: 'login' }" text>
         Login
