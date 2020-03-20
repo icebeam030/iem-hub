@@ -26,7 +26,7 @@
 
       <v-row justify="center">
         <v-col v-for="iem in iems" :key="iem.id" cols="12" sm="8" md="6" lg="4">
-          <IemHubItems :iem="iem" @iem-deleted="onIemDeleted" />
+          <IemHubItem :iem="iem" @iem-deleted="onIemDeleted" />
         </v-col>
       </v-row>
     </v-card>
@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import IemHubItems from '@/components/IemHubItems'
+import IemHubItem from '@/components/IemHubItem'
 import IemService from '@/services/IemService'
 
 export default {
   components: {
-    IemHubItems
+    IemHubItem
   },
 
   data: () => ({
