@@ -53,15 +53,15 @@ import { debounce } from 'lodash-es'
 
 export default {
   data: () => ({
-    search: ''
+    query: ''
   }),
 
   watch: {
-    // only send request to server 1 second after user finishes typing
-    search: debounce(function (query) {
+    // only triggers searching 1 second after user finishes typing
+    query: debounce(function (value) {
       const route = { name: 'iem-hub' }
-      if (query) {
-        route.query = { search: query }
+      if (value) {
+        route.query = { search: value }
       } else {
         route.query = {}
       }
