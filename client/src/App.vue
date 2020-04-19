@@ -9,7 +9,7 @@
 
       <v-text-field
         v-if="$store.state.isUserLoggedIn"
-        v-model="search"
+        v-model="query"
         class="mx-6"
         clearable
         flat
